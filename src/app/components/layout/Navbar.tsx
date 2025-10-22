@@ -15,7 +15,7 @@ const NAVIGATION = [
       { label: "Afrique Australe", href: "/destinations/australe" },
     ],
   },
-  { label: "Expériences", href: "/experiences" },
+  { label: "Nos produits", href: "/products" },
   { label: "Blog", href: "/blog" },
   { label: "À propos", href: "/about" },
   { label: "Contact", href: "/contact" },
