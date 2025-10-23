@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { Button } from "../ui/Button";
 import Image from "next/image";
+import Link from "next/link";
 
 export default function Hero() {
   const [currentSlide, setCurrentSlide] = useState(0);
@@ -75,13 +76,14 @@ export default function Hero() {
             <p className="text-xl sm:text-2xl md:text-3xl mb-8 text-gray-200">
               {slides[currentSlide].subtitle}
             </p>
-            <Button
-              label="Voir nos produits"
-              className="w-full bg-blue-600 hover:bg-blue-700 text-white font-semibold py-3 px-6 rounded-lg transition-colors duration-200 shadow-sm hover:shadow-md"
-            />
+            <Link href="../../products">
+              <Button
+                label="Voir nos produits"
+                className="w-full bg-blue-600 hover:bg-blue-700 text-white font-semibold py-3 px-6 rounded-lg transition-colors duration-200 shadow-sm hover:shadow-md"
+              />
+            </Link>
           </div>
         </div>
-
         {/* Navigation Arrows */}
         <button
           onClick={prevSlide}
@@ -138,7 +140,6 @@ export default function Hero() {
           ))}
         </div>
       </div>
-
       {/* About Section */}
       <section className="py-16 sm:py-24 bg-gray-50">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
