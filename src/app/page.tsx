@@ -8,7 +8,6 @@ import Footer from "./components/layout/Footer";
 export default function CountdownClient() {
   const [countdown, setCountdown] = useState(3);
   const [showLogin, setShowLogin] = useState(false);
-
   useEffect(() => {
     if (countdown > 0) {
       const timer = setTimeout(() => {

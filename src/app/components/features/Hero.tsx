@@ -66,11 +66,10 @@ export default function Hero() {
             </div>
           ))}
         </div>
-
         {/* Content Overlay */}
         <div className="absolute inset-0 flex items-center justify-center z-10">
           <div className="text-center text-white px-4 sm:px-6 lg:px-8 max-w-4xl">
-            <h1 className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-bold mb-4 animate-fade-in">
+            <h1 className="text-4xl text-green-500 sm:text-5xl md:text-6xl lg:text-7xl font-bold mb-4 animate-fade-in">
               {slides[currentSlide].title}
             </h1>
             <p className="text-xl sm:text-2xl md:text-3xl mb-8 text-gray-200">
@@ -90,7 +89,7 @@ export default function Hero() {
           aria-label="Image précédente"
         >
           <svg
-            className="w-6 h-6 text-white"
+            className="w-6 h-6 text-black"
             fill="none"
             stroke="currentColor"
             viewBox="0 0 24 24"
@@ -109,7 +108,7 @@ export default function Hero() {
           aria-label="Image suivante"
         >
           <svg
-            className="w-6 h-6 text-white"
+            className="w-6 h-6 text-black"
             fill="none"
             stroke="currentColor"
             viewBox="0 0 24 24"
