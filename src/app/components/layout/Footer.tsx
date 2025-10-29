@@ -8,6 +8,7 @@ import {
   Send,
   Heart,
 } from "lucide-react";
+import Image from "next/image";
 
 const SITE_NAME = "AFRIKAMAZING";
 
@@ -47,16 +48,20 @@ export default function Footer() {
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8 sm:py-12 lg:py-16">
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-6 sm:gap-8 lg:gap-12">
           {/* Brand Section */}
-          <div className="lg:col-span-2 space-y-4 sm:space-y-6">
+          <div className="lg:col-span-2 space-y-2 sm:space-y-4">
             <div className="flex items-center space-x-2">
-              <div className="w-8 h-8 sm:w-10 sm:h-10 bg-gradient-to-br from-orange-500 to-red-600 rounded-lg flex items-center justify-center">
-                <span className="text-white font-bold text-lg sm:text-xl">
-                  A
+              <a href="/" className="flex items-center space-x-2 group">
+                <span className="text-xl lg:text-2xl font-bold bg-gradient-to-r from-orange-600 to-red-600 bg-clip-text text-transparent">
+                  <Image
+                    src="/logo/Logo-orange.png"
+                    width={280}
+                    height={280}
+                    alt="Logo de l'application"
+                    className="drop-shadow-lg"
+                    priority
+                  />
                 </span>
-              </div>
-              <span className="text-xl sm:text-2xl font-bold bg-gradient-to-r from-orange-400 to-red-500 bg-clip-text text-transparent">
-                {SITE_NAME}
-              </span>
+              </a>
             </div>
 
             <p className="text-gray-400 leading-relaxed max-w-md text-sm sm:text-base">

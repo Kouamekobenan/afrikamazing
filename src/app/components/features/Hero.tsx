@@ -70,7 +70,7 @@ export default function Hero() {
         {/* Content Overlay */}
         <div className="absolute inset-0 flex items-center justify-center z-10">
           <div className="text-center text-white px-4 sm:px-6 lg:px-8 max-w-4xl">
-            <h1 className="text-4xl text-green-500 sm:text-5xl md:text-6xl lg:text-7xl font-bold mb-4 animate-fade-in">
+            <h1 className="text-4xl text-orange-500 sm:text-5xl md:text-6xl lg:text-7xl font-bold mb-4 animate-fade-in">
               {slides[currentSlide].title}
             </h1>
             <p className="text-xl sm:text-2xl md:text-3xl mb-8 text-gray-200">
@@ -79,7 +79,7 @@ export default function Hero() {
             <Link href="../../products">
               <Button
                 label="Voir nos produits"
-                className="w-full bg-blue-600 hover:bg-blue-700 text-white font-semibold py-3 px-6 rounded-lg transition-colors duration-200 shadow-sm hover:shadow-md"
+                // className="w-full bg-blue-600 hover:bg-blue-700 text-white font-semibold py-3 px-6 rounded-lg transition-colors duration-200 shadow-sm hover:shadow-md"
               />
             </Link>
           </div>

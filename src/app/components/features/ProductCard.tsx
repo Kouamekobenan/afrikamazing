@@ -59,7 +59,10 @@ export default function ProductCard() {
               <div className="flex gap-1.5 md:gap-2 mt-auto">
                 {/* Bouton Commander - Réduit sur mobile */}
                 <button
-                  className="flex-1 min-w-0 text-xs md:text-sm bg-blue-600 hover:bg-blue-700 text-white font-semibold py-2 md:py-3 px-2 md:px-4 rounded-lg transition-colors duration-200 shadow-sm hover:shadow-md flex items-center justify-center gap-1"
+                  style={{
+                    backgroundColor: "#6C371A",
+                  }}
+                  className="flex-1 min-w-0 text-xs md:text-sm hover:bg-blue-700 text-white font-semibold py-2 md:py-3 px-2 md:px-4 rounded-lg transition-colors duration-200 shadow-sm hover:shadow-md flex items-center justify-center gap-1"
                   aria-label={`Commander ${prod.name}`}
                 >
                   <ShoppingCart className="w-4 h-4 md:w-5 md:h-5 flex-shrink-0" />

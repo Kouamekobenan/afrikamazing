@@ -1,20 +1,12 @@
 "use client";
 import { useState, useEffect } from "react";
-import { Menu, X, ChevronDown, Search, Globe } from "lucide-react";
+import { Menu, X, Search, Globe } from "lucide-react";
+import Image from "next/image";
+import { Button } from "../ui/Button";
 
 const SITE_NAME = "AFRIKAMAZING";
 
 const NAVIGATION = [
-  {
-    label: "Destinations",
-    href: "/destinations",
-    submenu: [
-      { label: "Afrique de l'Ouest", href: "/destinations/ouest" },
-      { label: "Afrique Centrale", href: "/destinations/centrale" },
-      { label: "Afrique de l'Est", href: "/destinations/est" },
-      { label: "Afrique Australe", href: "/destinations/australe" },
-    ],
-  },
   { label: "Nos produits", href: "/products" },
   { label: "Blog", href: "/blog" },
   { label: "À propos", href: "/about" },
@@ -24,7 +16,6 @@ const NAVIGATION = [
 export default function Navbar() {
   const [isOpen, setIsOpen] = useState(false);
   const [isScrolled, setIsScrolled] = useState(false);
-  const [activeDropdown, setActiveDropdown] = useState<string | null>(null);
 
   useEffect(() => {
     const handleScroll = () => {
@@ -46,56 +37,30 @@ export default function Navbar() {
         <div className="flex justify-between items-center h-16 lg:h-20">
           {/* Logo */}
           <a href="/" className="flex items-center space-x-2 group">
-            <div className="w-10 h-10 bg-gradient-to-br from-orange-500 to-red-600 rounded-lg flex items-center justify-center transform group-hover:scale-105 transition-transform">
-              <span className="text-white font-bold text-xl">A</span>
-            </div>
             <span className="text-xl lg:text-2xl font-bold bg-gradient-to-r from-orange-600 to-red-600 bg-clip-text text-transparent">
-              {SITE_NAME}
+              <Image
+                src="/logo/Logo-orange.png"
+                width={280}
+                height={280}
+                alt="Logo de l'application"
+                className="drop-shadow-lg"
+                priority
+              />
             </span>
           </a>
-
           {/* Desktop Navigation */}
           <div className="hidden lg:flex items-center space-x-1">
             {NAVIGATION.map((item) => (
-              <div
-                key={item.label}
-                className="relative"
-                onMouseEnter={() =>
-                  item.submenu && setActiveDropdown(item.label)
-                }
-                onMouseLeave={() => setActiveDropdown(null)}
-              >
+              <div key={item.label} className="relative">
                 <a
                   href={item.href}
                   className="px-4 py-2 text-gray-700 hover:text-orange-600 font-medium transition-colors flex items-center gap-1 group"
                 >
                   {item.label}
-                  {item.submenu && (
-                    <ChevronDown
-                      size={16}
-                      className="group-hover:rotate-180 transition-transform duration-300"
-                    />
-                  )}
                 </a>
-
-                {/* Dropdown Menu */}
-                {item.submenu && activeDropdown === item.label && (
-                  <div className="absolute top-full left-0 mt-2 w-56 bg-white rounded-xl shadow-2xl border border-gray-100 py-2 animate-in fade-in slide-in-from-top-2 duration-200">
-                    {item.submenu.map((subitem) => (
-                      <a
-                        key={subitem.label}
-                        href={subitem.href}
-                        className="block px-4 py-3 text-sm text-gray-700 hover:bg-orange-50 hover:text-orange-600 transition-colors"
-                      >
-                        {subitem.label}
-                      </a>
-                    ))}
-                  </div>
-                )}
               </div>
             ))}
           </div>
-
           {/* Desktop Actions */}
           <div className="hidden lg:flex items-center space-x-3">
             <button
@@ -114,9 +79,9 @@ export default function Navbar() {
 
             <a
               href="/reservation"
-              className="px-6 py-2.5 bg-gradient-to-r from-orange-500 to-red-600 text-white font-medium rounded-lg hover:shadow-lg hover:scale-105 transition-all duration-300"
+              // className="px-6 py-2.5 bg-gradient-to-r from-orange-500 to-red-600 text-white font-medium rounded-lg hover:shadow-lg hover:scale-105 transition-all duration-300"
             >
-              Réserver
+              <Button label="Réserver maintenant" className="w-[250px] text-white" />
             </a>
           </div>
 
@@ -143,42 +108,10 @@ export default function Navbar() {
               <a
                 href={item.href}
                 className="block px-4 py-3 text-gray-700 hover:bg-orange-50 hover:text-orange-600 rounded-lg font-medium transition-colors"
-                onClick={() => !item.submenu && setIsOpen(false)}
+                onClick={() => setIsOpen(false)}
               >
-                <div className="flex items-center justify-between">
-                  {item.label}
-                  {item.submenu && (
-                    <ChevronDown
-                      size={16}
-                      className={`transition-transform ${
-                        activeDropdown === item.label ? "rotate-180" : ""
-                      }`}
-                      onClick={(e: React.MouseEvent) => {
-                        e.preventDefault();
-                        setActiveDropdown(
-                          activeDropdown === item.label ? null : item.label
-                        );
-                      }}
-                    />
-                  )}
-                </div>
+                {item.label}
               </a>
-
-              {/* Mobile Submenu */}
-              {item.submenu && activeDropdown === item.label && (
-                <div className="ml-4 mt-1 space-y-1">
-                  {item.submenu.map((subitem) => (
-                    <a
-                      key={subitem.label}
-                      href={subitem.href}
-                      className="block px-4 py-2 text-sm text-gray-600 hover:bg-orange-50 hover:text-orange-600 rounded-lg transition-colors"
-                      onClick={() => setIsOpen(false)}
-                    >
-                      {subitem.label}
-                    </a>
-                  ))}
-                </div>
-              )}
             </div>
           ))}
 
@@ -196,10 +129,10 @@ export default function Navbar() {
 
             <a
               href="/reservation"
-              className="block w-full px-4 py-3 bg-gradient-to-r from-orange-500 to-red-600 text-white font-medium rounded-lg text-center hover:shadow-lg transition-all"
+              // className="block w-full px-4 py-3 bg-gradient-to-r from-orange-500 to-red-600 text-white font-medium rounded-lg text-center hover:shadow-lg transition-all"
               onClick={() => setIsOpen(false)}
             >
-              Réserver maintenant
+              <Button label="Réserver maintenant" />
             </a>
           </div>
         </div>

@@ -51,9 +51,9 @@ export default function CountdownClient() {
       <div className="bg-white/80 backdrop-blur-sm rounded-2xl shadow-2xl border border-white/20 p-10 max-w-md mx-auto">
         {/* Logo */}
         <div className="flex justify-center items-center mb-8">
-          <div className="relative">
+          <div className="relative border-2 rounded-2xl">
             <Image
-              src="/images/sac_1.jpg"
+              src="/logo/Logo-orange.png"
               width={180}
               height={180}
               alt="Logo de l'application"

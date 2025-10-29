@@ -22,7 +22,7 @@ export default function ContactForm() {
     setStatus("loading");
 
     try {
-      const response = await fetch("https://formspree.io/f/yourFormID", {
+      const response = await fetch("https://formspree.io/f/myzbebnd", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
@@ -40,7 +40,6 @@ export default function ContactForm() {
       setStatus("error");
     }
   };
-
   return (
     <section className="bg-gray-50 py-20" id="contact">
       <div className="max-w-2xl mx-auto px-6 text-center">
@@ -96,11 +95,13 @@ export default function ContactForm() {
               className="w-full border border-gray-300 rounded-lg px-4 py-2 focus:ring-2 focus:ring-green-600 focus:outline-none"
             ></textarea>
           </div>
-
           <button
+            style={{
+              backgroundColor: "#6C371A",
+            }}
             type="submit"
             disabled={status === "loading"}
-            className="w-full bg-green-700 text-white py-2 rounded-lg font-semibold hover:bg-green-800 transition"
+            className="w-full bg-green-700 text-white cursor-pointer py-2 rounded-lg font-semibold hover:bg-green-800 transition"
           >
             {status === "loading"
               ? "Envoi en cours..."
@@ -108,7 +109,6 @@ export default function ContactForm() {
               ? "Message envoyé ✅"
               : "Envoyer le message"}
           </button>
-
           {status === "error" && (
             <p className="text-red-600 text-sm text-center mt-2">
               Une erreur est survenue. Réessayez plus tard.

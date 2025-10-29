@@ -1,5 +1,4 @@
 import React from "react";
-
 interface ButtonsProps {
   label: string | null | React.ReactNode;
   onClick?: () => void;
@@ -7,7 +6,6 @@ interface ButtonsProps {
   className?: string;
   disabled?: boolean;
 }
-
 export const Button: React.FC<ButtonsProps> = ({
   label,
   onClick,
@@ -20,12 +18,26 @@ export const Button: React.FC<ButtonsProps> = ({
       <button
         type={type}
         onClick={onClick}
-        disabled={disabled} // ✅ Application de la prop disabled
-        className={`text-2xl border-blue-800 border rounded-xl p-1 hover:bg-blue-300 w-[150px] md:w-[200px] hover:text-white hover:transition ${
+        disabled={disabled}
+        style={{
+          backgroundColor: disabled ? undefined : "#6C371A",
+          // backgroundColor: disabled ? undefined : "transparent",
+        }}
+        className={`text-2xl text-white border h-[50px] rounded-xl p-1 w-[250px] md:w-[250px] hover:transition ${
           disabled
-            ? "opacity-50 cursor-not-allowed bg-gray-300" 
-            : "hover:bg-blue-300 cursor-pointer" 
+            ? "opacity-50 cursor-not-allowed bg-gray-300 border-gray-400"
+            : "cursor-pointer hover:text-black"
         } ${className}`}
+        onMouseEnter={(e) => {
+          if (!disabled) {
+            e.currentTarget.style.backgroundColor = "#6C371A";
+          }
+        }}
+        onMouseLeave={(e) => {
+          if (!disabled) {
+            e.currentTarget.style.backgroundColor = "#6C371A";
+          }
+        }}
       >
         <span
           className={`font-light ${
