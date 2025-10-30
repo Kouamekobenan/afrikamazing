@@ -11,7 +11,7 @@ export default function Video() {
         playsInline
         className="absolute top-0 left-0 w-full h-full object-cover"
       >
-        <source src="/video/video.mp4" type="video/mp4" />
+        <source src="/video/vid.mp4" type="video/mp4" />
         <source src="/videos/banner.webm" type="video/webm" />
         Votre navigateur ne supporte pas la vidéo.
       </video>
