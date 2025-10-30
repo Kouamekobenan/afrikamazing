@@ -2,7 +2,6 @@
 import { useState, useEffect } from "react";
 import { Menu, X, Search, Globe } from "lucide-react";
 import Image from "next/image";
-import { Button } from "../ui/Button";
 
 const SITE_NAME = "AFRIKAMAZING";
 
@@ -79,9 +78,9 @@ export default function Navbar() {
 
             <a
               href="/reservation"
-              // className="px-6 py-2.5 bg-gradient-to-r from-orange-500 to-red-600 text-white font-medium rounded-lg hover:shadow-lg hover:scale-105 transition-all duration-300"
+              className="px-6 py-2.5 bg-[#6C371A] text-white font-medium rounded-lg hover:shadow-lg hover:scale-105 hover:bg-[#5a2e15] transition-all duration-300"
             >
-              <Button label="Réserver maintenant" className="w-[250px] text-white" />
+              Réserver
             </a>
           </div>
 
@@ -128,11 +127,15 @@ export default function Navbar() {
             </button>
 
             <a
+              style={{
+                backgroundColor: "#6C371A",
+                // backgroundColor: disabled ? undefined : "transparent",
+              }}
               href="/reservation"
-              // className="block w-full px-4 py-3 bg-gradient-to-r from-orange-500 to-red-600 text-white font-medium rounded-lg text-center hover:shadow-lg transition-all"
+              className="block w-full px-4 py-3 bg-gradient-to-r from-orange-800 text-white font-medium rounded-lg text-center hover:shadow-lg transition-all"
               onClick={() => setIsOpen(false)}
             >
-              <Button label="Réserver maintenant" />
+              commander
             </a>
           </div>
         </div>

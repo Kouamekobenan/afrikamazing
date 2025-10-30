@@ -1,7 +1,26 @@
+// src/app/[locale]/layout.tsx
 import type { Metadata } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
-import "./globals.css";
+import localFont from "next/font/local";
+
+import "../globals.css";
 import { defaultSEO } from "./lib/seo.config";
+
+const poppins = localFont({
+  src: [
+    {
+      path: "./fonts/Poppins-Regular.ttf",
+      weight: "400",
+      style: "normal",
+    },
+    {
+      path: "./fonts/Poppins-Bold.ttf",
+      weight: "700",
+      style: "normal",
+    },
+  ],
+  variable: "--font-poppins",
+});
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -13,23 +32,29 @@ const geistMono = Geist_Mono({
   subsets: ["latin"],
 });
 
-// Utilisez defaultSEO directement dans metadata
 export const metadata: Metadata = {
   title: defaultSEO.title,
   description: defaultSEO.description,
   openGraph: defaultSEO.openGraph,
-  // Ajoutez d'autres propriétés de defaultSEO selon votre configuration
+  metadataBase: new URL(
+    process.env.NEXT_PUBLIC_SITE_URL || "http://localhost:3000"
+  ),
 };
 
-export default function RootLayout({
+export default function LocaleLayout({
   children,
-}: Readonly<{
+  params,
+}: {
   children: React.ReactNode;
-}>) {
+  params: { locale: string };
+}) {
+  const { locale } = params;
+  const direction = locale === "ar" ? "rtl" : "ltr";
+
   return (
-    <html lang="en">
+    <html lang={locale} dir={direction}>
       <body
-        className={`${geistSans.variable} ${geistMono.variable} antialiased`}
+        className={`${geistSans.variable} ${geistMono.variable} ${poppins.variable} antialiased`}
       >
         {children}
       </body>

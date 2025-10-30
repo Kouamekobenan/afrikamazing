@@ -5,7 +5,6 @@ import Link from "next/link";
 
 export default function Hero() {
   const [currentSlide, setCurrentSlide] = useState(0);
-
   const slides = [
     {
       src: "/images/sac_1.jpg",
@@ -13,12 +12,12 @@ export default function Hero() {
       subtitle: "Découvrez nos sacs premium",
     },
     {
-      src: "/images/sac_2.jpg",
+      src: "/images/HNP-1.jpg",
       title: "Style Moderne",
       subtitle: "Pour toutes vos occasions",
     },
     {
-      src: "/images/sac_3.jpg",
+      src: "/images/HNP-3.jpg",
       title: "Qualité Supérieure",
       subtitle: "Des produits qui durent",
     },

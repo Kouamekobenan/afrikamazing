@@ -39,22 +39,19 @@ export default function ProductCard() {
               />
               {/* Badge "Nouveau" */}
               <span className="absolute top-2 right-2 md:top-4 md:right-4 bg-red-500 text-white text-xs font-bold px-2 py-1 md:px-3 rounded-full">
-                Nouveau
+                {prod.category}
               </span>
             </div>
-
             {/* Contenu du produit */}
             <div className="p-3 md:p-6 flex flex-col flex-grow">
               {/* Nom du produit */}
               <h3 className="text-sm md:text-xl font-bold text-gray-900 mb-1 md:mb-2 line-clamp-2">
                 {prod.name}
               </h3>
-
               {/* Description - masquée sur très petits écrans */}
               <p className="hidden sm:block text-sm md:text-base text-gray-600 mb-3 md:mb-4 flex-grow line-clamp-2 md:line-clamp-3">
                 {prod.desc}
               </p>
-
               {/* Boutons d'action - SOLUTION OPTIMISÉE */}
               <div className="flex gap-1.5 md:gap-2 mt-auto">
                 {/* Bouton Commander - Réduit sur mobile */}
@@ -62,14 +59,13 @@ export default function ProductCard() {
                   style={{
                     backgroundColor: "#6C371A",
                   }}
-                  className="flex-1 min-w-0 text-xs md:text-sm hover:bg-blue-700 text-white font-semibold py-2 md:py-3 px-2 md:px-4 rounded-lg transition-colors duration-200 shadow-sm hover:shadow-md flex items-center justify-center gap-1"
+                  className="flex-1 min-w-0 text-xs cursor-pointer md:text-sm hover:bg-blue-700 text-white font-semibold py-2 md:py-3 px-2 md:px-4 rounded-lg transition-colors duration-200 shadow-sm hover:shadow-md flex items-center justify-center gap-1"
                   aria-label={`Commander ${prod.name}`}
                 >
                   <ShoppingCart className="w-4 h-4 md:w-5 md:h-5 flex-shrink-0" />
                   <span className="hidden sm:inline truncate">Commander</span>
                   <span className="sm:hidden">commander</span>
                 </button>
-
                 {/* Bouton WhatsApp - Taille fixe garantie sur mobile */}
                 <button
                   onClick={() => handleWhatsAppReservation(prod)}

@@ -8,6 +8,7 @@ export interface ProductImage {
 export interface ProductEntity {
   id: string;
   name: string;
+  category: string;
   desc: string;
   img: ProductImage;
 }

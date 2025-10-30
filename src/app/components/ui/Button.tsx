@@ -23,7 +23,7 @@ export const Button: React.FC<ButtonsProps> = ({
           backgroundColor: disabled ? undefined : "#6C371A",
           // backgroundColor: disabled ? undefined : "transparent",
         }}
-        className={`text-2xl text-white border h-[50px] rounded-xl p-1 w-[250px] md:w-[250px] hover:transition ${
+        className={`text-2xl text-white cursor-pointer border h-[50px] rounded-xl p-1 w-[250px] md:w-[250px] hover:transition ${
           disabled
             ? "opacity-50 cursor-not-allowed bg-gray-300 border-gray-400"
             : "cursor-pointer hover:text-black"
