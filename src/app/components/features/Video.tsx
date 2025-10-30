@@ -11,11 +11,10 @@ export default function Video() {
         playsInline
         className="absolute top-0 left-0 w-full h-full object-cover"
       >
-        <source src="/video/vid.mp4" type="video/mp4" />
+        <source src="/video/vide.mp4" type="video/mp4" />
         <source src="/videos/banner.webm" type="video/webm" />
         Votre navigateur ne supporte pas la vidéo.
       </video>
-
       {/* Overlay sombre pour améliorer la lisibilité */}
       <div className="absolute inset-0 bg-black/40"></div>
 
@@ -40,7 +39,6 @@ export default function Video() {
           </button>
         </Link>
       </div>
-
       {/* Indicateur de scroll (optionnel) */}
       <div className="absolute bottom-8 left-1/2 transform -translate-x-1/2 z-10 animate-bounce">
         <svg
