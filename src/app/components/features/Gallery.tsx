@@ -97,6 +97,9 @@ export default function Gallery() {
         {hasMore && (
           <div className="mt-8 sm:mt-12 flex justify-center">
             <button
+              style={{
+                backgroundColor: "#C99642",
+              }}
               onClick={loadMore}
               className="px-6 py-3 sm:px-8 sm:py-4 bg-orange-900 text-white font-semibold rounded-lg shadow-md hover:shadow-lg transition-all duration-300 active:scale-95 text-sm sm:text-base"
             >

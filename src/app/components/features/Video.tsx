@@ -30,10 +30,10 @@ export default function Video() {
         </p>
         <button
           style={{
-            backgroundColor: "#6C371A",
+            backgroundColor: "#C99642",
             // backgroundColor: disabled ? undefined : "transparent",
           }}
-          className="bg-orange-600 hover:bg-orange-700 text-white font-semibold px-6 sm:px-8 md:px-10 py-3 sm:py-4 rounded-full text-sm sm:text-base md:text-lg transition-all duration-300 transform hover:scale-105 shadow-2xl"
+          className="bg-orange-600 cursor-pointer hover:bg-orange-700 text-white font-semibold px-6 sm:px-8 md:px-10 py-3 sm:py-4 rounded-full text-sm sm:text-base md:text-lg transition-all duration-300 transform hover:scale-105 shadow-2xl"
         >
           Découvrir maintenant
         </button>

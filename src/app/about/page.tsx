@@ -17,7 +17,7 @@ export default function AboutPage() {
     <div className="min-h-screen bg-gradient-to-b from-gray-50 to-white">
       <Navbar />
       {/* Hero Section */}
-      <section className="relative bg-gradient-to-r from-blue-600 to-blue-800 text-white py-20 md:py-20 px-4">
+      <section className="relative bg-gradient-to-r from-orange-600 to-orange-700 text-white py-20 md:py-20 px-4">
         <div className="max-w-4xl mx-auto text-center">
           <h1 className="text-3xl md:text-5xl lg:text-6xl font-bold mb-4 md:mb-6">
             À propos d'Afrikamazing
@@ -36,12 +36,12 @@ export default function AboutPage() {
             <h2 className="text-2xl md:text-3xl lg:text-4xl font-bold text-gray-900 mb-3 md:mb-4">
               Notre Histoire
             </h2>
-            <div className="w-24 h-1 bg-blue-600 mx-auto rounded-full"></div>
+            <div className="w-24 h-1 bg-orange-600 mx-auto rounded-full"></div>
           </div>
 
           <div className="bg-white rounded-2xl shadow-lg p-6 md:p-12">
             <p className="text-base md:text-lg text-gray-700 leading-relaxed mb-4 md:mb-6">
-              <span className="text-xl md:text-2xl font-bold text-blue-600">
+              <span className="text-xl md:text-2xl font-bold text-orange-400">
                 Afrikamazing
               </span>{" "}
               est née d'une passion pour la mode et d'un engagement à offrir des
@@ -68,14 +68,14 @@ export default function AboutPage() {
             <h2 className="text-2xl md:text-3xl lg:text-4xl font-bold text-gray-900 mb-3 md:mb-4">
               Nos Valeurs
             </h2>
-            <div className="w-24 h-1 bg-blue-600 mx-auto rounded-full"></div>
+            <div className="w-24 h-1 bg-orange-600 mx-auto rounded-full"></div>
           </div>
 
           <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-6 md:gap-8">
             {/* Qualité */}
             <div className="bg-white rounded-xl shadow-md p-6 md:p-8 hover:shadow-xl transition-shadow duration-300">
-              <div className="w-14 h-14 md:w-16 md:h-16 bg-blue-100 rounded-full flex items-center justify-center mb-4 md:mb-6 mx-auto">
-                <Award className="w-7 h-7 md:w-8 md:h-8 text-blue-600" />
+              <div className="w-14 h-14 md:w-16 md:h-16 bg-orange-600 rounded-full flex items-center justify-center mb-4 md:mb-6 mx-auto">
+                <Award className="w-7 h-7 md:w-8 md:h-8 text-white" />
               </div>
               <h3 className="text-lg md:text-xl font-bold text-gray-900 mb-3 md:mb-4 text-center">
                 Qualité Premium
@@ -88,8 +88,8 @@ export default function AboutPage() {
 
             {/* Service Client */}
             <div className="bg-white rounded-xl shadow-md p-6 md:p-8 hover:shadow-xl transition-shadow duration-300">
-              <div className="w-14 h-14 md:w-16 md:h-16 bg-green-100 rounded-full flex items-center justify-center mb-4 md:mb-6 mx-auto">
-                <Heart className="w-7 h-7 md:w-8 md:h-8 text-green-600" />
+              <div className="w-14 h-14 md:w-16 md:h-16 bg-orange-600 rounded-full flex items-center justify-center mb-4 md:mb-6 mx-auto">
+                <Heart  className="w-7 h-7 md:w-8 md:h-8 text-white" />
               </div>
               <h3 className="text-lg md:text-xl font-bold text-gray-900 mb-3 md:mb-4 text-center">
                 Service Client Exceptionnel
@@ -102,8 +102,8 @@ export default function AboutPage() {
 
             {/* Style */}
             <div className="bg-white rounded-xl shadow-md p-6 md:p-8 hover:shadow-xl transition-shadow duration-300">
-              <div className="w-14 h-14 md:w-16 md:h-16 bg-purple-100 rounded-full flex items-center justify-center mb-4 md:mb-6 mx-auto">
-                <Sparkles className="w-7 h-7 md:w-8 md:h-8 text-purple-600" />
+              <div className="w-14 h-14 md:w-16 md:h-16 bg-orange-600 rounded-full flex items-center justify-center mb-4 md:mb-6 mx-auto">
+                <Sparkles className="w-7 h-7 md:w-8 md:h-8 text-white" />
               </div>
               <h3 className="text-lg md:text-xl font-bold text-gray-900 mb-3 md:mb-4 text-center">
                 Tendances & Style
@@ -124,14 +124,14 @@ export default function AboutPage() {
             <h2 className="text-2xl md:text-3xl lg:text-4xl font-bold text-gray-900 mb-3 md:mb-4">
               Ce que nous proposons
             </h2>
-            <div className="w-24 h-1 bg-blue-600 mx-auto rounded-full"></div>
+            <div className="w-24 h-1 bg-orange-600 mx-auto rounded-full"></div>
           </div>
 
           <div className="grid md:grid-cols-2 gap-6 md:gap-8">
             {/* Sacs */}
             <div className="bg-gradient-to-br from-blue-50 to-blue-100 rounded-2xl p-6 md:p-10">
-              <div className="w-16 h-16 md:w-20 md:h-20 bg-white rounded-full flex items-center justify-center mb-4 md:mb-6 shadow-md">
-                <ShoppingBag className="w-8 h-8 md:w-10 md:h-10 text-blue-600" />
+              <div className="w-16 h-16 md:w-20 md:h-20 bg-orange-600 rounded-full flex items-center justify-center mb-4 md:mb-6 shadow-md">
+                <ShoppingBag className="w-8 h-8 md:w-10 md:h-10 text-white" />
               </div>
               <h3 className="text-xl md:text-2xl font-bold text-gray-900 mb-3 md:mb-4">
                 Sacs pour toutes occasions
@@ -160,9 +160,9 @@ export default function AboutPage() {
             </div>
 
             {/* Chaussures */}
-            <div className="bg-gradient-to-br from-purple-50 to-purple-100 rounded-2xl p-6 md:p-10">
-              <div className="w-16 h-16 md:w-20 md:h-20 bg-white rounded-full flex items-center justify-center mb-4 md:mb-6 shadow-md">
-                <Sparkles className="w-8 h-8 md:w-10 md:h-10 text-purple-600" />
+            <div className="bg-gradient-to-br from-orange-50 to-orange-100 rounded-2xl p-6 md:p-10">
+              <div className="w-16 h-16 md:w-20 md:h-20 bg-orange-600 rounded-full flex items-center justify-center mb-4 md:mb-6 shadow-md">
+                <Sparkles className="w-8 h-8 md:w-10 md:h-10 text-white" />
               </div>
               <h3 className="text-xl md:text-2xl font-bold text-gray-900 mb-3 md:mb-4">
                 Chaussures confort & style
@@ -200,14 +200,14 @@ export default function AboutPage() {
             <h2 className="text-2xl md:text-3xl lg:text-4xl font-bold text-gray-900 mb-3 md:mb-4">
               Où nous trouver
             </h2>
-            <div className="w-24 h-1 bg-blue-600 mx-auto rounded-full"></div>
+            <div className="w-24 h-1 bg-orange-600 mx-auto rounded-full"></div>
           </div>
 
           <div className="grid md:grid-cols-2 gap-6 md:gap-8">
             {/* Adresse */}
             <div className="bg-white rounded-2xl shadow-lg p-6 md:p-8">
-              <div className="w-14 h-14 md:w-16 md:h-16 bg-blue-100 rounded-full flex items-center justify-center mb-4 md:mb-6 mx-auto">
-                <MapPin className="w-7 h-7 md:w-8 md:h-8 text-blue-600" />
+              <div className="w-14 h-14 md:w-16 md:h-16 bg-orange-600 rounded-full flex items-center justify-center mb-4 md:mb-6 mx-auto">
+                <MapPin className="w-7 h-7 md:w-8 md:h-8 text-white" />
               </div>
               <h3 className="text-xl md:text-2xl font-bold text-gray-900 mb-3 md:mb-4 text-center">
                 Notre Boutique
@@ -224,8 +224,8 @@ export default function AboutPage() {
 
             {/* Horaires & Contact */}
             <div className="bg-white rounded-2xl shadow-lg p-6 md:p-8">
-              <div className="w-14 h-14 md:w-16 md:h-16 bg-green-100 rounded-full flex items-center justify-center mb-4 md:mb-6 mx-auto">
-                <Clock className="w-7 h-7 md:w-8 md:h-8 text-green-600" />
+              <div className="w-14 h-14 md:w-16 md:h-16 bg-orange-600 rounded-full flex items-center justify-center mb-4 md:mb-6 mx-auto">
+                <Clock className="w-7 h-7 md:w-8 md:h-8 text-white" />
               </div>
               <h3 className="text-xl md:text-2xl font-bold text-gray-900 mb-3 md:mb-4 text-center">
                 Nos Horaires
@@ -242,9 +242,9 @@ export default function AboutPage() {
                   <span className="font-semibold">Dimanche:</span> Fermé
                 </p>
               </div>
-              <div className="mt-4 pt-4 border-t border-gray-200">
+              <div className="mt-4 pt-4 border-t border-orange-600">
                 <p className="text-center text-sm md:text-base text-gray-600">
-                  <Phone className="w-4 h-4 md:w-5 md:h-5 inline mr-2 text-green-600" />
+                  <Phone className="w-4 h-4 md:w-5 md:h-5 inline mr-2 text-white" />
                   <span className="font-semibold">
                     Contactez-nous via WhatsApp
                   </span>
@@ -258,7 +258,7 @@ export default function AboutPage() {
       {/* Call to Action */}
       <section className="py-12 md:py-16 px-4">
         <div className="max-w-4xl mx-auto text-center">
-          <div className="bg-gradient-to-r from-blue-600 to-blue-800 rounded-2xl p-8 md:p-16 shadow-2xl">
+          <div className="bg-gradient-to-r from-orange-600 to-orange-700 rounded-2xl p-8 md:p-16 shadow-2xl">
             <Users className="w-12 h-12 md:w-16 md:h-16 text-white mx-auto mb-4 md:mb-6" />
             <h2 className="text-2xl md:text-3xl lg:text-4xl font-bold text-white mb-4 md:mb-6">
               Rejoignez la communauté Afrikamazing
@@ -268,7 +268,10 @@ export default function AboutPage() {
               sélection unique de sacs et chaussures !
             </p>
             <Link href="../products">
-              <button className="bg-white text-blue-600 font-bold py-3 px-6 md:py-4 md:px-8 rounded-lg text-base md:text-lg hover:bg-blue-50 transition-colors duration-300 shadow-lg hover:shadow-xl">
+              <button
+                style={{ backgroundColor: "#C99642" }}
+                className="bg-whit font-bold py-3 px-6 md:py-4 md:px-8 rounded-lg text-base md:text-lg hover:bg-blue-50 transition-colors duration-300 shadow-lg hover:shadow-xl"
+              >
                 Découvrir nos produits
               </button>
             </Link>
