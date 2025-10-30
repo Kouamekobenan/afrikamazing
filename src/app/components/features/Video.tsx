@@ -1,5 +1,5 @@
+import Link from "next/link";
 import React from "react";
-
 export default function Video() {
   return (
     <div className="relative w-full h-screen overflow-hidden">
@@ -22,21 +22,23 @@ export default function Video() {
       {/* Contenu par-dessus la vidéo */}
       <div className="relative z-10 flex flex-col items-center justify-center h-full px-4 sm:px-6 lg:px-8 text-center">
         <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl xl:text-7xl font-bold text-white mb-4 sm:mb-6 drop-shadow-2xl">
-          Bienvenue sur Notre Site
+          Afrikamazing 
         </h1>
         <p className="text-base sm:text-lg md:text-xl lg:text-2xl text-white/90 mb-6 sm:mb-8 max-w-2xl drop-shadow-lg">
           Découvrez nos produits exceptionnels et profitez d'une expérience
           unique
         </p>
-        <button
-          style={{
-            backgroundColor: "#C99642",
-            // backgroundColor: disabled ? undefined : "transparent",
-          }}
-          className="bg-orange-600 cursor-pointer hover:bg-orange-700 text-white font-semibold px-6 sm:px-8 md:px-10 py-3 sm:py-4 rounded-full text-sm sm:text-base md:text-lg transition-all duration-300 transform hover:scale-105 shadow-2xl"
-        >
-          Découvrir maintenant
-        </button>
+        <Link href="../../products">
+          <button
+            style={{
+              backgroundColor: "#C99642",
+              // backgroundColor: disabled ? undefined : "transparent",
+            }}
+            className="bg-orange-600 cursor-pointer hover:bg-orange-700 text-white font-semibold px-6 sm:px-8 md:px-10 py-3 sm:py-4 rounded-full text-sm sm:text-base md:text-lg transition-all duration-300 transform hover:scale-105 shadow-2xl"
+          >
+            Découvrir nos articles
+          </button>
+        </Link>
       </div>
 
       {/* Indicateur de scroll (optionnel) */}
