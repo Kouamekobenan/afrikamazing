@@ -48,11 +48,10 @@ export default function LocaleLayout({
   children: React.ReactNode;
   params: { locale: string };
 }) {
-  const { locale } = params;
-  const direction = locale === "ar" ? "rtl" : "ltr";
+ 
 
   return (
-    <html lang={locale} dir={direction}>
+    <html lang="fr">
       <body
         className={`${geistSans.variable} ${geistMono.variable} ${poppins.variable} antialiased`}
       >
