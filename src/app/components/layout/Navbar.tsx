@@ -137,9 +137,19 @@ import Link from "next/link";
 import { usePathname, useRouter, useParams } from "next/navigation";
 import { Button } from "../ui/Button";
 
+type LocaleParams = {
+  locale: LocaleCode; // Assurez-vous que LocaleCode est importé
+  // Ajoutez d'autres paramètres de route si nécessaire (ex: slug: string)
+};
+
 // Imports de la configuration
 
-import { getLocaleFromParams, isRtlLocale, LocaleCode, LOCALES } from "../../lib/global.type";
+import {
+  getLocaleFromParams,
+  isRtlLocale,
+  LocaleCode,
+  LOCALES,
+} from "../../lib/global.type";
 import { useTypedTranslation } from "@/src/config/translate";
 
 const SITE_NAME = "AFRIKAMAZING";
@@ -153,7 +163,9 @@ export default function Navbar() {
 
   const router = useRouter();
   const pathname = usePathname();
-  const params = useParams();
+  // const params = useParams();
+  const params = useParams() as LocaleParams;
+
   // Obtenir la locale courante de manière sécurisée
   const currentLocale = useMemo<LocaleCode>(() => {
     return getLocaleFromParams(params);
