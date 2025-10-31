@@ -3,10 +3,28 @@ import React, { useState } from "react";
 import { MessageCircle, ShoppingCart } from "lucide-react";
 import { ProductEntity } from "../../lib/global.type";
 import { Product } from "../../data/product";
+import { useMemo } from "react"; // 👈 Ajouté
+import { useParams } from "next/navigation"; // 👈 Ajouté
+import {
+  LocaleCode,
+  getLocaleFromParams,
+  // Assurez-vous d'importer isRtlLocale si vous utilisez la direction
+} from "../../lib/global.type";
+import { useTypedTranslation } from "@/src/config/translate";
+import { categories } from "../../data/blogPosts";
+// TYPAGE SECURISÉ
+type LocaleParams = {
+  locale: LocaleCode;
+};
 export default function ProductCard() {
+  const params = useParams() as LocaleParams;
+  const currentLocale = useMemo<LocaleCode>(() => {
+    return getLocaleFromParams(params);
+  }, [params]);
+  const { t } = useTypedTranslation(currentLocale);
   const phone = "2250506832678";
 
-  const handleWhatsAppReservation = (prod:ProductEntity) => {
+  const handleWhatsAppReservation = (prod: ProductEntity) => {
     const message = encodeURIComponent(
       `Bonjour ! Je souhaite réserver le sac "${prod.name}". Merci !`
     );

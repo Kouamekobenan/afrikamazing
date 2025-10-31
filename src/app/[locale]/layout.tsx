@@ -5,13 +5,19 @@ import type { Metadata } from "next";
 
 // import "../globals.css"; // Import global CSS
 // import "../../glabals.css";
-import "../../../src/globals.css"
+import "../../../src/globals.css";
 import Navbar from "../components/layout/Navbar";
+import { LOCALES } from "../lib/global.type";
 
 // ============================================
 // Configuration des polices
 // ============================================
-
+export async function generateStaticParams() {
+  // Ceci dit à Next.js : "Construis statiquement les pages pour 'fr' et 'en'."
+  return LOCALES.map((locale) => ({
+    locale: locale.code as string,
+  }));
+}
 // Police locale Poppins
 const poppins = localFont({
   src: [
@@ -67,4 +73,3 @@ export default function RootLayout({ children }: { children: ReactNode }) {
     </html>
   );
 }
-
