@@ -1,6 +1,6 @@
 import React, { useState } from "react";
-import { Product } from "@/app/data/product";
 import { X, Download, ZoomIn } from "lucide-react";
+import { Product } from "../../data/product";
 
 // Interface pour le type de produit
 interface ProductType {

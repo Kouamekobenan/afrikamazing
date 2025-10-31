@@ -2,10 +2,10 @@
 "use client";
 import { useState, useEffect } from "react";
 import Image from "next/image";
-import Navbar from "./components/layout/Navbar";
-import Hero from "./components/features/Hero";
-import Gallery from "./components/features/Gallery";
-import Footer from "./components/layout/Footer";
+import Navbar from "../layout/Navbar";
+import Hero from "./Hero";
+import Gallery from "./Gallery";
+import Footer from "../layout/Footer";
 
 export default function CountdownClient() {
   const [countdown, setCountdown] = useState(3);

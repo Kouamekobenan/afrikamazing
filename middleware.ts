@@ -1,18 +1,33 @@
-// src/middleware.ts
-import createMiddleware from "next-intl/middleware";
+import { NextResponse } from "next/server";
+import type { NextRequest } from "next/server";
 
-export default createMiddleware({
-  // Liste des locales supportées
-  locales: ["fr", "en", "ar"],
+export function middleware(request: NextRequest) {
+  console.log("🔥🔥🔥 MIDDLEWARE APPELÉ 🔥🔥🔥");
+  console.log("URL:", request.nextUrl.pathname);
 
-  // Locale par défaut
-  defaultLocale: "fr",
+  const pathname = request.nextUrl.pathname;
 
-  // Détection automatique de la locale
-  localeDetection: true,
-});
+  // Si c'est la racine, rediriger vers /fr
+  if (pathname === "/") {
+    console.log("➡️ Redirection vers /fr");
+    return NextResponse.redirect(new URL("/fr", request.url));
+  }
+
+  // Si commence par /fr, /en, /ar, laisser passer
+  if (
+    pathname.startsWith("/fr") ||
+    pathname.startsWith("/en") ||
+    pathname.startsWith("/ar")
+  ) {
+    console.log("✅ Locale détectée, continue");
+    return NextResponse.next();
+  }
+
+  // Sinon ajouter /fr devant
+  console.log("➡️ Ajout de /fr devant", pathname);
+  return NextResponse.redirect(new URL("/fr" + pathname, request.url));
+}
 
 export const config = {
-  // Matcher pour toutes les routes sauf les fichiers statiques
-  matcher: ["/", "/(fr|en|ar)/:path*", "/((?!_next|_vercel|.*\\..*).*)"],
+  matcher: ["/((?!_next|api|favicon.ico|.*\\..*).*)"],
 };

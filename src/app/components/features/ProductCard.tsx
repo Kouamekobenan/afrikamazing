@@ -1,8 +1,8 @@
 "use client";
 import React, { useState } from "react";
 import { MessageCircle, ShoppingCart } from "lucide-react";
-import { Product } from "@/app/data/product";
-import { ProductEntity } from "@/app/lib/global.type";
+import { ProductEntity } from "../../lib/global.type";
+import { Product } from "../../data/product";
 export default function ProductCard() {
   const phone = "2250506832678";
 

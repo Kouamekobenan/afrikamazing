@@ -1,5 +1,4 @@
 import { BlogEntity } from "../lib/global.type";
-
 export const BlogPosts: BlogEntity[] = [
   {
     id: 1,
@@ -20,7 +19,7 @@ Rejoignez-nous dans cette aventure où chaque produit est une célébration du t
     category: "Notre Histoire",
     author: "L'équipe Afrikamazing",
     date: "15 Octobre 2024",
-    image: "images/HNP-1.jpg",
+    image: "/images/HNP-1.jpg",
     readTime: "5 min",
   },
   {
@@ -54,7 +53,7 @@ Chez Afrikamazing, chaque sac est pensé pour combiner fonctionnalité et esthé
     category: "Guide d'Achat",
     author: "Afrikamazing employer",
     date: "20 Octobre 2024",
-    image: "images/sac_2.jpg",
+    image: "/images/sac_2.jpg",
     readTime: "7 min",
   },
 
@@ -90,7 +89,7 @@ Nos polos Afrikamazing sont conçus en coton de qualité supérieure qui conserv
     category: "Style & Mode",
     author: "Employer Afrikamazing",
     date: "28 Octobre 2024",
-    image: "images/HNP-12.jpg",
+    image: "/images/HNP-12.jpg",
     readTime: "5 min",
   },
 ];

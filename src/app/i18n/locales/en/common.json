@@ -1,0 +1,10 @@
+{
+  "nav": {
+    "products": "Our Products",
+    "blog": "Blog",
+    "about": "About",
+    "contact": "Contact",
+    "order": "Order Now",
+    "search": "Search"
+  }
+}

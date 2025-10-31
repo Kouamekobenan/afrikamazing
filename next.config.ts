@@ -1,11 +1,6 @@
-// next.config.ts
-import type { NextConfig } from "next";
-import createNextIntlPlugin from "next-intl/plugin";
 
-const withNextIntl = createNextIntlPlugin("./next-intl.config.ts");
-
-const nextConfig: NextConfig = {
-  reactStrictMode: true,
+const nextConfig = {
+  // Pas de section i18n ici !
 };
 
-export default withNextIntl(nextConfig);
+export default nextConfig;

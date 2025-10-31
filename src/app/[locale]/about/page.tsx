@@ -9,8 +9,8 @@ import {
   Phone,
   Clock,
 } from "lucide-react";
-import Navbar from "../components/layout/Navbar";
 import Link from "next/link";
+import Navbar from "../../components/layout/Navbar";
 
 export default function AboutPage() {
   return (

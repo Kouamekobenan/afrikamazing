@@ -1,15 +1,13 @@
 "use client";
 import React, { useState } from "react";
 import { Calendar, User, ArrowRight } from "lucide-react";
-import { BlogPosts as blogPosts } from "../data/blogPosts";
-import { BlogEntity } from "../lib/global.type";
-import { categories } from "../data/blogPosts";
-import Video from "../components/features/Video";
+import { BlogPosts as blogPosts, categories } from "../../data/blogPosts";
+import { BlogEntity } from "../../lib/global.type";
+import Video from "../../components/features/Video";
 // Données des articles de blog
 export default function BlogPage() {
   const [selectedCategory, setSelectedCategory] = useState("Tous");
   const [selectedPost, setSelectedPost] = useState<BlogEntity | null>(null);
-
   const filteredPosts =
     selectedCategory === "Tous"
       ? blogPosts
