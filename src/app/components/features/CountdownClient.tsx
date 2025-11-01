@@ -37,7 +37,7 @@ export default function CountdownClient({
           <Navbar />
           <Hero locale={locale} translations={translations} />
           <Gallery locale={locale} translations={translations} />
-          <Footer locale={locale} translations={translations} />
+          {/* <Footer locale={locale} translations={translations} /> */}
         </div>
       </div>
     );

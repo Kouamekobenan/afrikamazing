@@ -9,6 +9,7 @@ import {
   Heart,
 } from "lucide-react";
 import Image from "next/image";
+import { LocaleCode } from "../../lib/global.type";
 
 const SITE_NAME = "AFRIKAMAZING";
 
@@ -19,7 +20,7 @@ const SOCIAL_LINKS = {
 };
 
 interface FooterProps {
-  locale: "en" | "fr" | "ar";
+  locale: LocaleCode;
   translations: Record<string, Record<string, string>>;
 }
 export default function Footer({ locale, translations }: FooterProps) {
