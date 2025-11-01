@@ -33,26 +33,24 @@ export default function Hero({ locale, translations }: HeroProps) {
       src: "/images/HNP-1.jpg",
       title: t.collection ?? "Nouvelle Collection",
       subtitle: t.discover ?? "Découvrez nos dernières créations.",
-      link: `/products/sacs`,
+      link: `/products`,
     },
     {
       src: "/images/sac_4.jpg",
       title: t.modernStyle ?? "Style Moderne et Authentique",
       subtitle: t.forAllOccasions ?? "Parfait pour toutes les occasions.",
-      link: `/products/mode`,
+      link: `/products`,
     },
     {
       src: "/images/HNP-11.jpg",
       title: t.quality ?? "Qualité Supérieure",
       subtitle: t.longLasting ?? "Des produits conçus pour durer.",
-      link: `/products/artisanat`,
+      link: `/products`,
     },
   ];
-
   // ============================================
   // Logique du Carrousel
   // ============================================
-
   useEffect(() => {
     // Le timer pour le défilement automatique
     const timer = setInterval(() => {
@@ -60,7 +58,6 @@ export default function Hero({ locale, translations }: HeroProps) {
     }, 5000); // 5 secondes
     return () => clearInterval(timer);
   }, [slides.length]);
-
   const goToSlide = (index: number) => setCurrentSlide(index);
   const nextSlide = () => setCurrentSlide((prev) => (prev + 1) % slides.length);
   const prevSlide = () =>
@@ -142,7 +139,6 @@ export default function Hero({ locale, translations }: HeroProps) {
       >
         <ArrowRight className="w-6 h-6" />
       </button>
-
       {/* 4. Indicateurs de position (dots) */}
       <div className="absolute bottom-6 left-1/2 -translate-x-1/2 flex space-x-2 z-30">
         {slides.map((_, index) => (

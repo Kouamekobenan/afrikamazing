@@ -23,26 +23,29 @@ interface FooterProps {
   locale: LocaleCode;
   translations: Record<string, Record<string, string>>;
 }
+
 export default function Footer({ locale, translations }: FooterProps) {
   const currentYear = new Date().getFullYear();
   const t = translations.footer;
+  // console.log("🔍 Footer translations received:", t);
   const FOOTER_LINKS = {
     company: [
-      { label: t.about ?? "À propos", href: `/${locale}/about` },
-      { label: t.careers ?? "Carrières", href: "#" },
-      { label: t.press ?? "Presse", href: "#" },
+      { label: t?.about ?? "À propos", href: `/${locale}/about` },
+      { label: t?.careers ?? "Carrières", href: "#" },
+      { label: t?.press ?? "Presse", href: "#" },
     ],
     explore: [
-      { label: t.blog ?? "Blog", href: `/${locale}/blog` },
-      { label: t.gallery ?? "Galerie", href: "#" },
+      { label: t?.blog ?? "Blog", href: `/${locale}/blog` },
+      { label: t?.gallery ?? "Galerie", href: "#" },
     ],
     support: [
-      { label: t.help ?? "Centre d'aide", href: `/${locale}/help` },
-      { label: t.contact ?? "Contact", href: `/${locale}/contact` },
-      { label: t.faq ?? "FAQ", href: `/${locale}/faq` },
-      { label: t.terms ?? "Conditions", href: "#" },
+      { label: t?.help ?? "Centre d'aide", href: `/${locale}/help` },
+      { label: t?.contact ?? "Contact", href: `/${locale}/contact` },
+      { label: t?.faq ?? "FAQ", href: `/${locale}/faq` },
+      { label: t?.terms ?? "Conditions", href: "#" },
     ],
   };
+
   return (
     <footer className="bg-gradient-to-br from-gray-900 via-gray-800 to-gray-900 text-gray-300">
       {/* Main Footer Content */}
@@ -60,7 +63,7 @@ export default function Footer({ locale, translations }: FooterProps) {
                     src="/logo/Logo-orange.png"
                     width={280}
                     height={280}
-                    alt={t.logoAlt ?? "Logo AFRIKAMAZING"}
+                    alt="Logo AFRIKAMAZING"
                     className="drop-shadow-lg"
                     priority
                   />
@@ -68,22 +71,23 @@ export default function Footer({ locale, translations }: FooterProps) {
               </a>
             </div>
             <p className="text-gray-400 leading-relaxed max-w-md text-sm sm:text-base">
-              {t.description ?? "Découvrez l'Afrique authentique..."}
+              {t?.description ?? "Découvrez l'Afrique authentique..."}
             </p>
+
             {/* Newsletter */}
             <div className="space-y-2 sm:space-y-3">
               <h3 className="text-white font-semibold text-xs sm:text-sm">
-                {t.title ?? "Restez informé"}
+                {t?.newsletterTitle ?? "Restez informé"}
               </h3>
               <div className="flex gap-2">
                 <input
                   type="email"
-                  placeholder={t?.placeholder ?? "Votre email"}
+                  placeholder={t?.newsletterPlaceholder ?? "Votre email"}
                   className="flex-1 px-3 sm:px-4 py-2 sm:py-2.5 bg-gray-800 border border-gray-700 rounded-lg focus:outline-none focus:ring-2 focus:ring-orange-500 focus:border-transparent text-white placeholder-gray-500 text-xs sm:text-sm"
                 />
                 <button
                   className="px-3 sm:px-4 py-2 sm:py-2.5 bg-gradient-to-r from-orange-500 to-red-600 text-white rounded-lg hover:shadow-lg hover:scale-105 transition-all duration-300"
-                  aria-label={t.buttonLabel ?? "S'abonner"}
+                  aria-label={t?.newsletterButton ?? "S'abonner"}
                 >
                   <Send size={16} className="sm:w-[18px] sm:h-[18px]" />
                 </button>
@@ -92,7 +96,7 @@ export default function Footer({ locale, translations }: FooterProps) {
             {/* Social Links */}
             <div className="space-y-2 sm:space-y-3">
               <h3 className="text-white font-semibold text-xs sm:text-sm">
-                {t?.title ?? "Suivez-nous"}
+                {t?.socialTitle ?? "Suivez-nous"}
               </h3>
               <div className="flex gap-2 sm:gap-3">
                 <a
@@ -100,7 +104,7 @@ export default function Footer({ locale, translations }: FooterProps) {
                   target="_blank"
                   rel="noopener noreferrer"
                   className="w-9 h-9 sm:w-10 sm:h-10 bg-gray-800 hover:bg-blue-600 rounded-lg flex items-center justify-center transition-all duration-300 hover:scale-110 hover:shadow-lg group"
-                  aria-label={t.facebook ?? "Facebook"}
+                  aria-label={t?.facebook ?? "Facebook"}
                 >
                   <Facebook
                     size={16}
@@ -112,7 +116,7 @@ export default function Footer({ locale, translations }: FooterProps) {
                   target="_blank"
                   rel="noopener noreferrer"
                   className="w-9 h-9 sm:w-10 sm:h-10 bg-gray-800 hover:bg-gradient-to-br hover:from-purple-600 hover:to-pink-600 rounded-lg flex items-center justify-center transition-all duration-300 hover:scale-110 hover:shadow-lg group"
-                  aria-label={t.instagram ?? "Instagram"}
+                  aria-label={t?.instagram ?? "Instagram"}
                 >
                   <Instagram
                     size={16}
@@ -156,7 +160,7 @@ export default function Footer({ locale, translations }: FooterProps) {
           {/* Explore Links */}
           <div className="space-y-3 sm:space-y-4">
             <h3 className="text-white font-semibold text-xs sm:text-sm uppercase tracking-wider">
-              {t.explore ?? "Explorer"}
+              {t?.explore ?? "Explorer"}
             </h3>
             <ul className="space-y-2 sm:space-y-3">
               {FOOTER_LINKS.explore.map((link) => (
@@ -202,7 +206,6 @@ export default function Footer({ locale, translations }: FooterProps) {
                 />
                 <span>contact@afrikamazing.com</span>
               </a>
-
               <a
                 href="tel:+225XXXXXXXXX"
                 className="flex items-center gap-2 text-gray-400 hover:text-orange-400 transition-colors text-xs sm:text-sm group"
@@ -213,7 +216,6 @@ export default function Footer({ locale, translations }: FooterProps) {
                 />
                 <span>+225 XX XX XX XX XX</span>
               </a>
-
               <div className="flex items-start gap-2 text-gray-400 text-xs sm:text-sm">
                 <MapPin
                   size={14}
@@ -235,7 +237,6 @@ export default function Footer({ locale, translations }: FooterProps) {
                 {t?.rights ?? "Tous droits réservés"}.
               </span>
             </div>
-
             <div className="flex items-center gap-1">
               <span>{t?.madeWith ?? "Fait avec"}</span>
               <Heart
@@ -256,7 +257,7 @@ export default function Footer({ locale, translations }: FooterProps) {
                 href={`/${locale}/terms`}
                 className="hover:text-orange-400 transition-colors"
               >
-                {t.terms ?? "Conditions"}
+                {t?.terms ?? "Conditions"}
               </a>
               <a
                 href={`/${locale}/cookies`}

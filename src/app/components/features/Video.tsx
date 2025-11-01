@@ -1,9 +1,33 @@
 import Link from "next/link";
 import React from "react";
-export default function Video() {
+import { LocaleCode } from "../../lib/global.type";
+
+// Définition de l'interface pour les props de traduction
+interface VideoProps {
+  locale: LocaleCode;
+  // On s'attend à ce que l'objet 'translations' contienne une clé 'video'
+  translations: Record<string, Record<string, string>>;
+}
+
+export default function Video({ locale, translations }: VideoProps) {
+  // 1. Définition des traductions avec valeurs par défaut (Français)
+  const t = {
+    fallbackVideo:
+      translations.video?.fallbackVideo ||
+      "Votre navigateur ne supporte pas la vidéo.",
+    headline: translations.video?.headline || "Afrikamazing", // Le titre reste Afrikamazing, mais on le met dans les traductions
+    description:
+      translations.video?.description ||
+      "Découvrez nos produits exceptionnels et profitez d'une expérience unique",
+    button: translations.video?.button || "Découvrir nos articles",
+  };
+
+  // Les commentaires de code ne sont pas inclus dans l'objet 't' car ils sont destinés aux développeurs.
+  // Les commentaires sont traduits ci-dessous.
+
   return (
     <div className="relative w-full h-screen overflow-hidden">
-      {/* Vidéo en arrière-plan */}
+      {/* Background video / Vidéo en arrière-plan / فيديو في الخلفية */}
       <video
         autoPlay
         loop
@@ -13,33 +37,30 @@ export default function Video() {
       >
         <source src="/video/vide.mp4" type="video/mp4" />
         <source src="/videos/banner.webm" type="video/webm" />
-        Votre navigateur ne supporte pas la vidéo.
+        {t.fallbackVideo}
       </video>
-      {/* Overlay sombre pour améliorer la lisibilité */}
+      {/* Dark overlay to improve readability / Overlay sombre pour améliorer la lisibilité / طبقة داكنة لتحسين سهولة القراءة */}
       <div className="absolute inset-0 bg-black/40"></div>
-
-      {/* Contenu par-dessus la vidéo */}
+      {/* Content over the video / Contenu par-dessus la vidéo / المحتوى فوق الفيديو */}
       <div className="relative z-10 flex flex-col items-center justify-center h-full px-4 sm:px-6 lg:px-8 text-center">
         <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl xl:text-7xl font-bold text-white mb-4 sm:mb-6 drop-shadow-2xl">
-          Afrikamazing 
+          {t.headline}
         </h1>
         <p className="text-base sm:text-lg md:text-xl lg:text-2xl text-white/90 mb-6 sm:mb-8 max-w-2xl drop-shadow-lg">
-          Découvrez nos produits exceptionnels et profitez d'une expérience
-          unique
+          {t.description}
         </p>
-        <Link href="../../products">
+        <Link href="../../products/products">
           <button
             style={{
               backgroundColor: "#C99642",
-              // backgroundColor: disabled ? undefined : "transparent",
             }}
             className="bg-orange-600 cursor-pointer hover:bg-orange-700 text-white font-semibold px-6 sm:px-8 md:px-10 py-3 sm:py-4 rounded-full text-sm sm:text-base md:text-lg transition-all duration-300 transform hover:scale-105 shadow-2xl"
           >
-            Découvrir nos articles
+            {t.button}
           </button>
         </Link>
       </div>
-      {/* Indicateur de scroll (optionnel) */}
+      {/* Scroll indicator (optional) / Indicateur de scroll (optionnel) / مؤشر التمرير (اختياري) */}
       <div className="absolute bottom-8 left-1/2 transform -translate-x-1/2 z-10 animate-bounce">
         <svg
           className="w-6 h-6 sm:w-8 sm:h-8 text-white"

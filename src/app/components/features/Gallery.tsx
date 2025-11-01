@@ -1,7 +1,4 @@
 import { useState } from "react";
-// L'importation de "../../data/product" a été remplacée par une définition locale de données factices.
-// import { Product } from "../../data/product";
-// import { ProductEntity } from "../../lib/global.type"; // Cette interface est incluse ci-dessous
 import { ZoomIn, X, Download } from "lucide-react"; // Ajout de l'icône Download pour la Lightbox
 import { Product } from "../../data/product";
 import { ProductEntity } from "../../lib/global.type";
@@ -10,7 +7,6 @@ interface GalleryProps {
   locale: "en" | "fr" | "ar";
   translations: Record<string, Record<string, string>>;
 }
-
 export default function Gallery({ locale, translations }: GalleryProps) {
   const t = {
     title: translations.gallery?.title || "Galerie d'Artisanat Africain",
@@ -24,7 +20,6 @@ export default function Gallery({ locale, translations }: GalleryProps) {
     touchClose:
       translations.gallery?.touchClose || "Cliquez n'importe où pour fermer",
   };
-
   const [visibleCount, setVisibleCount] = useState(4);
   const [selectedImage, setSelectedImage] = useState<ProductEntity | null>(
     null
@@ -79,7 +74,6 @@ export default function Gallery({ locale, translations }: GalleryProps) {
             {t.total.replace("{count}", Product.length.toString())}
           </p>
         </div>
-
         {/* Grille d'images */}
         <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-4 sm:gap-6 lg:gap-8">
           {visibleProducts.map((prod) => (
@@ -115,14 +109,13 @@ export default function Gallery({ locale, translations }: GalleryProps) {
             </button>
           ))}
         </div>
-
         {/* Bouton Charger Plus */}
         {hasMore && (
           <div className="mt-12 flex justify-center">
             <button
               onClick={loadMore}
               // Style professionnel du bouton
-              className="px-8 py-3 text-lg font-semibold rounded-full text-white bg-orange-500 shadow-lg 
+              className="px-8 py-3 text-lg font-semibold rounded-full text-white bg-yellow-600 shadow-lg 
                          hover:bg-orange-600 transition-colors duration-300 
                          focus:outline-none focus:ring-4 focus:ring-orange-500/50 transform hover:scale-[1.02]"
             >
@@ -136,7 +129,6 @@ export default function Gallery({ locale, translations }: GalleryProps) {
             </button>
           </div>
         )}
-
         {/* Message "Tout vu" */}
         {!hasMore && Product.length > ITEMS_PER_PAGE && (
           <div className="mt-12 text-center py-4">
@@ -146,7 +138,6 @@ export default function Gallery({ locale, translations }: GalleryProps) {
           </div>
         )}
       </div>
-
       {/* Lightbox Modale (Améliorée) */}
       {selectedImage && (
         <div
@@ -169,7 +160,6 @@ export default function Gallery({ locale, translations }: GalleryProps) {
                 className="max-h-[85vh] w-auto mx-auto object-contain rounded-xl shadow-2xl"
               />
             </div>
-
             {/* Description au bas */}
             <div className="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-black/80 to-transparent p-6 rounded-b-xl">
               <p className="text-white text-lg font-medium">
@@ -177,7 +167,6 @@ export default function Gallery({ locale, translations }: GalleryProps) {
               </p>
             </div>
           </div>
-
           {/* Bouton Fermer */}
           <button
             onClick={closeLightbox}
@@ -199,7 +188,6 @@ export default function Gallery({ locale, translations }: GalleryProps) {
             <Download className="w-6 h-6" />
             <span className="hidden sm:inline">{t.download}</span>
           </button>
-
           {/* Instruction pour l'utilisateur */}
           <div className="absolute bottom-4 left-0 right-0 text-center text-white/80 text-xs sm:text-sm">
             {t.touchClose}

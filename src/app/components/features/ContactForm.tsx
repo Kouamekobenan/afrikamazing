@@ -1,6 +1,11 @@
 "use client";
 import React, { useState } from "react";
-export default function ContactForm() {
+
+interface ContactFormProps {
+  translations: Record<string, string>;
+}
+
+export default function ContactForm({ translations: t }: ContactFormProps) {
   const [formData, setFormData] = useState({
     name: "",
     email: "",
@@ -39,14 +44,16 @@ export default function ContactForm() {
       setStatus("error");
     }
   };
+
   return (
     <section className="bg-gray-50 py-20" id="contact">
       <div className="max-w-2xl mx-auto px-6 text-center">
         <h2 className="text-3xl font-bold mb-6 text-gray-900">
-          Contactez-nous
+          {t?.title ?? "Contactez-nous"}
         </h2>
         <p className="text-gray-600 mb-8">
-          Une question ? Besoin d’un devis ? Nous serons ravis de vous répondre.
+          {t?.subtitle ??
+            "Une question ? Besoin d'un devis ? Nous serons ravis de vous répondre."}
         </p>
 
         <form
@@ -55,7 +62,7 @@ export default function ContactForm() {
         >
           <div>
             <label className="block text-sm font-medium text-gray-700 mb-1">
-              Nom complet
+              {t?.nameLabel ?? "Nom complet"}
             </label>
             <input
               type="text"
@@ -69,7 +76,7 @@ export default function ContactForm() {
 
           <div>
             <label className="block text-sm font-medium text-gray-700 mb-1">
-              Adresse e-mail
+              {t?.emailLabel ?? "Adresse e-mail"}
             </label>
             <input
               type="email"
@@ -83,7 +90,7 @@ export default function ContactForm() {
 
           <div>
             <label className="block text-sm font-medium text-gray-700 mb-1">
-              Message
+              {t?.messageLabel ?? "Message"}
             </label>
             <textarea
               name="message"
@@ -94,23 +101,25 @@ export default function ContactForm() {
               className="w-full border border-gray-300 rounded-lg px-4 py-2 focus:ring-2 focus:ring-green-600 focus:outline-none"
             ></textarea>
           </div>
+
           <button
             style={{
               backgroundColor: "#6C371A",
             }}
             type="submit"
             disabled={status === "loading"}
-            className="w-full bg-green-700 text-white cursor-pointer py-2 rounded-lg font-semibold hover:bg-green-800 transition"
+            className="w-full bg-green-700 text-white cursor-pointer py-2 rounded-lg font-semibold hover:bg-green-800 transition disabled:opacity-50 disabled:cursor-not-allowed"
           >
             {status === "loading"
-              ? "Envoi en cours..."
+              ? t?.sending ?? "Envoi en cours..."
               : status === "success"
-              ? "Message envoyé ✅"
-              : "Envoyer le message"}
+              ? t?.success ?? "Message envoyé ✅"
+              : t?.submit ?? "Envoyer le message"}
           </button>
+
           {status === "error" && (
             <p className="text-red-600 text-sm text-center mt-2">
-              Une erreur est survenue. Réessayez plus tard.
+              {t?.error ?? "Une erreur est survenue. Réessayez plus tard."}
             </p>
           )}
         </form>
