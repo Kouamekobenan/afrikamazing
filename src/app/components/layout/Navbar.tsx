@@ -8,9 +8,7 @@ import { Button } from "../ui/Button";
 
 type LocaleParams = {
   locale: LocaleCode; // Assurez-vous que LocaleCode est importé
-  // Ajoutez d'autres paramètres de route si nécessaire (ex: slug: string)
 };
-
 // Imports de la configuration
 
 import {

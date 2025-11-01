@@ -6,5 +6,60 @@
     "contact": "Contact",
     "order": "Order Now",
     "search": "Search"
+  },
+  "countdown": {
+    "welcome": "Welcome to Afrikamazing",
+    "loading": "Loading...",
+    "connection": "Connecting in",
+    "second": "second",
+    "seconds": "seconds",
+    "status": "System initialization",
+    "wait": "Please wait while loading",
+    "logo_alt": "Application logo"
+  },
+  "hero": {
+    "collection": "Elegant Collection",
+    "discover": "Discover our premium bags",
+    "modernStyle": "Modern Style",
+    "forAllOccasions": "For all occasions",
+    "quality": "Superior Quality",
+    "longLasting": "Long-lasting products",
+    "seeProducts": "See our products"
+  },
+  "gallery": {
+    "title": "Our Gallery",
+    "total": "{count} products in total",
+    "loadMore": "See more ({count} more)",
+    "allSeen": "✓ You have seen all products ({count})",
+    "download": "Download",
+    "close": "Close",
+    "touchClose": "Tap outside to close"
+  },
+  "footer": {
+    "description": "Discover authentic Africa through unique and unforgettable experiences. Your adventure starts here.",
+    "titled": "Stay informed",
+    "placeholder": "Your email",
+    "title": "Follow us",
+    "facebook": "Follow us on Facebook",
+    "instagram": "Follow us on Instagram",
+    "whatsapp": "Contact us on WhatsApp",
+    "company": "Company",
+    "explore": "Explore",
+    "support": "Support",
+    "about": "About",
+    "careers": "Careers",
+    "press": "Press",
+    "blog": "Blog",
+    "gallery": "Gallery",
+    "help": "Help Center",
+    "contact": "Contact",
+    "faq": "FAQ",
+    "location": "Abidjan, Côte d'Ivoire",
+    "rights": "All rights reserved",
+    "madeWith": "Made with",
+    "inAfrica": "in Africa",
+    "privacy": "Privacy Policy",
+    "terms": "Terms",
+    "cookies": "Cookies"
   }
 }

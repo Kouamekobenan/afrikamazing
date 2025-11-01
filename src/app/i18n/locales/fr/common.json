@@ -6,5 +6,61 @@
     "contact": "Contact",
     "order": "Commander",
     "search": "Rechercher"
+  },
+  "countdown": {
+    "welcome": "Bienvenu sur Afrikamazing",
+    "loading": "Chargement en cours...",
+    "connection": "Connexion dans",
+    "second": "seconde",
+    "seconds": "secondes",
+    "status": "Initialisation du système",
+    "wait": "Veuillez patienter pendant le chargement",
+    "logo_alt": "Logo de l'application"
+  },
+  "hero": {
+    "collection": "Collection Élégante",
+    "discover": "Découvrez nos sacs premium",
+    "modernStyle": "Style Moderne",
+    "forAllOccasions": "Pour toutes vos occasions",
+    "quality": "Qualité Supérieure",
+    "longLasting": "Des produits qui durent",
+    "seeProducts": "Voir nos produits"
+  },
+  "gallery": {
+    "title": "Notre Galerie",
+    "total": "{count} produits au total",
+    "loadMore": "Voir plus ({count} de plus)",
+    "allSeen": "✓ Vous avez vu tous les produits ({count})",
+    "download": "Télécharger",
+    "close": "Fermer",
+    "touchClose": "Touchez l'extérieur pour fermer"
+  },
+  "footer": {
+    "description": "Découvrez l'Afrique authentique à travers des expériences uniques et inoubliables. Votre aventure commence ici.",
+    "newsletterTitle": "Restez informé",
+    "newsletterPlaceholder": "Votre email",
+    "newsletterButton": "S’abonner",
+    "socialTitle": "Suivez-nous",
+    "facebook": "Suivez-nous sur Facebook",
+    "instagram": "Suivez-nous sur Instagram",
+    "whatsapp": "Contactez-nous sur WhatsApp",
+    "company": "Entreprise",
+    "explore": "Explorer",
+    "support": "Support",
+    "about": "À propos",
+    "careers": "Carrières",
+    "press": "Presse",
+    "blog": "Blog",
+    "gallery": "Galerie",
+    "help": "Centre d'aide",
+    "contact": "Contact",
+    "faq": "FAQ",
+    "location": "Abidjan, Côte d'Ivoire",
+    "rights": "Tous droits réservés",
+    "madeWith": "Fait avec",
+    "inAfrica": "en Afrique",
+    "privacy": "Confidentialité",
+    "terms": "Conditions",
+    "cookies": "Cookies"
   }
 }

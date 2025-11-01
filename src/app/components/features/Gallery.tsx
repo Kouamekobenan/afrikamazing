@@ -1,29 +1,45 @@
-import React, { useState } from "react";
-import { X, Download, ZoomIn } from "lucide-react";
+import { useState } from "react";
+// L'importation de "../../data/product" a été remplacée par une définition locale de données factices.
+// import { Product } from "../../data/product";
+// import { ProductEntity } from "../../lib/global.type"; // Cette interface est incluse ci-dessous
+import { ZoomIn, X, Download } from "lucide-react"; // Ajout de l'icône Download pour la Lightbox
 import { Product } from "../../data/product";
+import { ProductEntity } from "../../lib/global.type";
 
-// Interface pour le type de produit
-interface ProductType {
-  id: number | string;
-  img: {
-    url: string;
-    alt: string;
-  };
+interface GalleryProps {
+  locale: "en" | "fr" | "ar";
+  translations: Record<string, Record<string, string>>;
 }
-export default function Gallery() {
+
+export default function Gallery({ locale, translations }: GalleryProps) {
+  const t = {
+    title: translations.gallery?.title || "Galerie d'Artisanat Africain",
+    total: translations.gallery?.total || "Total de {count} produits",
+    loadMore: translations.gallery?.loadMore || "Charger plus ({count})",
+    allSeen:
+      translations.gallery?.allSeen ||
+      "Tous les {count} produits sont affichés",
+    close: translations.gallery?.close || "Fermer",
+    download: translations.gallery?.download || "Télécharger",
+    touchClose:
+      translations.gallery?.touchClose || "Cliquez n'importe où pour fermer",
+  };
+
   const [visibleCount, setVisibleCount] = useState(4);
-  const [selectedImage, setSelectedImage] = useState<ProductType | null>(null);
+  const [selectedImage, setSelectedImage] = useState<ProductEntity | null>(
+    null
+  );
   const ITEMS_PER_PAGE = 4;
 
   const visibleProducts = Product.slice(0, visibleCount);
   const hasMore = visibleCount < Product.length;
 
-  const loadMore = () => {
+  const loadMore = () =>
     setVisibleCount((prev) => Math.min(prev + ITEMS_PER_PAGE, Product.length));
-  };
 
-  const openLightbox = (prod: ProductType) => {
+  const openLightbox = (prod: ProductEntity) => {
     setSelectedImage(prod);
+    // Masque le scroll sur le body pour une meilleure expérience modale
     document.body.style.overflow = "hidden";
   };
 
@@ -50,122 +66,143 @@ export default function Gallery() {
       console.error("Erreur lors du téléchargement:", error);
     }
   };
+
   return (
     <>
-      <div className="w-full px-4 py-8 sm:px-6 lg:px-8 max-w-7xl mx-auto">
-        {/* Titre */}
-        <div className="mb-8 text-center">
-          <h1 className="text-3xl sm:text-4xl lg:text-5xl font-bold text-gray-900">
-            Notre Galerie
+      <div className="w-full px-4 py-12 sm:px-6 lg:px-8 max-w-7xl mx-auto">
+        {/* En-tête de la galerie */}
+        <div className="mb-10 text-center">
+          <h1 className="text-3xl sm:text-4xl lg:text-5xl font-extrabold text-gray-900 tracking-tight">
+            {t.title}
           </h1>
-          <p className="mt-2 text-sm sm:text-base text-gray-600">
-            {Product.length} {Product.length > 1 ? "produits" : "produit"} au
-            total
+          <p className="mt-3 text-base sm:text-lg text-gray-600">
+            {t.total.replace("{count}", Product.length.toString())}
           </p>
         </div>
 
         {/* Grille d'images */}
-        <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-3 sm:gap-4 lg:gap-6">
+        <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-4 sm:gap-6 lg:gap-8">
           {visibleProducts.map((prod) => (
             <button
               key={prod.id}
               onClick={() => openLightbox(prod)}
-              className="group relative overflow-hidden rounded-lg shadow-md hover:shadow-xl transition-all duration-300 aspect-square bg-gray-100 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2"
+              // Amélioration de l'effet au survol : zoom doux
+              className="group relative block w-full aspect-[4/5] overflow-hidden rounded-xl shadow-lg 
+                         transition-transform duration-300 ease-in-out hover:scale-[1.03] active:scale-[0.98] 
+                         focus:outline-none focus:ring-4 focus:ring-yellow-500/50"
+              aria-label={`Ouvrir la vue détaillée de ${prod.img.alt}`}
             >
               <img
                 src={prod.img.url}
                 alt={prod.img.alt}
-                className="object-cover w-full h-full group-hover:scale-105 transition-transform duration-500"
+                className="w-full h-full object-cover object-center transition-opacity duration-500 group-hover:opacity-90"
                 loading="lazy"
               />
-
-              {/* Overlay avec icône zoom */}
-              <div className="absolute inset-0  bg-opacity-0 group-hover:bg-opacity-40 transition-opacity duration-300 flex items-center justify-center">
-                <ZoomIn className="text-orange-500 opacity-0 group-hover:opacity-100 transition-opacity duration-300 w-8 h-8 sm:w-10 sm:h-10" />
+              {/* Overlay d'interaction au survol */}
+              <div
+                className="absolute inset-0 bg-black/40 opacity-0 group-hover:opacity-100 transition-opacity duration-300 
+                           flex items-center justify-center pointer-events-none"
+              >
+                <ZoomIn className="w-8 h-8 text-white transform group-hover:scale-110 transition-transform duration-300" />
               </div>
 
-              {/* Titre en bas */}
-              <div className="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-black/70 to-transparent p-2 sm:p-3">
-                <p className="text-white text-xs sm:text-sm font-medium truncate">
+              {/* Description au bas de l'image */}
+              <div className="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-black/80 to-transparent p-3 sm:p-4">
+                <p className="text-white text-xs sm:text-sm font-medium truncate text-left">
                   {prod.img.alt}
                 </p>
               </div>
             </button>
           ))}
         </div>
-        {/* Bouton "Voir plus" */}
+
+        {/* Bouton Charger Plus */}
         {hasMore && (
-          <div className="mt-8 sm:mt-12 flex justify-center">
+          <div className="mt-12 flex justify-center">
             <button
-              style={{
-                backgroundColor: "#C99642",
-              }}
               onClick={loadMore}
-              className="px-6 py-3 sm:px-8 sm:py-4 bg-orange-900 text-white font-semibold rounded-lg shadow-md hover:shadow-lg transition-all duration-300 active:scale-95 text-sm sm:text-base"
+              // Style professionnel du bouton
+              className="px-8 py-3 text-lg font-semibold rounded-full text-white bg-orange-500 shadow-lg 
+                         hover:bg-orange-600 transition-colors duration-300 
+                         focus:outline-none focus:ring-4 focus:ring-orange-500/50 transform hover:scale-[1.02]"
             >
-              Voir plus (
-              {Math.min(ITEMS_PER_PAGE, Product.length - visibleCount)} de plus)
+              {t.loadMore.replace(
+                "{count}",
+                Math.min(
+                  ITEMS_PER_PAGE,
+                  Product.length - visibleCount
+                ).toString()
+              )}
             </button>
           </div>
         )}
 
-        {/* Message quand tout est affiché */}
+        {/* Message "Tout vu" */}
         {!hasMore && Product.length > ITEMS_PER_PAGE && (
-          <div className="mt-8 text-center">
-            <p className="text-gray-600 text-sm sm:text-base">
-              ✓ Vous avez vu tous les produits ({Product.length})
+          <div className="mt-12 text-center py-4">
+            <p className="text-gray-500 text-sm sm:text-base italic">
+              {t.allSeen.replace("{count}", Product.length.toString())}
             </p>
           </div>
         )}
       </div>
 
-      {/* Lightbox Modal */}
+      {/* Lightbox Modale (Améliorée) */}
       {selectedImage && (
         <div
-          className="fixed inset-0 z-50 bg-black/95 flex items-center justify-center p-4 "
+          className="fixed inset-0 z-[100] bg-black/90 flex items-center justify-center p-4 backdrop-blur-sm"
           onClick={closeLightbox}
+          role="dialog"
+          aria-modal="true"
+          aria-label={`Image : ${selectedImage.img.alt}`}
         >
-          {/* Bouton fermer */}
-          <button
-            onClick={closeLightbox}
-            className="absolute top-4 right-4 text-white hover:text-gray-300 transition-colors p-2 rounded-full hover:bg-white/10"
-            aria-label="Fermer"
-          >
-            <X className="w-6 h-6 sm:w-8 sm:h-8" />
-          </button>
-
-          {/* Bouton télécharger */}
-          <button
-            onClick={(e) => {
-              e.stopPropagation();
-              downloadImage();
-            }}
-            className="absolute top-4 right-16 sm:right-20 text-orange-500 hover:text-white transition-colors p-2 rounded-full hover:bg-white/10 flex items-center gap-2 "
-            aria-label="Télécharger"
-          >
-            <Download className="w-6 h-6 sm:w-8 sm:h-8 " />
-            <span className="hidden sm:inline text-sm">Télécharger</span>
-          </button>
-          {/* Image container */}
+          {/* Conteneur pour éviter la fermeture au clic sur l'image */}
           <div
-            className="relative max-w-7xl max-h-[90vh] w-full"
+            className="relative max-w-6xl max-h-[90vh] w-full"
             onClick={(e) => e.stopPropagation()}
           >
-            <img
-              src={selectedImage.img.url}
-              alt={selectedImage.img.alt}
-              className="w-full h-full object-contain rounded-lg"
-            />
-            {/* Titre de l'image */}
-            <div className="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-black/80 to-transparent p-4 sm:p-6 rounded-b-lg">
-              <p className="text-white text-base sm:text-lg font-semibold">
+            {/* Image Contenu */}
+            <div className="relative w-full h-full">
+              <img
+                src={selectedImage.img.url}
+                alt={selectedImage.img.alt}
+                className="max-h-[85vh] w-auto mx-auto object-contain rounded-xl shadow-2xl"
+              />
+            </div>
+
+            {/* Description au bas */}
+            <div className="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-black/80 to-transparent p-6 rounded-b-xl">
+              <p className="text-white text-lg font-medium">
                 {selectedImage.img.alt}
               </p>
             </div>
           </div>
-          {/* Instructions mobile */}
-          <div className="absolute bottom-4 left-0 right-0 text-center text-white/70 text-xs sm:text-sm">
-            Touchez l'extérieur pour fermer
+
+          {/* Bouton Fermer */}
+          <button
+            onClick={closeLightbox}
+            aria-label={t.close}
+            className="absolute top-4 right-4 text-white p-3 rounded-full bg-black/50 hover:bg-black/70 transition-colors duration-200"
+          >
+            <X className="w-6 h-6" />
+          </button>
+
+          {/* Bouton Télécharger */}
+          <button
+            onClick={(e) => {
+              e.stopPropagation(); // Empêche la fermeture de la lightbox
+              downloadImage();
+            }}
+            aria-label={t.download}
+            className="absolute top-4 right-16 text-white p-3 rounded-full bg-black/50 hover:bg-black/70 transition-colors duration-200 flex items-center space-x-2"
+          >
+            <Download className="w-6 h-6" />
+            <span className="hidden sm:inline">{t.download}</span>
+          </button>
+
+          {/* Instruction pour l'utilisateur */}
+          <div className="absolute bottom-4 left-0 right-0 text-center text-white/80 text-xs sm:text-sm">
+            {t.touchClose}
           </div>
         </div>
       )}
