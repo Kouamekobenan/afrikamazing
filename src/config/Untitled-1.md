@@ -14,6 +14,7 @@
             ├── page.tsx
         └── 📁components
             └── 📁features
+                ├── Blog.tsx
                 ├── ContactForm.tsx
                 ├── CountdownClient.tsx
                 ├── Gallery.tsx
@@ -22,7 +23,6 @@
                 ├── Video.tsx
             └── 📁layout
                 ├── Footer.tsx
-                ├── Header.tsx
                 ├── Navbar.tsx
             └── 📁ui
                 ├── Button.tsx
@@ -30,6 +30,7 @@
                 ├── SectionTitle.tsx
         └── 📁data
             ├── blogPosts.ts
+            ├── galeryData.ts
             ├── product.ts
             ├── team.ts
         └── 📁fonts
@@ -52,8 +53,9 @@
             ├── seo.config.ts
             ├── utils.ts
         ├── favicon.ico
+        ├── layout.tsx
+        ├── not-found.tsx
     └── 📁config
         ├── translate.ts
-    ├── globals.css
-    └── not-found.tsx
+    └── globals.css
 ```

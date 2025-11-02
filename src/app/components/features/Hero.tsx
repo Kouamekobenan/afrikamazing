@@ -18,7 +18,6 @@ const SimpleButton: React.FC<SimpleButtonProps> = ({
     {label}
   </button>
 );
-
 interface HeroProps {
   locale: "en" | "fr" | "ar";
   translations: Record<string, Record<string, string>>;
@@ -62,7 +61,6 @@ export default function Hero({ locale, translations }: HeroProps) {
   const nextSlide = () => setCurrentSlide((prev) => (prev + 1) % slides.length);
   const prevSlide = () =>
     setCurrentSlide((prev) => (prev - 1 + slides.length) % slides.length);
-
   // ============================================
   // Rendu
   // ============================================
@@ -95,10 +93,7 @@ export default function Hero({ locale, translations }: HeroProps) {
           <div className="absolute inset-0 bg-black/60 md:bg-black/50 lg:bg-black/40"></div>
         </div>
       ))}
-
-      {/* 2. Content Container (Par-dessus les slides) */}
       <div className="absolute inset-0 flex items-center justify-center z-20">
-        {/* Le conteneur du texte avec effet de transition pour le changement de slide */}
         <div
           key={currentSlide} // Ajout de la clé pour forcer le re-rendu et l'animation lors du changement de slide
           className="text-center text-white px-4 sm:px-6 lg:px-8 max-w-4xl"
@@ -109,7 +104,6 @@ export default function Hero({ locale, translations }: HeroProps) {
           <p className="text-xl sm:text-2xl md:text-3xl mb-10 text-gray-200 drop-shadow-md animate-fadeInUp delay-200">
             {slides[currentSlide].subtitle}
           </p>
-          {/* Remplacement de <Link> par une balise <a> standard */}
           <a href={`/${locale}${slides[currentSlide].link ?? "/products"}`}>
             <SimpleButton
               label={t.seeProducts ?? "Voir les produits"}
@@ -118,7 +112,6 @@ export default function Hero({ locale, translations }: HeroProps) {
           </a>
         </div>
       </div>
-      {/* 3. Navigation Arrows (Par-dessus le contenu, z-30) */}
       <button
         onClick={prevSlide}
         className="absolute left-4 top-1/2 -translate-y-1/2 z-30 

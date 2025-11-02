@@ -5,6 +5,7 @@ import type { Metadata } from "next";
 
 import "../../../src/globals.css";
 import Navbar from "../components/layout/Navbar";
+import { useTranslation } from "../i18n";
 import Footer from "../components/layout/Footer";
 // ============================================
 // Configuration des polices
@@ -52,7 +53,18 @@ export default async function RootLayout({
   params: Promise<{ locale: string }>; // ✅ params est une Promise
 }) {
   const { locale } = await params; // ✅ Await params
+ const { i18n } = await useTranslation(locale, "common");
+ const translations = i18n.getResourceBundle(locale, "common");
 
+//  console.log("🔍 All translations:", translations);
+
+ // ✅ Toutes les traductions sont déjà dans le bundle
+ const allTranslations = {
+   countdown: translations?.countdown || {},
+   hero: translations?.hero || {},
+   gallery: translations?.gallery || {},
+   footer: translations?.footer || {}, // ✅ C'est déjà dans "common"
+ };
   return (
     <html lang={locale} suppressHydrationWarning>
       <body
@@ -60,6 +72,7 @@ export default async function RootLayout({
       >
         <Navbar />
         <main className="pt-16 lg:pt-20">{children}</main>
+        <Footer locale={locale} translations={allTranslations} />
       </body>
     </html>
   );

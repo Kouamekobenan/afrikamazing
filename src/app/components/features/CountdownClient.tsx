@@ -4,8 +4,6 @@ import Navbar from "../layout/Navbar";
 import Hero from "./Hero";
 import Gallery from "./Gallery";
 import { useEffect, useState } from "react";
-import Footer from "../layout/Footer";
-
 interface CountdownClientProps {
   locale: "en" | "fr" | "ar";
   translations: Record<string, Record<string, string>>;
@@ -15,7 +13,7 @@ export default function CountdownClient({
   locale,
   translations,
 }: CountdownClientProps) {
-  const [countdown, setCountdown] = useState(3);
+  const [countdown, setCountdown] = useState(2);
   const [showLogin, setShowLogin] = useState(false);
 
   // t devient une fonction
@@ -59,21 +57,20 @@ export default function CountdownClient({
           {t("loading")}
         </p>
       </div>
-
       <div className="bg-white/80 backdrop-blur-sm rounded-2xl shadow-2xl border border-white/20 p-10 max-w-md mx-auto">
-        <div className="flex justify-center items-center mb-8">
-          <div className="relative border-2 rounded-2xl">
-            <Image
-              src="/logo/Logo-orange.png"
-              width={180}
-              height={180}
-              alt={t("logo_alt")}
-              className="drop-shadow-lg"
-              priority
-            />
-          </div>
-        </div>
+        <div className="absolute inset-0 bg-gradient-to-tr from-transparent via-white/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
+        <div className="absolute inset-0 bg-gradient-to-br from-black/50 via-black/40 to-black/30 group-hover:from-black/40 group-hover:via-black/30 group-hover:to-black/20 transition-all duration-500"></div>
 
+        <div className="relative z-10 p-4">
+          <Image
+            src="/logo/Logo-or2.png"
+            width={280}
+            height={280}
+            alt={`logo`}
+            className="drop-shadow-[0_10px_30px_rgba(201,150,66,0.3)] transition-all duration-300 group-hover:drop-shadow-[0_15px_40px_rgba(201,150,66,0.4)] group-hover:scale-105"
+            priority
+          />
+        </div>
         <div className="mb-6">
           <div className="text-7xl font-black text-transparent bg-gradient-to-b from-orange-500 to-orange-600 bg-clip-text mb-4 font-mono tracking-tight">
             {countdown}
@@ -83,14 +80,12 @@ export default function CountdownClient({
             {countdown !== 1 ? t("seconds") : t("second")}
           </p>
         </div>
-
         <div className="w-full bg-slate-200 rounded-full h-3 mb-4 overflow-hidden">
           <div
             className="bg-gradient-to-r from-orange-500 to-orange-600 h-3 rounded-full transition-all duration-1000 ease-out shadow-sm"
             style={{ width: `${((3 - countdown) / 3) * 100}%` }}
           ></div>
         </div>
-
         <div className="flex items-center justify-center space-x-2 text-slate-600">
           <div className="w-2 h-2 bg-green-500 rounded-full animate-pulse"></div>
           <span className="text-sm font-medium font-sans">{t("status")}</span>

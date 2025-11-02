@@ -73,7 +73,6 @@ export default function Footer({ locale, translations }: FooterProps) {
             <p className="text-gray-400 leading-relaxed max-w-md text-sm sm:text-base">
               {t?.description ?? "Découvrez l'Afrique authentique..."}
             </p>
-
             {/* Newsletter */}
             <div className="space-y-2 sm:space-y-3">
               <h3 className="text-white font-semibold text-xs sm:text-sm">
@@ -86,7 +85,10 @@ export default function Footer({ locale, translations }: FooterProps) {
                   className="flex-1 px-3 sm:px-4 py-2 sm:py-2.5 bg-gray-800 border border-gray-700 rounded-lg focus:outline-none focus:ring-2 focus:ring-orange-500 focus:border-transparent text-white placeholder-gray-500 text-xs sm:text-sm"
                 />
                 <button
-                  className="px-3 sm:px-4 py-2 sm:py-2.5 bg-gradient-to-r from-orange-500 to-red-600 text-white rounded-lg hover:shadow-lg hover:scale-105 transition-all duration-300"
+                  style={{
+                    backgroundColor: "#C99642",
+                  }}
+                  className="px-3 sm:px-4 py-2 sm:py-2.5 bg-gradient-to-r text-white rounded-lg hover:shadow-lg hover:scale-105 transition-all duration-300"
                   aria-label={t?.newsletterButton ?? "S'abonner"}
                 >
                   <Send size={16} className="sm:w-[18px] sm:h-[18px]" />

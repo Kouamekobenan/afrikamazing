@@ -1,7 +1,4 @@
-// HomePage.tsx - VERSION CORRIGÉE ✅
-
 import CountdownClient from "../components/features/CountdownClient";
-import Footer from "../components/layout/Footer";
 import { useTranslation } from "../i18n";
 import { LocaleCode } from "../lib/global.type";
 
@@ -34,7 +31,7 @@ export default async function HomePage({ params }: HomePageProps) {
         locale={locale as "en" | "fr" | "ar"}
         translations={allTranslations}
       />
-      <Footer locale={locale} translations={allTranslations} />
+      {/* <Footer locale={locale} translations={allTranslations} /> */}
     </div>
   );
 }

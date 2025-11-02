@@ -113,6 +113,9 @@ export default function Gallery({ locale, translations }: GalleryProps) {
         {hasMore && (
           <div className="mt-12 flex justify-center">
             <button
+              style={{
+                backgroundColor: "#C99642",
+              }}
               onClick={loadMore}
               // Style professionnel du bouton
               className="px-8 py-3 text-lg font-semibold rounded-full text-white bg-yellow-600 shadow-lg 
@@ -175,7 +178,6 @@ export default function Gallery({ locale, translations }: GalleryProps) {
           >
             <X className="w-6 h-6" />
           </button>
-
           {/* Bouton Télécharger */}
           <button
             onClick={(e) => {
