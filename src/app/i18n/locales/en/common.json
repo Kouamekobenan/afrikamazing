@@ -132,5 +132,13 @@
     "headline": "Afrikamazing",
     "description": "Discover our exceptional products and enjoy a unique experience",
     "button": "Discover our items"
+  },
+  "products": {
+    "title": "Our Available Products",
+    "order": "Order",
+    "orderShort": "order",
+    "whatsapp": "WhatsApp",
+    "noProducts": "No products available at the moment.",
+    "whatsappMessage": "Hello! I would like to reserve the bag \"{name}\". Thank you!"
   }
 }

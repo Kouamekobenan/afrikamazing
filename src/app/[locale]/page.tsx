@@ -28,8 +28,6 @@ export default async function HomePage({ params }: HomePageProps) {
     footer: translations?.footer || {}, // ✅ C'est déjà dans "common"
   };
 
-  // console.log("🎯 Footer translations:", allTranslations.footer);
-
   return (
     <div className="">
       <CountdownClient

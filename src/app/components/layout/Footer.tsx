@@ -60,7 +60,7 @@ export default function Footer({ locale, translations }: FooterProps) {
               >
                 <span className="text-xl lg:text-2xl font-bold bg-gradient-to-r from-orange-600 to-red-600 bg-clip-text text-transparent">
                   <Image
-                    src="/logo/Logo-orange.png"
+                    src="/logo/logo-or2.png"
                     width={280}
                     height={280}
                     alt="Logo AFRIKAMAZING"

@@ -133,5 +133,13 @@
     "headline": "Afrikamazing",
     "description": "Découvrez nos produits exceptionnels et profitez d'une expérience unique",
     "button": "Découvrir nos articles"
+  },
+  "products": {
+    "title": "Nos produits disponibles",
+    "order": "Commander",
+    "orderShort": "commander",
+    "whatsapp": "WhatsApp",
+    "noProducts": "Aucun produit disponible pour le moment.",
+    "whatsappMessage": "Bonjour ! Je souhaite réserver le sac \"{name}\". Merci !"
   }
 }

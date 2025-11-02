@@ -1,34 +1,35 @@
-// app/[locale]/products/page.tsx
-import React from "react";
-import { LocaleCode } from "../../lib/global.type";
 import { TRANSLATIONS } from "@/src/config/translate";
-import Navbar from "../../components/layout/Navbar";
-import Video from "../../components/features/Video";
 import ProductCard from "../../components/features/ProductCard";
-
-interface PageProps {
-  params: Promise<{
-    locale: LocaleCode;
-  }>;
+import Video from "../../components/features/Video";
+import { useTranslation } from "../../i18n";
+import { LocaleCode } from "../../lib/global.type";
+interface ProductsPageProps {
+  params: Promise<{ locale: LocaleCode }>;
 }
-
-export default async function Page({ params }: PageProps) {
-  // ✅ Await params avant de l'utiliser
+export default async function ProductsPage({ params }: ProductsPageProps) {
   const { locale } = await params;
+  const { i18n } = await useTranslation(locale, "common");
+  const translations = i18n.getResourceBundle(locale, "common");
 
-  // Récupérer les traductions pour la locale actuelle
+  const productsTranslations = translations?.products || {};
   const currentTranslations = TRANSLATIONS[locale] || TRANSLATIONS.fr;
 
   return (
     <div>
-      <Navbar />
       <Video locale={locale} translations={currentTranslations} />
-      <ProductCard />
+      <ProductCard
+        translations={{
+          title: productsTranslations?.title ?? "Nos produits disponibles",
+          order: productsTranslations?.order ?? "Commander",
+          orderShort: productsTranslations?.orderShort ?? "commander",
+          whatsapp: productsTranslations?.whatsapp ?? "WhatsApp",
+          noProducts:
+            productsTranslations?.noProducts ?? "Aucun produit disponible.",
+          whatsappMessageTemplate:
+            productsTranslations?.whatsappMessage ??
+            'Bonjour ! Je souhaite réserver le sac "{name}". Merci !', // ✅ String template
+        }}
+      />
     </div>
   );
-}
-
-// Générer les pages statiques pour chaque locale
-export async function generateStaticParams() {
-  return [{ locale: "fr" }, { locale: "en" }, { locale: "ar" }];
 }

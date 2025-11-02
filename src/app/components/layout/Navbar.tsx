@@ -134,19 +134,20 @@ export default function Navbar() {
           {/* Logo */}
           <Link
             href={`/${currentLocale}`}
-            className="flex items-center space-x-2 group"
+            className="relative flex items-center space-x-2 group overflow-hidden rounded-xl p-2"
             aria-label={t("nav.home")}
           >
+            {/* Dégradé noir élégant */}
+            <div className="absolute inset-0 bg-gradient-to-br from-black/70 via-black/30 to-transparent group-hover:from-black/30 group-hover:via-black/20 transition-all duration-500"></div>
             <Image
-              src="/logo/Logo-orange.png"
+              src="/logo/logo-or2.png"
               width={280}
               height={280}
               alt={`${SITE_NAME} logo`}
-              className="drop-shadow-lg"
+              className="relative z-10 drop-shadow-2xl filter brightness-110 group-hover:brightness-125 transition-all duration-300"
               priority
             />
           </Link>
-
           {/* Desktop Navigation */}
           <div className="hidden lg:flex items-center space-x-1">
             {NAVIGATION_LINKS.map((item) => (

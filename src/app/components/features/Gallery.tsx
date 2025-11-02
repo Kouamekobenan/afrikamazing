@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { ZoomIn, X, Download } from "lucide-react"; // Ajout de l'icône Download pour la Lightbox
-import { Product } from "../../data/product";
 import { ProductEntity } from "../../lib/global.type";
+import { Product } from "../../data/galeryData";
 
 interface GalleryProps {
   locale: "en" | "fr" | "ar";
