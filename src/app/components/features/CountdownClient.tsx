@@ -1,5 +1,4 @@
 "use client";
-import Image from "next/image";
 import Navbar from "../layout/Navbar";
 import Hero from "./Hero";
 import Gallery from "./Gallery";
@@ -8,30 +7,32 @@ interface CountdownClientProps {
   locale: "en" | "fr" | "ar";
   translations: Record<string, Record<string, string>>;
 }
-
 export default function CountdownClient({
   locale,
   translations,
 }: CountdownClientProps) {
-  const [countdown, setCountdown] = useState(2);
-  const [showLogin, setShowLogin] = useState(false);
-
+  // Passons le compte à rebours initial à 3 secondes pour un meilleur effet de progression
+  const [countdown, setCountdown] = useState(3);
+  const [showContent, setShowContent] = useState(false); // Renommé pour plus de clarté
   // t devient une fonction
   const t = (key: string) => translations.countdown[key] || key;
-
   useEffect(() => {
     if (countdown > 0) {
       const timer = setTimeout(() => setCountdown(countdown - 1), 1000);
       return () => clearTimeout(timer);
     } else {
-      setShowLogin(true);
+      // Un petit délai supplémentaire après 0 pour que l'animation finale soit vue
+      const finalDelay = setTimeout(() => setShowContent(true), 500);
+      return () => clearTimeout(finalDelay);
     }
   }, [countdown]);
 
-  if (showLogin) {
+  // Contenu principal après le compte à rebours
+  if (showContent) {
     return (
-      <div className="min-h-screen flex flex-col justify-center items-center bg-gradient-to-br from-slate-50 to-gray-100">
-        <div className="text-xl flex flex-col justify-center items-center">
+      // Le style du contenu principal reste bon, peut-être ajuster la couleur
+      <div className="min-h-screen flex flex-col justify-center items-center bg-gray-50 dark:bg-gray-900 transition-colors duration-500">
+        <div className="w-full">
           <Navbar />
           <Hero locale={locale} translations={translations} />
           <Gallery locale={locale} translations={translations} />
@@ -40,60 +41,89 @@ export default function CountdownClient({
       </div>
     );
   }
-
+  // --- ÉTAT DU COMPTE À REBOURS (MODERNISÉ) ---
   return (
-    <div className={`text-center ${locale === "ar" ? "rtl" : "ltr"}`}>
-      <div className="mb-12">
-        <div className="relative mb-2">
-          <div className="animate-spin rounded-full h-20 w-20 border-4 border-slate-200 border-t-orange-500 mx-auto"></div>
-          <div className="absolute inset-0 rounded-full h-20 w-20 border-4 border-transparent border-r-orange-300 animate-pulse mx-auto"></div>
-        </div>
-        <h1 className="text-3xl font-bold text-slate-800 mb-2 tracking-tight font-sans">
-          <span className="bg-gradient-to-r from-orange-600 to-orange-700 bg-clip-text text-transparent font-extrabold">
-            {t("welcome")}
-          </span>
-        </h1>
-        <p className="text-lg text-slate-600 font-medium font-sans">
-          {t("loading")}
-        </p>
-      </div>
-      <div className="bg-white/80 backdrop-blur-sm rounded-2xl shadow-2xl border border-white/20 p-10 max-w-md mx-auto">
-        <div className="absolute inset-0 bg-gradient-to-tr from-transparent via-white/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
-        <div className="absolute inset-0 bg-gradient-to-br from-black/50 via-black/40 to-black/30 group-hover:from-black/40 group-hover:via-black/30 group-hover:to-black/20 transition-all duration-500"></div>
+    // Nouveau style : Pleine page, centré, fond sombre et moderne
+    <div
+      className={`relative min-h-screen flex items-center justify-center 
+                    bg-gray-900 overflow-hidden ${
+                      locale === "ar" ? "rtl" : "ltr"
+                    }`}
+    >
+      {/* 🌌 Fond Immersion : Ajout d'une lueur sombre et douce */}
+      <div
+        className="absolute inset-0 bg-dot-pattern opacity-10"
+        aria-hidden="true"
+      ></div>
+      <div
+        className="absolute inset-0 bg-gradient-to-br from-gray-900 via-black/80 to-gray-900"
+        aria-hidden="true"
+      ></div>
 
-        <div className="relative z-10 p-4">
-          <Image
-            src="/logo/Logo-or2.png"
-            width={280}
-            height={280}
-            alt={`logo`}
-            className="drop-shadow-[0_10px_30px_rgba(201,150,66,0.3)] transition-all duration-300 group-hover:drop-shadow-[0_15px_40px_rgba(201,150,66,0.4)] group-hover:scale-105"
-            priority
-          />
-        </div>
-        <div className="mb-6">
-          <div className="text-7xl font-black text-transparent bg-gradient-to-b from-orange-500 to-orange-600 bg-clip-text mb-4 font-mono tracking-tight">
-            {countdown}
+      {/* 🚨 Panneau Principal (Glassmorphism / Frosted Glass) */}
+      <div
+        className="relative z-10 w-full max-w-lg p-8 mx-4 sm:mx-auto 
+                        bg-white/10 backdrop-blur-xl rounded-3xl border border-white/20 
+                        shadow-[0_20px_50px_rgba(0,0,0,0.5),_0_0_0_1px_rgba(255,255,255,0.1)] 
+                        text-center transform transition-all duration-700 ease-out animate-in fade-in zoom-in-50"
+      >
+        {/* Section du Compte à Rebours */}
+        <div className="mb-8">
+          {/* 🌀 Indicateur de Chargement Amélioré (Plus subtil) */}
+          <div className="relative mb-6 flex justify-center items-center h-24">
+            {/* Le cercle de progression devient la seule animation visuelle */}
+            <div
+              className={`absolute rounded-full h-24 w-24 border-8 border-gray-700 border-t-orange-500 
+                                  ${
+                                    countdown > 0
+                                      ? "animate-spin-slow"
+                                      : "animate-ping-once"
+                                  } `}
+            ></div>
+
+            {/* Le Compte à Rebours Numérique (Très Grand et Impactant) */}
+            <div
+              className="relative text-8xl font-black text-transparent 
+                                    bg-clip-text bg-gradient-to-r from-orange-400 to-amber-200 
+                                    font-mono tracking-tighter drop-shadow-xl z-20 transition-opacity duration-300"
+            >
+              {countdown > 0 ? countdown : "GO"}
+            </div>
           </div>
-          <p className="text-slate-700 font-medium text-lg font-sans">
-            {t("connection")} {countdown}{" "}
-            {countdown !== 1 ? t("seconds") : t("second")}
-          </p>
+
+          {/* Titre Principal */}
+          <h1
+            className="text-4xl font-extrabold mb-2 tracking-tight 
+                                text-transparent bg-clip-text bg-gradient-to-r from-white to-gray-300"
+          >
+            {t("welcome")}
+          </h1>
+          <p className="text-xl text-gray-400 font-light">{t("loading")}</p>
         </div>
-        <div className="w-full bg-slate-200 rounded-full h-3 mb-4 overflow-hidden">
+
+        {/* Barre de Progression Visuelle */}
+        <div className="w-full bg-white/20 rounded-full h-2 mb-6 overflow-hidden">
           <div
-            className="bg-gradient-to-r from-orange-500 to-orange-600 h-3 rounded-full transition-all duration-1000 ease-out shadow-sm"
+            className="bg-gradient-to-r from-orange-500 to-orange-400 h-2 rounded-full transition-all duration-1000 ease-out"
+            // La progression est calculée sur la base de 3 secondes (initialState=3)
             style={{ width: `${((3 - countdown) / 3) * 100}%` }}
           ></div>
         </div>
-        <div className="flex items-center justify-center space-x-2 text-slate-600">
-          <div className="w-2 h-2 bg-green-500 rounded-full animate-pulse"></div>
-          <span className="text-sm font-medium font-sans">{t("status")}</span>
-        </div>
-      </div>
 
-      <div className="mt-8 text-center">
-        <p className="text-slate-500 text-sm font-sans">{t("wait")}</p>
+        {/* Messages et Statut */}
+        <div className="flex items-center justify-center space-x-3 text-gray-300">
+          <div className="w-3 h-3 bg-green-500 rounded-full animate-pulse-fast"></div>
+          <span className="text-base font-medium">{t("status")}</span>
+          <span className="text-base font-light ml-4">
+            {t("connection")} {countdown > 0 ? countdown : 0}{" "}
+            {countdown !== 1 ? t("seconds") : t("second")}
+          </span>
+        </div>
+
+        {/* Message de fin */}
+        <div className="mt-8 text-center">
+          <p className="text-gray-500 text-sm">{t("wait")}</p>
+        </div>
       </div>
     </div>
   );

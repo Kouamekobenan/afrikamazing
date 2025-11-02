@@ -45,7 +45,6 @@ export default function Gallery({ locale, translations }: GalleryProps) {
 
   const downloadImage = async () => {
     if (!selectedImage) return;
-
     try {
       const response = await fetch(selectedImage.img.url);
       const blob = await response.blob();
@@ -67,7 +66,7 @@ export default function Gallery({ locale, translations }: GalleryProps) {
       <div className="w-full px-4 py-12 sm:px-6 lg:px-8 max-w-7xl mx-auto">
         {/* En-tête de la galerie */}
         <div className="mb-10 text-center">
-          <h1 className="text-3xl sm:text-4xl lg:text-5xl font-extrabold text-gray-900 tracking-tight">
+          <h1 className="text-3xl sm:text-4xl lg:text-5xl font-extrabold text-white tracking-tight">
             {t.title}
           </h1>
           <p className="mt-3 text-base sm:text-lg text-gray-600">

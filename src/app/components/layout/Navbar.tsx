@@ -5,12 +5,10 @@ import Image from "next/image";
 import Link from "next/link";
 import { usePathname, useRouter, useParams } from "next/navigation";
 import { Button } from "../ui/Button";
-
 type LocaleParams = {
   locale: LocaleCode; // Assurez-vous que LocaleCode est importé
 };
 // Imports de la configuration
-
 import {
   getLocaleFromParams,
   isRtlLocale,
@@ -134,17 +132,30 @@ export default function Navbar() {
           {/* Logo */}
           <Link
             href={`/${currentLocale}`}
-            className="relative flex items-center space-x-2 group overflow-hidden rounded-xl p-2"
+            className="relative flex items-center justify-center p-3 rounded-xl transition-all duration-300 group overflow-hidden 
+             // Le nouveau style de base : fond sombre, coin subtil
+             bg-gray-900 shadow-2xl hover:shadow-primary/50"
             aria-label={t("nav.home")}
           >
-            {/* Dégradé noir élégant */}
-            <div className="absolute inset-0 bg-gradient-to-br from-black/70 via-black/30 to-transparent group-hover:from-black/30 group-hover:via-black/20 transition-all duration-500"></div>
+            {/* ✨ EFFET MODERNE : BORDURE DE LUEUR AU SURVOL (Optionnel mais très moderne) */}
+            <div
+              className="absolute inset-0.5 rounded-[11px] bg-gray-900 transition-opacity duration-300 group-hover:opacity-90"
+              aria-hidden="true"
+            ></div>
+
+            {/* Effet de lueur subtil au survol (pour simuler une bordure lumineuse) */}
+            <div
+              className="absolute inset-[-10px] bg-[radial-gradient(ellipse_at_top,_var(--tw-color-primary)_10%,_transparent_70%)] opacity-0 blur-xl transition-opacity duration-500 group-hover:opacity-50"
+              aria-hidden="true"
+            ></div>
+
             <Image
               src="/logo/logo-or2.png"
               width={280}
               height={280}
               alt={`${SITE_NAME} logo`}
-              className="relative z-10 drop-shadow-2xl filter brightness-110 group-hover:brightness-125 transition-all duration-300"
+              className="relative z-10 w-32 h-6 object-contain 
+               drop-shadow-lg filter brightness-125 group-hover:brightness-150 transition-all duration-300 ease-in-out transform group-hover:scale-105"
               priority
             />
           </Link>
@@ -160,7 +171,6 @@ export default function Navbar() {
               </Link>
             ))}
           </div>
-
           {/* Desktop Actions */}
           <div className="hidden lg:flex items-center space-x-3">
             {/* Bouton de recherche */}
