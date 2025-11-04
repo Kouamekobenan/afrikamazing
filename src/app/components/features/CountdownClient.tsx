@@ -3,7 +3,6 @@ import { useEffect, useState } from "react";
 // Importation de useRouter pour la navigation forcée
 import { useRouter } from "next/navigation";
 
-
 interface CountdownClientProps {
   locale: "en" | "fr" | "ar";
   translations: Record<string, Record<string, string>>;
@@ -14,25 +13,21 @@ export default function CountdownClient({
 }: CountdownClientProps) {
   const router = useRouter(); // Initialisation du routeur
   const [countdown, setCountdown] = useState(3);
-  
+
   // t devient une fonction
   const t = (key: string) => translations.countdown[key] || key;
-
   useEffect(() => {
     if (countdown > 0) {
       const timer = setTimeout(() => setCountdown(countdown - 1), 1000);
       return () => clearTimeout(timer);
     } else {
-      // Un petit délai supplémentaire après 0 pour que l'animation finale soit vue
       const finalDelay = setTimeout(() => {
-        // Redirection forcée vers la page d'accueil avec la locale
-        router.push("../../[locale]/accueil");
+        router.push(`/${locale}/accueil`);
       }, 500);
       return () => clearTimeout(finalDelay);
     }
   }, [countdown, locale, router]); // router et locale ajoutés aux dépendances
   return (
-    // Nouveau style : Pleine page, centré, fond sombre et moderne
     <div
       className={`relative min-h-screen flex items-center justify-center 
                     bg-gray-900 overflow-hidden ${
@@ -47,7 +42,6 @@ export default function CountdownClient({
         className="absolute inset-0 bg-gradient-to-br from-gray-900 via-black/80 to-gray-900"
         aria-hidden="true"
       ></div>
-
       {/* 🚨 Panneau Principal (Glassmorphism / Frosted Glass) */}
       <div
         className="relative z-10 w-full max-w-lg p-8 mx-4 sm:mx-auto 

@@ -1,8 +1,11 @@
 import { NextResponse } from "next/server";
 import type { NextRequest } from "next/server";
 
+const locales = ["fr", "en", "ar"];
+const defaultLocale = "fr";
+
 export function middleware(request: NextRequest) {
-  console.log("🔥🔥🔥 MIDDLEWARE APPELÉ 🔥🔥🔥");
+  console.log("🔥 MIDDLEWARE APPELÉ");
   console.log("URL:", request.nextUrl.pathname);
 
   const pathname = request.nextUrl.pathname;
@@ -10,24 +13,27 @@ export function middleware(request: NextRequest) {
   // Si c'est la racine, rediriger vers /fr
   if (pathname === "/") {
     console.log("➡️ Redirection vers /fr");
-    return NextResponse.redirect(new URL("/fr", request.url));
+    return NextResponse.redirect(new URL(`/${defaultLocale}`, request.url));
   }
 
-  // Si commence par /fr, /en, /ar, laisser passer
-  if (
-    pathname.startsWith("/fr") ||
-    pathname.startsWith("/en") ||
-    pathname.startsWith("/ar")
-  ) {
+  // Vérifier si le pathname commence déjà par une locale
+  const pathnameHasLocale = locales.some(
+    (locale) => pathname.startsWith(`/${locale}/`) || pathname === `/${locale}`
+  );
+
+  if (pathnameHasLocale) {
     console.log("✅ Locale détectée, continue");
     return NextResponse.next();
   }
 
   // Sinon ajouter /fr devant
   console.log("➡️ Ajout de /fr devant", pathname);
-  return NextResponse.redirect(new URL("/fr" + pathname, request.url));
+  return NextResponse.redirect(
+    new URL(`/${defaultLocale}${pathname}`, request.url)
+  );
 }
 
 export const config = {
-  matcher: ["/((?!_next|api|favicon.ico|.*\\..*).*)"],
+  // Exclut : _next (Next.js), api, fichiers avec extension, favicon
+  matcher: ["/((?!_next|api|favicon.ico|.*\\..*).*)", "/"],
 };

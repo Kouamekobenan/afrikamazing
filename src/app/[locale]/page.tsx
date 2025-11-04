@@ -31,7 +31,6 @@ export default async function HomePage({ params }: HomePageProps) {
         locale={locale as "en" | "fr" | "ar"}
         translations={allTranslations}
       />
-      {/* <Footer locale={locale} translations={allTranslations} /> */}
     </div>
   );
 }

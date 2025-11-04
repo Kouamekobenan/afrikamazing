@@ -23,8 +23,7 @@ export default function Gallery({ locale, translations }: GalleryProps) {
       translations.gallery?.touchClose || "Cliquez n'importe où pour fermer",
     // Nouvelles clés pour la carte (assurez-vous qu'elles existent dans vos fichiers de traduction)
     mapTitle: translations.gallery?.mapTitle || "Où nous trouver",
-    mapAddress:
-      translations.gallery?.mapAddress || "Salon de coiffure pour hommes",
+    mapAddress: translations.gallery?.mapAddress || "Villa 116 west golf",
   };
   const [visibleCount, setVisibleCount] = useState(4);
   const [selectedImage, setSelectedImage] = useState<ProductEntity | null>(

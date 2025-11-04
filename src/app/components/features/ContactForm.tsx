@@ -104,7 +104,7 @@ export default function ContactForm({ translations: t }: ContactFormProps) {
 
           <button
             style={{
-              backgroundColor: "#6C371A",
+              backgroundColor: "#FF5A00",
             }}
             type="submit"
             disabled={status === "loading"}

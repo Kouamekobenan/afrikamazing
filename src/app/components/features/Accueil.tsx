@@ -15,7 +15,6 @@ export default function Accueil({ locale, translations }: CountdownClientProps) 
         <Navbar />
         <Hero locale={locale} translations={translations} />
         <Gallery locale={locale} translations={translations} />
-        {/* <Footer locale={locale} translations={translations} /> */}
       </div>
     </div>
   );
