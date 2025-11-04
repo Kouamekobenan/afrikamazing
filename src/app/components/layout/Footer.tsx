@@ -7,6 +7,7 @@ import {
   MapPin,
   Send,
   Heart,
+  Music2,
 } from "lucide-react";
 import Image from "next/image";
 import { LocaleCode } from "../../lib/global.type";
@@ -14,8 +15,9 @@ import { LocaleCode } from "../../lib/global.type";
 const SITE_NAME = "AFRIKAMAZING";
 
 const SOCIAL_LINKS = {
-  facebook: "https://facebook.com/afrikamazing",
-  instagram: "https://instagram.com/afrikamazing",
+  tiktok: "https://www.tiktok.com/@afrikamazing1",
+  instagram:
+    "https://www.instagram.com/afrikamazing5?igsh=MXIzNHdocnAxbWpmcQ==",
   whatsapp: "https://wa.me/225XXXXXXXXX",
 };
 
@@ -102,13 +104,13 @@ export default function Footer({ locale, translations }: FooterProps) {
               </h3>
               <div className="flex gap-2 sm:gap-3">
                 <a
-                  href={SOCIAL_LINKS.facebook}
+                  href={SOCIAL_LINKS.tiktok}
                   target="_blank"
                   rel="noopener noreferrer"
                   className="w-9 h-9 sm:w-10 sm:h-10 bg-gray-800 hover:bg-blue-600 rounded-lg flex items-center justify-center transition-all duration-300 hover:scale-110 hover:shadow-lg group"
                   aria-label={t?.facebook ?? "Facebook"}
                 >
-                  <Facebook
+                  <Music2
                     size={16}
                     className="sm:w-[18px] sm:h-[18px] text-gray-400 group-hover:text-white transition-colors"
                   />
@@ -247,7 +249,6 @@ export default function Footer({ locale, translations }: FooterProps) {
               />
               <span>{t?.inAfrica ?? "en Afrique"}</span>
             </div>
-
             <div className="flex gap-4 sm:gap-6">
               <a
                 href={`/${locale}/privacy`}

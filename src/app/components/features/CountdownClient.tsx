@@ -1,8 +1,9 @@
 "use client";
-import Navbar from "../layout/Navbar";
-import Hero from "./Hero";
-import Gallery from "./Gallery";
 import { useEffect, useState } from "react";
+// Importation de useRouter pour la navigation forcée
+import { useRouter } from "next/navigation";
+
+
 interface CountdownClientProps {
   locale: "en" | "fr" | "ar";
   translations: Record<string, Record<string, string>>;
@@ -11,37 +12,25 @@ export default function CountdownClient({
   locale,
   translations,
 }: CountdownClientProps) {
-  // Passons le compte à rebours initial à 3 secondes pour un meilleur effet de progression
+  const router = useRouter(); // Initialisation du routeur
   const [countdown, setCountdown] = useState(3);
-  const [showContent, setShowContent] = useState(false); // Renommé pour plus de clarté
+  
   // t devient une fonction
   const t = (key: string) => translations.countdown[key] || key;
+
   useEffect(() => {
     if (countdown > 0) {
       const timer = setTimeout(() => setCountdown(countdown - 1), 1000);
       return () => clearTimeout(timer);
     } else {
       // Un petit délai supplémentaire après 0 pour que l'animation finale soit vue
-      const finalDelay = setTimeout(() => setShowContent(true), 500);
+      const finalDelay = setTimeout(() => {
+        // Redirection forcée vers la page d'accueil avec la locale
+        router.push("../../[locale]/accueil");
+      }, 500);
       return () => clearTimeout(finalDelay);
     }
-  }, [countdown]);
-
-  // Contenu principal après le compte à rebours
-  if (showContent) {
-    return (
-      // Le style du contenu principal reste bon, peut-être ajuster la couleur
-      <div className="min-h-screen flex flex-col justify-center items-center bg-gray-50 dark:bg-gray-900 transition-colors duration-500">
-        <div className="w-full">
-          <Navbar />
-          <Hero locale={locale} translations={translations} />
-          <Gallery locale={locale} translations={translations} />
-          {/* <Footer locale={locale} translations={translations} /> */}
-        </div>
-      </div>
-    );
-  }
-  // --- ÉTAT DU COMPTE À REBOURS (MODERNISÉ) ---
+  }, [countdown, locale, router]); // router et locale ajoutés aux dépendances
   return (
     // Nouveau style : Pleine page, centré, fond sombre et moderne
     <div
@@ -50,7 +39,6 @@ export default function CountdownClient({
                       locale === "ar" ? "rtl" : "ltr"
                     }`}
     >
-      {/* 🌌 Fond Immersion : Ajout d'une lueur sombre et douce */}
       <div
         className="absolute inset-0 bg-dot-pattern opacity-10"
         aria-hidden="true"
@@ -63,9 +51,9 @@ export default function CountdownClient({
       {/* 🚨 Panneau Principal (Glassmorphism / Frosted Glass) */}
       <div
         className="relative z-10 w-full max-w-lg p-8 mx-4 sm:mx-auto 
-                        bg-white/10 backdrop-blur-xl rounded-3xl border border-white/20 
-                        shadow-[0_20px_50px_rgba(0,0,0,0.5),_0_0_0_1px_rgba(255,255,255,0.1)] 
-                        text-center transform transition-all duration-700 ease-out animate-in fade-in zoom-in-50"
+                         bg-white/10 backdrop-blur-xl rounded-3xl border border-white/20 
+                         shadow-[0_20px_50px_rgba(0,0,0,0.5),_0_0_0_1px_rgba(255,255,255,0.1)] 
+                         text-center transform transition-all duration-700 ease-out animate-in fade-in zoom-in-50"
       >
         {/* Section du Compte à Rebours */}
         <div className="mb-8">
@@ -74,27 +62,26 @@ export default function CountdownClient({
             {/* Le cercle de progression devient la seule animation visuelle */}
             <div
               className={`absolute rounded-full h-24 w-24 border-8 border-gray-700 border-t-orange-500 
-                                  ${
-                                    countdown > 0
-                                      ? "animate-spin-slow"
-                                      : "animate-ping-once"
-                                  } `}
+                                     ${
+                                       countdown > 0
+                                         ? "animate-spin-slow"
+                                         : "animate-ping-once"
+                                     } `}
             ></div>
 
             {/* Le Compte à Rebours Numérique (Très Grand et Impactant) */}
             <div
               className="relative text-8xl font-black text-transparent 
-                                    bg-clip-text bg-gradient-to-r from-orange-400 to-amber-200 
-                                    font-mono tracking-tighter drop-shadow-xl z-20 transition-opacity duration-300"
+                                         bg-clip-text bg-gradient-to-r from-orange-400 to-amber-200 
+                                         font-mono tracking-tighter drop-shadow-xl z-20 transition-opacity duration-300"
             >
               {countdown > 0 ? countdown : "GO"}
             </div>
           </div>
-
           {/* Titre Principal */}
           <h1
             className="text-4xl font-extrabold mb-2 tracking-tight 
-                                text-transparent bg-clip-text bg-gradient-to-r from-white to-gray-300"
+                                         text-transparent bg-clip-text bg-gradient-to-r from-white to-gray-300"
           >
             {t("welcome")}
           </h1>

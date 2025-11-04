@@ -109,7 +109,7 @@ export default function BlogPage({
 
   return (
     <div className="min-h-screen bg-gray-50">
-      <div className="bg-gradient-to-r from-gray-800 to-gray-500 text-white py-20">
+      <div className="bg-gradient-to-r from-gray-800 to-gray-500 text-white py-2">
         {/* ✅ Utilisation correcte du composant VideoI */}
         <Video locale={locale} translations={videoTranslations} />
       </div>

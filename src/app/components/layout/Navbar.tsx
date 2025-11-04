@@ -131,7 +131,7 @@ export default function Navbar() {
         <div className="flex justify-between items-center h-16 lg:h-20">
           {/* Logo */}
           <Link
-            href={`/${currentLocale}`}
+            href={`/${currentLocale}/accueil`}
             className="relative flex items-center justify-center p-3 rounded-xl transition-all duration-300 group overflow-hidden 
              // Le nouveau style de base : fond sombre, coin subtil
              bg-gray-900 shadow-2xl hover:shadow-primary/50"
@@ -148,7 +148,6 @@ export default function Navbar() {
               className="absolute inset-[-10px] bg-[radial-gradient(ellipse_at_top,_var(--tw-color-primary)_10%,_transparent_70%)] opacity-0 blur-xl transition-opacity duration-500 group-hover:opacity-50"
               aria-hidden="true"
             ></div>
-
             <Image
               src="/logo/logo-or2.png"
               width={280}

@@ -1,13 +1,15 @@
+"use client";
 import { useState } from "react";
-import { ZoomIn, X, Download } from "lucide-react"; // Ajout de l'icône Download pour la Lightbox
-import { ProductEntity } from "../../lib/global.type";
-import { Product } from "../../data/galeryData";
+import { ZoomIn, X, Download, MapPin } from "lucide-react"; // Ajout de MapPin pour la carte
+import { ProductEntity } from "../../lib/global.type"; // Assurez-vous que ce chemin est correct
+import { Product } from "../../data/galeryData"; // Assurez-vous que ce chemin est correct
 
 interface GalleryProps {
   locale: "en" | "fr" | "ar";
   translations: Record<string, Record<string, string>>;
 }
 export default function Gallery({ locale, translations }: GalleryProps) {
+  // Traduction défensive et centralisée
   const t = {
     title: translations.gallery?.title || "Galerie d'Artisanat Africain",
     total: translations.gallery?.total || "Total de {count} produits",
@@ -19,6 +21,10 @@ export default function Gallery({ locale, translations }: GalleryProps) {
     download: translations.gallery?.download || "Télécharger",
     touchClose:
       translations.gallery?.touchClose || "Cliquez n'importe où pour fermer",
+    // Nouvelles clés pour la carte (assurez-vous qu'elles existent dans vos fichiers de traduction)
+    mapTitle: translations.gallery?.mapTitle || "Où nous trouver",
+    mapAddress:
+      translations.gallery?.mapAddress || "Salon de coiffure pour hommes",
   };
   const [visibleCount, setVisibleCount] = useState(4);
   const [selectedImage, setSelectedImage] = useState<ProductEntity | null>(
@@ -43,6 +49,7 @@ export default function Gallery({ locale, translations }: GalleryProps) {
     document.body.style.overflow = "unset";
   };
 
+  // Ajout de la gestion des erreurs au téléchargement
   const downloadImage = async () => {
     if (!selectedImage) return;
     try {
@@ -58,89 +65,113 @@ export default function Gallery({ locale, translations }: GalleryProps) {
       window.URL.revokeObjectURL(url);
     } catch (error) {
       console.error("Erreur lors du téléchargement:", error);
+      // Optionnel: Afficher un message d'erreur à l'utilisateur
     }
   };
-
   return (
     <>
       <div className="w-full px-4 py-12 sm:px-6 lg:px-8 max-w-7xl mx-auto">
-        {/* En-tête de la galerie */}
-        <div className="mb-10 text-center">
-          <h1 className="text-3xl sm:text-4xl lg:text-5xl font-extrabold text-white tracking-tight">
-            {t.title}
-          </h1>
-          <p className="mt-3 text-base sm:text-lg text-gray-600">
-            {t.total.replace("{count}", Product.length.toString())}
-          </p>
-        </div>
-        {/* Grille d'images */}
-        <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-4 sm:gap-6 lg:gap-8">
-          {visibleProducts.map((prod) => (
-            <button
-              key={prod.id}
-              onClick={() => openLightbox(prod)}
-              // Amélioration de l'effet au survol : zoom doux
-              className="group relative block w-full aspect-[4/5] overflow-hidden rounded-xl shadow-lg 
-                         transition-transform duration-300 ease-in-out hover:scale-[1.03] active:scale-[0.98] 
-                         focus:outline-none focus:ring-4 focus:ring-yellow-500/50"
-              aria-label={`Ouvrir la vue détaillée de ${prod.img.alt}`}
-            >
-              <img
-                src={prod.img.url}
-                alt={prod.img.alt}
-                className="w-full h-full object-cover object-center transition-opacity duration-500 group-hover:opacity-90"
-                loading="lazy"
-              />
-              {/* Overlay d'interaction au survol */}
-              <div
-                className="absolute inset-0 bg-black/40 opacity-0 group-hover:opacity-100 transition-opacity duration-300 
-                           flex items-center justify-center pointer-events-none"
-              >
-                <ZoomIn className="w-8 h-8 text-white transform group-hover:scale-110 transition-transform duration-300" />
-              </div>
-
-              {/* Description au bas de l'image */}
-              <div className="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-black/80 to-transparent p-3 sm:p-4">
-                <p className="text-white text-xs sm:text-sm font-medium truncate text-left">
-                  {prod.img.alt}
-                </p>
-              </div>
-            </button>
-          ))}
-        </div>
-        {/* Bouton Charger Plus */}
-        {hasMore && (
-          <div className="mt-12 flex justify-center">
-            <button
-              style={{
-                backgroundColor: "#C99642",
-              }}
-              onClick={loadMore}
-              // Style professionnel du bouton
-              className="px-8 py-3 text-lg font-semibold rounded-full text-white bg-yellow-600 shadow-lg 
-                         hover:bg-orange-600 transition-colors duration-300 
-                         focus:outline-none focus:ring-4 focus:ring-orange-500/50 transform hover:scale-[1.02]"
-            >
-              {t.loadMore.replace(
-                "{count}",
-                Math.min(
-                  ITEMS_PER_PAGE,
-                  Product.length - visibleCount
-                ).toString()
-              )}
-            </button>
-          </div>
-        )}
-        {/* Message "Tout vu" */}
-        {!hasMore && Product.length > ITEMS_PER_PAGE && (
-          <div className="mt-12 text-center py-4">
-            <p className="text-gray-500 text-sm sm:text-base italic">
-              {t.allSeen.replace("{count}", Product.length.toString())}
+        {/* --- 1. Section Galerie --- */}
+        <div className="mb-16">
+          {/* En-tête de la galerie */}
+          <div className="mb-10 text-center">
+            <h1 className="text-3xl sm:text-4xl lg:text-5xl font-extrabold text-gray-900 dark:text-white tracking-tight">
+              {t.title}
+            </h1>
+            <p className="mt-3 text-base sm:text-lg text-gray-600 dark:text-gray-400">
+              {t.total.replace("{count}", Product.length.toString())}
             </p>
           </div>
-        )}
+          {/* Grille d'images */}
+          <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-4 sm:gap-6 lg:gap-8">
+            {visibleProducts.map((prod) => (
+              <button
+                key={prod.id}
+                onClick={() => openLightbox(prod)}
+                // Amélioration de l'effet au survol : zoom doux
+                className="group relative block w-full aspect-[4/5] overflow-hidden rounded-xl shadow-xl 
+                          transition-transform duration-300 ease-in-out hover:scale-[1.03] active:scale-[0.98] 
+                          focus:outline-none focus:ring-4 focus:ring-yellow-500/50"
+                aria-label={`Ouvrir la vue détaillée de ${prod.img.alt}`}
+              >
+                <img
+                  src={prod.img.url}
+                  alt={prod.img.alt}
+                  className="w-full h-full object-cover object-center transition-opacity duration-500 group-hover:opacity-90"
+                  loading="lazy"
+                />
+                {/* Overlay d'interaction au survol */}
+                <div
+                  className="absolute inset-0 bg-black/40 opacity-0 group-hover:opacity-100 transition-opacity duration-300 
+                              flex items-center justify-center pointer-events-none"
+                >
+                  <ZoomIn className="w-8 h-8 text-white transform group-hover:scale-110 transition-transform duration-300" />
+                </div>
+
+                {/* Description au bas de l'image */}
+                <div className="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-black/80 to-transparent p-3 sm:p-4">
+                  <p className="text-white text-xs sm:text-sm font-medium truncate text-left">
+                    {prod.img.alt}
+                  </p>
+                </div>
+              </button>
+            ))}
+          </div>
+          {/* Bouton Charger Plus */}
+          {hasMore && (
+            <div className="mt-12 flex justify-center">
+              <button
+                onClick={loadMore}
+                // Style professionnel du bouton (suppression de l'inline style)
+                className="px-8 py-3 text-lg font-semibold rounded-full text-white bg-[#C99642] shadow-lg 
+                          hover:bg-orange-600 transition-colors duration-300 
+                          focus:outline-none focus:ring-4 focus:ring-orange-500/50 transform hover:scale-[1.02]"
+              >
+                {t.loadMore.replace(
+                  "{count}",
+                  Math.min(
+                    ITEMS_PER_PAGE,
+                    Product.length - visibleCount
+                  ).toString()
+                )}
+              </button>
+            </div>
+          )}
+          {/* Message "Tout vu" */}
+          {!hasMore && Product.length > ITEMS_PER_PAGE && (
+            <div className="mt-12 text-center py-4">
+              <p className="text-gray-500 text-sm sm:text-base italic">
+                {t.allSeen.replace("{count}", Product.length.toString())}
+              </p>
+            </div>
+          )}
+        </div>
+        {/* --- 2. Section Carte (Nouvelle Intégration Professionnelle) --- */}
+        <div className="mt-16 pt-12 border-t border-gray-200 dark:border-gray-700">
+          <div className="mb-8 text-center">
+            <h2 className="text-3xl sm:text-4xl font-extrabold text-gray-900 dark:text-white tracking-tight flex justify-center items-center">
+              <MapPin className="w-8 h-8 mr-3 text-[#C99642]" />
+              {t.mapTitle}
+            </h2>
+            <p className="mt-2 text-lg text-gray-600 dark:text-gray-400">
+              {t.mapAddress}
+            </p>
+          </div>
+
+          <div className="w-full h-96 rounded-xl overflow-hidden shadow-2xl border-4 border-gray-200 dark:border-gray-700">
+            <iframe
+              src="https://www.google.com/maps/embed?pb=!1m14!1m8!1m3!1d3455.92792459972!2d31.39287211!3d29.9815013!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x14583b0027f730df%3A0x90ffc9ef42c1d20f!2sVilla%20116%20west%20golf!5e0!3m2!1sfr!2sci!4v1762215411895!5m2!1sfr!2sci"
+              width="600"
+              height="450"
+              style={{ border: 0 }}
+              allowFullScreen
+              loading="lazy"
+              referrerPolicy="no-referrer-when-downgrade"
+            ></iframe>
+          </div>
+        </div>
       </div>
-      {/* Lightbox Modale (Améliorée) */}
+      {/* --- Lightbox Modale (Améliorée) --- */}
       {selectedImage && (
         <div
           className="fixed inset-0 z-[100] bg-black/90 flex items-center justify-center p-4 backdrop-blur-sm"
@@ -173,7 +204,7 @@ export default function Gallery({ locale, translations }: GalleryProps) {
           <button
             onClick={closeLightbox}
             aria-label={t.close}
-            className="absolute top-4 right-4 text-white p-3 rounded-full bg-black/50 hover:bg-black/70 transition-colors duration-200"
+            className="absolute top-4 right-4 text-white p-3 rounded-full bg-black/50 hover:bg-black/70 transition-colors duration-200 z-101"
           >
             <X className="w-6 h-6" />
           </button>
@@ -184,7 +215,7 @@ export default function Gallery({ locale, translations }: GalleryProps) {
               downloadImage();
             }}
             aria-label={t.download}
-            className="absolute top-4 right-16 text-white p-3 rounded-full bg-black/50 hover:bg-black/70 transition-colors duration-200 flex items-center space-x-2"
+            className="absolute top-4 right-16 text-white p-3 rounded-full bg-black/50 hover:bg-black/70 transition-colors duration-200 flex items-center space-x-2 z-101"
           >
             <Download className="w-6 h-6" />
             <span className="hidden sm:inline">{t.download}</span>

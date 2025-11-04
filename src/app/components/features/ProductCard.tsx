@@ -47,7 +47,7 @@ export default function ProductCard({ translations: t }: ProductCardProps) {
         <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold text-gray-900 text-center mb-3">
           {t.title}
         </h2>
-        <div className="w-24 h-1 bg-blue-600 mx-auto rounded-full"></div>
+        <div className="w-24 h-1 bg-orange-600 mx-auto rounded-full"></div>
       </div>
 
       {/* Grille de produits responsive */}
@@ -87,7 +87,7 @@ export default function ProductCard({ translations: t }: ProductCardProps) {
                 {/* Bouton Commander */}
                 <button
                   style={{
-                    backgroundColor: "#6C371A",
+                    backgroundColor: "#FF5A00",
                   }}
                   className="flex-1 min-w-0 text-xs cursor-pointer md:text-sm hover:bg-blue-700 text-white font-semibold py-2 md:py-3 px-2 md:px-4 rounded-lg transition-colors duration-200 shadow-sm hover:shadow-md flex items-center justify-center gap-1"
                   aria-label={`${t.order} ${prod.name}`}
@@ -98,7 +98,7 @@ export default function ProductCard({ translations: t }: ProductCardProps) {
                 </button>
 
                 {/* Bouton WhatsApp */}
-                <button
+                {/* <button
                   onClick={() => handleWhatsAppReservation(prod)}
                   className="w-9 h-9 md:w-auto md:h-auto bg-gradient-to-r from-green-500 to-green-600 text-white md:py-3 md:px-4 rounded-lg font-semibold hover:from-green-600 hover:to-green-700 transition-all duration-300 flex items-center justify-center md:gap-2 shadow-sm hover:shadow-md flex-shrink-0"
                   aria-label={`${t.order} ${prod.name} ${t.whatsapp}`}
@@ -108,7 +108,7 @@ export default function ProductCard({ translations: t }: ProductCardProps) {
                   <span className="hidden md:inline whitespace-nowrap">
                     {t.whatsapp}
                   </span>
-                </button>
+                </button> */}
               </div>
             </div>
           </article>

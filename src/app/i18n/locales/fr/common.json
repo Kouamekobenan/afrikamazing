@@ -35,7 +35,10 @@
     "allSeen": "✓ Vous avez vu tous les produits ({count})",
     "download": "Télécharger",
     "close": "Fermer",
-    "touchClose": "Touchez l'extérieur pour fermer"
+    "touchClose": "Touchez l'extérieur pour fermer",
+    "mapTitle":"Où nous trouver",
+    "mapAddress":"Villa 116 west golf"
+
   },
   "footer": {
     "description": "Découvrez l'Afrique authentique à travers des expériences uniques et inoubliables. Votre aventure commence ici.",

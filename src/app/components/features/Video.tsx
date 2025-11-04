@@ -26,7 +26,7 @@ export default function Video({ locale, translations }: VideoProps) {
   // Les commentaires sont traduits ci-dessous.
 
   return (
-    <div className="relative w-full h-screen overflow-hidden">
+    <div className="relative w-full h-[50vh] overflow-hidden">
       {/* Background video / Vidéo en arrière-plan / فيديو في الخلفية */}
       <video
         autoPlay

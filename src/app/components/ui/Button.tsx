@@ -20,22 +20,22 @@ export const Button: React.FC<ButtonsProps> = ({
         onClick={onClick}
         disabled={disabled}
         style={{
-          backgroundColor: disabled ? undefined : "#6C371A",
+          backgroundColor: disabled ? undefined : "#FF5A00",
           // backgroundColor: disabled ? undefined : "transparent",
         }}
-        className={`text-2xl text-white cursor-pointer border h-[50px] rounded-xl p-1 w-[250px] md:w-[250px] hover:transition ${
+        className={`text-2xl text-white font-bold cursor-pointer border h-[50px] rounded-xl p-1 w-[250px] md:w-[250px] hover:transition ${
           disabled
             ? "opacity-50 cursor-not-allowed bg-gray-300 border-gray-400"
             : "cursor-pointer hover:text-black"
         } ${className}`}
         onMouseEnter={(e) => {
           if (!disabled) {
-            e.currentTarget.style.backgroundColor = "#6C371A";
+            e.currentTarget.style.backgroundColor = "#FF5A00";
           }
         }}
         onMouseLeave={(e) => {
           if (!disabled) {
-            e.currentTarget.style.backgroundColor = "#6C371A";
+            e.currentTarget.style.backgroundColor = "#FF5A00";
           }
         }}
       >
