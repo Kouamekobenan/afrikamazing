@@ -2,7 +2,6 @@ import { createInstance } from "i18next";
 import { initReactI18next } from "react-i18next/initReactI18next";
 import resourcesToBackend from "i18next-resources-to-backend";
 import { getOptions } from "./settings";
-
 const initI18next = async (lng: string, ns: string) => {
   const i18nInstance = createInstance();
   await i18nInstance

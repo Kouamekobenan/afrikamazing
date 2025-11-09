@@ -2,7 +2,6 @@
 // config/translations.ts
 // Traductions avec typage complet
 // ============================================
-
 import { LocaleCode } from "../app/lib/global.type";
 /**
  * Structure des traductions

@@ -1,7 +1,6 @@
 import {
   Facebook,
   Instagram,
-  MessageCircle,
   Mail,
   Phone,
   MapPin,
@@ -18,14 +17,13 @@ const SOCIAL_LINKS = {
   tiktok: "https://www.tiktok.com/@afrikamazing1",
   instagram:
     "https://www.instagram.com/afrikamazing5?igsh=MXIzNHdocnAxbWpmcQ==",
-  whatsapp: "https://wa.me/225XXXXXXXXX",
+  whatsapp: "https://www.facebook.com/share/1JNNffvicj/",
 };
 
 interface FooterProps {
   locale: LocaleCode;
   translations: Record<string, Record<string, string>>;
 }
-
 export default function Footer({ locale, translations }: FooterProps) {
   const currentYear = new Date().getFullYear();
   const t = translations.footer;
@@ -41,9 +39,9 @@ export default function Footer({ locale, translations }: FooterProps) {
       { label: t?.gallery ?? "Galerie", href: "#" },
     ],
     support: [
-      { label: t?.help ?? "Centre d'aide", href: `/${locale}/help` },
+      { label: t?.help ?? "Centre d'aide", href: `/${locale}/#` },
       { label: t?.contact ?? "Contact", href: `/${locale}/contact` },
-      { label: t?.faq ?? "FAQ", href: `/${locale}/faq` },
+      { label: t?.faq ?? "FAQ", href: `/${locale}/#` },
       { label: t?.terms ?? "Conditions", href: "#" },
     ],
   };
@@ -131,10 +129,10 @@ export default function Footer({ locale, translations }: FooterProps) {
                   href={SOCIAL_LINKS.whatsapp}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="w-9 h-9 sm:w-10 sm:h-10 bg-gray-800 hover:bg-green-600 rounded-lg flex items-center justify-center transition-all duration-300 hover:scale-110 hover:shadow-lg group"
-                  aria-label={t?.whatsapp ?? "WhatsApp"}
+                  className="w-9 h-9 sm:w-10 sm:h-10 bg-gray-800 hover:bg-blue-600 rounded-lg flex items-center justify-center transition-all duration-300 hover:scale-110 hover:shadow-lg group"
+                  aria-label={t?.facebook ?? "Facebook"}
                 >
-                  <MessageCircle
+                  <Facebook
                     size={16}
                     className="sm:w-[18px] sm:h-[18px] text-gray-400 group-hover:text-white transition-colors"
                   />
@@ -208,24 +206,26 @@ export default function Footer({ locale, translations }: FooterProps) {
                   size={14}
                   className="sm:w-4 sm:h-4 group-hover:scale-110 transition-transform"
                 />
-                <span>contact@afrikamazing.com</span>
+                <span>afrikamazing@gmail.com</span>
               </a>
               <a
-                href="tel:+225XXXXXXXXX"
+                href="tel:+20 12 11218318"
                 className="flex items-center gap-2 text-gray-400 hover:text-orange-400 transition-colors text-xs sm:text-sm group"
               >
                 <Phone
                   size={14}
                   className="sm:w-4 sm:h-4 group-hover:scale-110 transition-transform"
                 />
-                <span>+225 XX XX XX XX XX</span>
+                <span>+201211218318</span>
               </a>
               <div className="flex items-start gap-2 text-gray-400 text-xs sm:text-sm">
                 <MapPin
                   size={14}
                   className="sm:w-4 sm:h-4 mt-0.5 flex-shrink-0"
                 />
-                <span>{t?.location ?? "Abidjan, Côte d'Ivoire"}</span>
+                <span>
+                  {t?.location ?? "villa 116 door 1, Katameya west golf"}
+                </span>
               </div>
             </div>
           </div>

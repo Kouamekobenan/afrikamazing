@@ -1,6 +1,5 @@
 
 import { BlogEntity } from "../lib/global.type";
-
 // Données en FRANÇAIS
 export const BlogPostsFr: BlogEntity[] = [
   {

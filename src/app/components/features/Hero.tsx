@@ -28,7 +28,7 @@ interface HeroProps {
 export default function Hero({ locale, translations }: HeroProps) {
   // Traduction pour le carrousel (hero) et la localisation (location)
   const tHero = translations.hero;
-  const tLocation = translations.location;
+  const tLocation = translations.hero;
 
   const [currentSlide, setCurrentSlide] = useState(0);
   const slides = [
@@ -116,7 +116,6 @@ export default function Hero({ locale, translations }: HeroProps) {
           </a>
         </div>
       </div>
-
       {/* 3. Contrôles de Navigation (Flèches et Points) */}
       <button
         onClick={prevSlide}
@@ -131,7 +130,7 @@ export default function Hero({ locale, translations }: HeroProps) {
       <button
         onClick={nextSlide}
         className="absolute right-4 top-1/2 -translate-y-1/2 z-30 
-                    bg-white/20 text-white p-3 rounded-full 
+                    bg-white/20 text-white p-3 cursor-pointer rounded-full 
                     transition-all duration-300 hover:bg-white/50 hover:scale-110 
                     focus:outline-none focus:ring-4 focus:ring-yellow-500/50"
         aria-label="Diapositive suivante"
@@ -155,15 +154,12 @@ export default function Hero({ locale, translations }: HeroProps) {
           />
         ))}
       </div>
-
       {/* 4. Nouveau Bloc de Localisation (Positionné en bas à gauche/droite) */}
       <div
         className={`absolute bottom-6 p-3 sm:p-4 z-30 
-                    max-w-xs sm:max-w-sm // Taille ajustée pour le mobile
-                    // Style Glassmorphism pour la cohérence
+                    max-w-xs sm:max-w-sm 
                     bg-black/20 backdrop-blur-md rounded-xl shadow-2xl 
                     text-white transition-all duration-500
-                    // Positionnement adaptatif selon la locale (ajusté pour mobile)
                     ${
                       locale === "ar"
                         ? "left-auto right-2 sm:right-4"
