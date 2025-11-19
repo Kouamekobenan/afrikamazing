@@ -4,7 +4,7 @@
     "blog": "مدونة",
     "about": "معلومات عنا",
     "contact": "اتصل بنا",
-    "order": "اطلب",
+    "order": "أين أشتري",
     "search": "بحث"
   },
   "countdown": {
@@ -139,8 +139,8 @@
   },
   "products": {
     "title": "منتجاتنا المتوفرة",
-    "order": "اطلب",
-    "orderShort": "اطلب",
+    "order": "أين أشتري",
+    "orderShort": "أين أشتري",
     "whatsapp": "واتساب",
     "noProducts": "لا توجد منتجات متاحة في الوقت الحالي.",
     "whatsappMessage": "مرحباً! أرغب في حجز الحقيبة \"{name}\". شكراً!"

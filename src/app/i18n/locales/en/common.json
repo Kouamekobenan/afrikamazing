@@ -4,7 +4,7 @@
     "blog": "Blog",
     "about": "About",
     "contact": "Contact",
-    "order": "Order Now",
+    "order": "Where to buy",
     "search": "Search"
   },
   "countdown": {
@@ -139,8 +139,8 @@
   },
   "products": {
     "title": "Our Available Products",
-    "order": "Order",
-    "orderShort": "order",
+    "order": "Where to buy",
+    "orderShort": "Where to buy",
     "whatsapp": "WhatsApp",
     "noProducts": "No products available at the moment.",
     "whatsappMessage": "Hello! I would like to reserve the bag \"{name}\". Thank you!"

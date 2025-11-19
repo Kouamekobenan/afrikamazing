@@ -18,7 +18,6 @@ import {
 import { useTypedTranslation } from "@/src/config/translate";
 
 const SITE_NAME = "AFRIKAMAZING";
-
 export default function Navbar() {
   const [isOpen, setIsOpen] = useState(false);
   const [isScrolled, setIsScrolled] = useState(false);
@@ -30,12 +29,10 @@ export default function Navbar() {
   const pathname = usePathname();
   // const params = useParams();
   const params = useParams() as LocaleParams;
-
   // Obtenir la locale courante de manière sécurisée
   const currentLocale = useMemo<LocaleCode>(() => {
     return getLocaleFromParams(params);
   }, [params]);
-
   // Hook de traduction typé
   const { t } = useTypedTranslation(currentLocale);
 
@@ -45,7 +42,7 @@ export default function Navbar() {
   const NAVIGATION_LINKS = useMemo(
     () => [
       { label: t("nav.products"), href: "/products" },
-      { label: t("nav.blog"), href: "/blog" },
+      // { label: t("nav.blog"), href: "/blog" },
       { label: t("nav.about"), href: "/about" },
       { label: t("nav.contact"), href: "/contact" },
     ],
@@ -133,11 +130,9 @@ export default function Navbar() {
           <Link
             href={`/${currentLocale}/accueil`}
             className="relative flex items-center justify-center p-3 rounded-xl transition-all duration-300 group overflow-hidden 
-             // Le nouveau style de base : fond sombre, coin subtil
              bg-gray-900 shadow-2xl hover:shadow-primary/50"
             aria-label={t("nav.home")}
           >
-            {/* ✨ EFFET MODERNE : BORDURE DE LUEUR AU SURVOL (Optionnel mais très moderne) */}
             <div
               className="absolute inset-0.5 rounded-[11px] bg-gray-900 transition-opacity duration-300 group-hover:opacity-90"
               aria-hidden="true"
@@ -179,7 +174,6 @@ export default function Navbar() {
             >
               <Search size={20} />
             </button>
-
             {/* Sélecteur de langue */}
             <div className="relative" ref={dropdownRef}>
               <button
@@ -235,9 +229,8 @@ export default function Navbar() {
             </div>
 
             {/* Bouton Commander */}
-            <Button label={t("nav.order")} />
+            <Button label={t("nav.order")} className="font-bold" />
           </div>
-
           {/* Mobile Menu Button */}
           <button
             onClick={toggleMenu}

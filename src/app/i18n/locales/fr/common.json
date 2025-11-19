@@ -4,7 +4,7 @@
     "blog": "Blog",
     "about": "À propos",
     "contact": "Contact",
-    "order": "Commander",
+    "order": "Où acheter ?",
     "search": "Rechercher"
   },
   "countdown": {
@@ -36,9 +36,8 @@
     "download": "Télécharger",
     "close": "Fermer",
     "touchClose": "Touchez l'extérieur pour fermer",
-    "mapTitle":"Où nous trouver",
-    "mapAddress":"Villa 116 west golf"
-
+    "mapTitle": "Où nous trouver",
+    "mapAddress": "Villa 116 west golf"
   },
   "footer": {
     "description": "Découvrez l'Afrique authentique à travers des expériences uniques et inoubliables. Votre aventure commence ici.",
@@ -141,8 +140,8 @@
   },
   "products": {
     "title": "Nos produits disponibles",
-    "order": "Commander",
-    "orderShort": "commander",
+    "order": "Où acheter ?",
+    "orderShort": "Où acheter ?",
     "whatsapp": "WhatsApp",
     "noProducts": "Aucun produit disponible pour le moment.",
     "whatsappMessage": "Bonjour ! Je souhaite réserver le sac \"{name}\". Merci !"

@@ -49,25 +49,17 @@ export default async function RootLayout({
   return (
     <html lang={locale} suppressHydrationWarning>
       <head>
-        {/* ============================================
-            GOOGLE FONTS CDN - Roboto + Poppins + Inter
-            ============================================ */}
-
-        {/* Preconnect pour améliorer la vitesse */}
         <link rel="preconnect" href="https://fonts.googleapis.com" />
         <link
           rel="preconnect"
           href="https://fonts.gstatic.com"
           crossOrigin="anonymous"
         />
-
-        {/* ✅ Import de Roboto (police principale) + Poppins (titres) + Inter (optionnel) */}
         <link
           href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700;900&family=Poppins:wght@300;400;500;600;700;800;900&family=Inter:wght@300;400;500;600;700;800&display=swap"
           rel="stylesheet"
         />
       </head>
-
       <body
         className={`${geistSans.variable} ${geistMono.variable} ${poppins.variable} antialiased`}
       >

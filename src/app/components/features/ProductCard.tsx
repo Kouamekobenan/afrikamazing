@@ -1,17 +1,26 @@
 "use client";
-import React, { useMemo, useState, useEffect, useRef } from "react"; // <-- AJOUTS : useEffect, useRef
-import { ShoppingCart, X, Download } from "lucide-react";
+import React, { useMemo, useState, useEffect, useRef } from "react";
+import {
+  ShoppingCart, // Revenir à l'icône de panier
+  X,
+  Download,
+} from "lucide-react";
+// Importations inchangées...
 import { ProductEntity } from "../../lib/global.type";
 import { getProductData } from "../../data/product";
 import { useParams } from "next/navigation";
 import { LocaleCode, getLocaleFromParams } from "../../lib/global.type";
+
+// TODO: REMPLACEZ 'VOTRE_LIEN_COMMANDE' PAR L'URL RÉELLE (ex: '/contact' ou 'mailto:votre@email.com')
+const ORDER_LINK_URL = "#section-contact-ou-formulaire-de-commande";
+
 type LocaleParams = {
   locale: LocaleCode;
 };
 interface ProductCardProps {
   translations: {
     title: string;
-    order: string;
+    order: string; // Utilisé pour le bouton flottant
     orderShort: string;
     whatsapp: string;
     noProducts: string;
@@ -19,9 +28,39 @@ interface ProductCardProps {
   };
 }
 
-// --- NOUVEAU COMPOSANT AVEC L'ANIMATION DE SCROLL ---
+// --- NOUVEAU COMPOSANT : Bouton Flottant "Commander" (Orange) ---
+// ----------------------------------------------------------------
+
+interface FloatingOrderButtonProps {
+  translations: ProductCardProps["translations"];
+}
+
+const FloatingOrderButton = ({ translations: t }: FloatingOrderButtonProps) => {
+  return (
+    <a
+      href={ORDER_LINK_URL}
+      className="fixed bottom-6 right-6 md:bottom-8 md:right-8 z-40" // Position flottante
+      aria-label={`${t.order} (Accéder à la commande)`}
+    >
+      <div
+        // Utilisation de la couleur orange (FF5A00) ou une couleur d'accent similaire pour un look dynamique
+        style={{ backgroundColor: "#FF5A00" }}
+        className="text-white p-3 rounded-2xl shadow-2xl transition-all duration-300 ease-in-out transform hover:scale-110 flex items-center group cursor-pointer"
+      >
+        {/* Icône de panier rétirer pour le moment */}
+        {/* <ShoppingCart className="w-6 h-6 md:w-7 md:h-7 mr-2 md:mr-3" /> */}
+
+        {/* Texte "Commander" toujours visible sur le bouton flottant */}
+        <span className="font-bold text-base md:text-lg">{t.order}</span>
+      </div>
+    </a>
+  );
+};
+
+// --- COMPOSANT DE CARTE PRODUIT ANIMÉE (Inchagéd) ---
 // ----------------------------------------------------
 
+// ... (Le composant AnimatedProductCard reste inchangé, sans bouton de commande) ...
 interface AnimatedProductCardProps {
   prod: ProductEntity;
   handleImageClick: (prod: ProductEntity) => void;
@@ -41,16 +80,13 @@ const AnimatedProductCard = ({
   useEffect(() => {
     const observer = new IntersectionObserver(
       ([entry]) => {
-        // Si l'élément est visible dans le viewport, on met à jour l'état
         if (entry.isIntersecting) {
           setIsVisible(true);
-          // On arrête d'observer cet élément une fois qu'il est apparu
           observer.unobserve(entry.target);
         }
       },
-      // Configure l'observateur pour se déclencher quand 10% de l'élément est visible
       {
-        root: null, // utilise le viewport comme racine
+        root: null,
         rootMargin: "0px",
         threshold: 0.1,
       }
@@ -60,7 +96,6 @@ const AnimatedProductCard = ({
       observer.observe(cardRef.current);
     }
 
-    // Fonction de nettoyage
     return () => {
       if (cardRef.current) {
         observer.unobserve(cardRef.current);
@@ -68,19 +103,15 @@ const AnimatedProductCard = ({
     };
   }, []);
 
-  // Définition des classes d'animation : fondu en entrée (fade-in) et glissement vertical
   const animationClasses = isVisible
     ? "opacity-100 translate-y-0"
-    : "opacity-0 translate-y-12"; // Commence en bas et transparent
-
-  // Le délai d'animation progressif (staggering) pour un bel effet de cascade
+    : "opacity-0 translate-y-12";
   const delayStyle = { transitionDelay: `${index * 75}ms` };
 
   return (
     <article
-      ref={cardRef} // Référence pour l'Intersection Observer
+      ref={cardRef}
       key={prod.id}
-      // Combinaison des classes de base, des classes d'animation et du délai
       className={`bg-white rounded-2xl shadow-md hover:shadow-2xl transition-all duration-700 ease-out overflow-hidden flex flex-col group ${animationClasses}`}
       style={delayStyle}
     >
@@ -112,44 +143,32 @@ const AnimatedProductCard = ({
           {prod.desc}
         </p>
 
-        {/* Boutons d'action */}
+        {/* Espace pour l'uniformité (pas de bouton) */}
         <div className="flex gap-1.5 md:gap-2 mt-auto">
-          {/* Bouton Commander */}
-          <button
-            style={{
-              backgroundColor: "#FF5A00",
-            }}
-            className="flex-1 min-w-0 text-xs cursor-pointer md:text-sm hover:bg-blue-700 text-white font-semibold py-2 md:py-3 px-2 md:px-4 rounded-lg transition-colors duration-200 shadow-sm hover:shadow-md flex items-center justify-center gap-1"
-            aria-label={`${t.order} ${prod.name}`}
-          >
-            <ShoppingCart className="w-4 h-4 md:w-5 md:h-5 flex-shrink-0" />
-            <span className="hidden sm:inline truncate">{t.order}</span>
-            <span className="sm:hidden">{t.orderShort}</span>
-          </button>
+          {/* Le bouton de commande individuel est supprimé */}
         </div>
       </div>
     </article>
   );
 };
 
-// --- COMPOSANT PRINCIPAL ---
-// ---------------------------
+// --- COMPOSANT PRINCIPAL (INCLUT LE BOUTON FLOTTANT ORANGE) ---
+// --------------------------------------------------------------
 
 export default function ProductCard({ translations: t }: ProductCardProps) {
   const params = useParams() as LocaleParams;
   const currentLocale = useMemo<LocaleCode>(() => {
     return getLocaleFromParams(params);
   }, [params]);
-  // State pour la modal d'image
+
   const [selectedImage, setSelectedImage] = useState<{
     url: string;
     alt: string;
     name: string;
   } | null>(null);
 
-  // Obtenir les produits traduits selon la locale
   const products = getProductData(currentLocale);
-  // Fonction pour ouvrir l'image
+
   const handleImageClick = (prod: ProductEntity) => {
     setSelectedImage({
       url: prod.img.url,
@@ -158,7 +177,6 @@ export default function ProductCard({ translations: t }: ProductCardProps) {
     });
   };
 
-  // Fonction pour télécharger l'image
   const handleDownload = () => {
     if (!selectedImage) return;
     const link = document.createElement("a");
@@ -182,12 +200,12 @@ export default function ProductCard({ translations: t }: ProductCardProps) {
         {/* Grille de produits responsive */}
         <div className="max-w-7xl mx-auto grid grid-cols-2 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-3 md:gap-8">
           {products.map((prod, index) => (
-            <AnimatedProductCard // <-- UTILISATION DU COMPOSANT ANIMÉ
+            <AnimatedProductCard
               key={prod.id}
               prod={prod}
               handleImageClick={handleImageClick}
               translations={t}
-              index={index} // Passage de l'index pour le délai
+              index={index}
             />
           ))}
         </div>
@@ -200,7 +218,11 @@ export default function ProductCard({ translations: t }: ProductCardProps) {
         )}
       </section>
 
-      {/* Modal de visualisation d'image */}
+      {/* --- NOUVEAU COMPOSANT : BOUTON FLOTTANT "COMMANDER" ORANGE --- */}
+      <FloatingOrderButton translations={t} />
+      {/* -------------------------------------------------------------- */}
+
+      {/* Modal de visualisation d'image (Inchagéd) */}
       {selectedImage && (
         <div
           className="fixed inset-0 z-50 bg-black bg-opacity-90 flex items-center justify-center p-4"
