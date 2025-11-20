@@ -25,31 +25,28 @@ export const Button: React.FC<ButtonProps> = ({
   className = "",
   disabled = false,
 }) => {
-  // 2. Classes de style de base et d'état (utilisant Tailwind)
   const baseClasses = `
     text-white 
     font-bold 
     text-lg sm:text-xl md:text-2xl 
     h-[50px] 
-    rounded-xl 
-    px-6 // Ajout de padding horizontal
-    w-full max-w-[200px] md:max-w-[200px] 
+    rounded-2xl 
+    px-6 
+    w-full max-w-[160px] md:max-w-[200px] 
     transition duration-200 ease-in-out 
     focus:outline-none focus:ring-4 focus:ring-orange-300 
   `;
-
-  // 3. Classes spécifiques pour l'apparence et les états
   const appearanceClasses = disabled
-    ? // Style du bouton désactivé
+    ? 
       `
       bg-gray-400 
       border border-gray-500 
       cursor-not-allowed 
       opacity-60
       `
-    : // Style du bouton actif (couleur et effet hover)
+    : 
       `
-      bg-[#FF5A00] // Couleur primaire: Orange Vif
+      bg-[#FF5A00] 
       border border-[#D14900] // Bordure pour l'effet de profondeur
       hover:bg-[#E65200] // Un peu plus foncé au survol
       active:bg-[#CC4700] // Encore plus foncé au clic
@@ -65,7 +62,6 @@ export const Button: React.FC<ButtonProps> = ({
       // Combinaison de toutes les classes
       className={`${baseClasses} ${appearanceClasses} ${className}`}
     >
-     
       {label}
     </button>
   );

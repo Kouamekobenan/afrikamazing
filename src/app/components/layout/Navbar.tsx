@@ -129,15 +129,14 @@ export default function Navbar() {
           {/* Logo */}
           <Link
             href={`/${currentLocale}/accueil`}
-            className="relative flex items-center justify-center p-3 rounded-xl transition-all duration-300 group overflow-hidden 
-             bg-gray-900 shadow-2xl hover:shadow-primary/50"
+            className="relative flex items-center justify-center px-1.5 py-3 rounded-xl transition-all duration-300 group overflow-hidden 
+             bg-gray-700 shadow-2xl hover:shadow-primary/50"
             aria-label={t("nav.home")}
           >
             <div
               className="absolute inset-0.5 rounded-[11px] bg-gray-900 transition-opacity duration-300 group-hover:opacity-90"
               aria-hidden="true"
             ></div>
-
             {/* Effet de lueur subtil au survol (pour simuler une bordure lumineuse) */}
             <div
               className="absolute inset-[-10px] bg-[radial-gradient(ellipse_at_top,_var(--tw-color-primary)_10%,_transparent_70%)] opacity-0 blur-xl transition-opacity duration-500 group-hover:opacity-50"
@@ -227,9 +226,8 @@ export default function Navbar() {
                 </div>
               )}
             </div>
-
             {/* Bouton Commander */}
-            <Button label={t("nav.order")} className="font-bold" />
+            <Button label={t("nav.order")} className="" />
           </div>
           {/* Mobile Menu Button */}
           <button
@@ -289,7 +287,7 @@ export default function Navbar() {
             ))}
 
             {/* Bouton Commander Mobile */}
-            <Button label={t("nav.order")} />
+            <Button label={t("nav.order")} className="" />
           </div>
         </div>
       </div>
