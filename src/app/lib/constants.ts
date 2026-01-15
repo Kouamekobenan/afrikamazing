@@ -8,13 +8,13 @@ export const SITE_INFO = {
   description: "Découvrez l'Afrique autrement",
   tagline: "Votre guide pour explorer l'Afrique",
   email: "contact@afrikamazing.com",
-  phone: "+225 XX XX XX XX XX",
+  phone: "+20 12 11218318",
 };
 
 export const SOCIAL_LINKS = {
   facebook: "https://facebook.com/afrikamazing",
   instagram: "https://instagram.com/afrikamazing",
-  whatsapp: "https://wa.me/225XXXXXXXXX",
+  whatsapp: "https://wa.me/201211218318",
   twitter: "https://twitter.com/afrikamazing",
   youtube: "https://youtube.com/@afrikamazing",
 } as const;

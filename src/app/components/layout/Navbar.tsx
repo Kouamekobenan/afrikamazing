@@ -129,8 +129,8 @@ export default function Navbar() {
           {/* Logo */}
           <Link
             href={`/${currentLocale}/accueil`}
-            className="relative flex items-center justify-center px-1.5 py-3 rounded-xl transition-all duration-300 group overflow-hidden 
-             bg-gray-700 shadow-2xl hover:shadow-primary/50"
+            className="relative flex items-center justify-center px-1.5 py-3 rounded-sm transition-all duration-300 group overflow-hidden 
+             bg-gray-700 shadow-sm hover:shadow-primary/50"
             aria-label={t("nav.home")}
           >
             <div
@@ -227,7 +227,9 @@ export default function Navbar() {
               )}
             </div>
             {/* Bouton Commander */}
-            <Button label={t("nav.order")} className="" />
+            <Link href="https://www.jumia.com.eg/ar/afrika/">
+              <Button label={t("nav.order")} className="" />
+            </Link>
           </div>
           {/* Mobile Menu Button */}
           <button
@@ -267,7 +269,6 @@ export default function Navbar() {
               <Search size={18} />
               {t("nav.search")}
             </button>
-
             {/* Sélecteur de langue Mobile */}
             {LOCALES.map((locale) => (
               <button
@@ -285,9 +286,10 @@ export default function Navbar() {
                 {locale.label}
               </button>
             ))}
-
             {/* Bouton Commander Mobile */}
-            <Button label={t("nav.order")} className="" />
+            <Link href="https://www.jumia.com.eg/ar/afrika/">
+              <Button label={t("nav.order")} className="" />
+            </Link>
           </div>
         </div>
       </div>

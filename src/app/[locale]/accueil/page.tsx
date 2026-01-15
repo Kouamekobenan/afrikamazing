@@ -22,7 +22,7 @@ export default async function AccueilPage({ params }: HomePageProps) {
     countdown: translations?.countdown || {},
     hero: translations?.hero || {},
     gallery: translations?.gallery || {},
-    footer: translations?.footer || {}, // ✅ C'est déjà dans "common"
+    footer: translations?.footer || {}, 
   };
 
   return (

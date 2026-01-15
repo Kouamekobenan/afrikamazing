@@ -1,10 +1,6 @@
 "use client";
 import React, { useMemo, useState, useEffect, useRef } from "react";
-import {
-  ShoppingCart, // Revenir à l'icône de panier
-  X,
-  Download,
-} from "lucide-react";
+import { X, Download } from "lucide-react";
 // Importations inchangées...
 import { ProductEntity } from "../../lib/global.type";
 import { getProductData } from "../../data/product";
@@ -12,7 +8,7 @@ import { useParams } from "next/navigation";
 import { LocaleCode, getLocaleFromParams } from "../../lib/global.type";
 
 // TODO: REMPLACEZ 'VOTRE_LIEN_COMMANDE' PAR L'URL RÉELLE (ex: '/contact' ou 'mailto:votre@email.com')
-const ORDER_LINK_URL = "#section-contact-ou-formulaire-de-commande";
+const ORDER_LINK_URL = "https://www.jumia.com.eg/ar/afrika/";
 
 type LocaleParams = {
   locale: LocaleCode;
