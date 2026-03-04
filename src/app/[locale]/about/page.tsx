@@ -1,13 +1,12 @@
 import React from "react";
 import {
-  ShoppingBag,
   MapPin,
   Heart,
   Award,
-  Users,
   Sparkles,
   Phone,
   Clock,
+  ArrowRight,
 } from "lucide-react";
 import Link from "next/link";
 import Navbar from "../../components/layout/Navbar";
@@ -22,286 +21,246 @@ interface AboutPageProps {
 
 export default async function AboutPage({ params }: AboutPageProps) {
   const { locale } = await params;
-
-  // Charger les traductions
   const { i18n } = await useTranslation(locale, "common");
   const translations = i18n.getResourceBundle(locale, "common");
 
   const t = translations?.about || {};
-  const navTranslations = translations?.nav || {};
+
+  const brandColor = "#C99642";
+
+  const values = [
+    {
+      icon: Award,
+      title: t?.value1Title ?? "Qualité Premium",
+      desc: t?.value1Description,
+    },
+    {
+      icon: Heart,
+      title: t?.value2Title ?? "Service Client",
+      desc: t?.value2Description,
+    },
+    {
+      icon: Sparkles,
+      title: t?.value3Title ?? "Tendances",
+      desc: t?.value3Description,
+    },
+  ];
 
   return (
-    <div className="min-h-screen bg-gradient-to-b from-gray-50 to-white">
-      <Navbar/>
+    <div className="min-h-screen bg-white">
+      <Navbar />
 
       {/* Hero Section */}
-      <section className="relative bg-gradient-to-r from-orange-600 to-orange-700 text-white py-20 md:py-20 px-4">
-        <div className="max-w-4xl mx-auto text-center">
-          <h1 className="text-3xl md:text-5xl lg:text-6xl font-bold mb-4 md:mb-6">
+      <section className="relative overflow-hidden bg-slate-900 text-white py-24 md:py-32">
+        <div className="absolute inset-0 opacity-20">
+          <div className="absolute inset-0 bg-[url('/api/placeholder/1920/1080')] bg-cover bg-center"></div>
+        </div>
+        <div className="relative max-w-5xl mx-auto text-center px-4">
+          <span className="inline-block text-amber-500 font-semibold tracking-widest uppercase text-sm mb-4">
+            L&apos;excellence à Katameya
+          </span>
+          <h1 className="text-4xl md:text-6xl font-extrabold mb-6 tracking-tight">
             {t?.heroTitle ?? "À propos d'Afrikamazing"}
           </h1>
-          <p className="text-lg md:text-xl lg:text-2xl text-blue-100 max-w-3xl mx-auto leading-relaxed">
+          <p className="text-lg md:text-xl text-slate-300 max-w-3xl mx-auto leading-relaxed font-light">
             {t?.heroSubtitle ??
-              "Votre destination privilégiée pour des sacs et chaussures tendance au cœur d'Abidjan"}
+              "Votre destination privilégiée pour des sacs et chaussures tendance au cœur de Katameya"}
           </p>
         </div>
       </section>
 
       {/* Notre Histoire */}
-      <section className="py-12 md:py-16 px-4">
+      <section className="py-20 px-4">
         <div className="max-w-6xl mx-auto">
-          <div className="text-center mb-8 md:mb-12">
-            <h2 className="text-2xl md:text-3xl lg:text-4xl font-bold text-gray-900 mb-3 md:mb-4">
-              {t?.storyTitle ?? "Notre Histoire"}
-            </h2>
-            <div className="w-24 h-1 bg-orange-600 mx-auto rounded-full"></div>
-          </div>
+          <div className="grid md:grid-cols-2 gap-12 items-center">
+            <div className="relative">
+              <div className="aspect-square bg-slate-100 rounded-2xl overflow-hidden shadow-2xl">
+                <img
+                  src="/images/sac_1.jpg"
+                  alt="Afrikamazing Store"
+                  className="object-cover w-full h-full"
+                />
+              </div>
+              <div
+                className="absolute -bottom-6 -right-6 w-32 h-32 rounded-full flex items-center justify-center text-white font-bold shadow-lg"
+                style={{ backgroundColor: brandColor }}
+              >
+                Depuis 2024
+              </div>
+            </div>
 
-          <div className="bg-white rounded-2xl shadow-lg p-6 md:p-12">
-            <p className="text-base md:text-lg text-gray-700 leading-relaxed mb-4 md:mb-6">
-              <span className="text-xl md:text-2xl font-bold text-orange-400">
-                Afrikamazing
-              </span>{" "}
-              {t?.storyParagraph1 ??
-                "est née d'une passion pour la mode et d'un engagement à offrir des produits de qualité à la communauté abidjanaise. Située au cœur du Plateau, notre boutique est devenue une référence pour tous ceux qui recherchent l'élégance et le style."}
-            </p>
-            <p className="text-base md:text-lg text-gray-700 leading-relaxed">
-              {t?.storyParagraph2 ??
-                "Nous sélectionnons avec soin chaque sac et chaque paire de chaussures pour vous garantir des articles qui allient"}{" "}
-              <span className="font-semibold">{t?.quality ?? "qualité"}</span>,{" "}
-              <span className="font-semibold">{t?.comfort ?? "confort"}</span>{" "}
-              {t?.and ?? "et"}{" "}
-              <span className="font-semibold">{t?.design ?? "design"}</span>.{" "}
-              {t?.mission ??
-                "Notre mission est de vous faire vivre une expérience d'achat exceptionnelle."}
-            </p>
+            <div className="space-y-6">
+              <h2 className="text-3xl md:text-4xl font-bold text-slate-900">
+                {t?.storyTitle ?? "Notre Histoire"}
+              </h2>
+              <div
+                className="w-16 h-1.5 rounded-full"
+                style={{ backgroundColor: brandColor }}
+              ></div>
+              <div className="space-y-4 text-slate-600 text-lg leading-relaxed">
+                <p>
+                  <span className="font-bold text-slate-900 italic">
+                    Afrikamazing
+                  </span>{" "}
+                  {t?.storyParagraph1 ??
+                    "est née d'une passion pour la mode et d'un engagement à offrir des produits de qualité à la communauté abidjanaise. Située au cœur du Plateau, notre boutique est devenue une référence."}
+                </p>
+                <p>
+                  {t?.storyParagraph2 ??
+                    "Nous sélectionnons avec soin chaque sac et chaque paire de chaussures pour vous garantir des articles qui allient"}{" "}
+                  <span
+                    className="text-slate-900 font-medium underline"
+                    style={{ textDecorationColor: brandColor }}
+                  >
+                    {t?.quality ?? "qualité"}
+                  </span>
+                  ,{" "}
+                  <span
+                    className="text-slate-900 font-medium underline"
+                    style={{ textDecorationColor: brandColor }}
+                  >
+                    {t?.comfort ?? "confort"}
+                  </span>{" "}
+                  et{" "}
+                  <span
+                    className="text-slate-900 font-medium underline"
+                    style={{ textDecorationColor: brandColor }}
+                  >
+                    {t?.design ?? "design"}
+                  </span>
+                  .
+                </p>
+              </div>
+            </div>
           </div>
         </div>
       </section>
 
       {/* Nos Valeurs */}
-      <section className="py-12 md:py-16 px-4 bg-gray-50">
+      <section className="py-20 px-4 bg-slate-50">
         <div className="max-w-6xl mx-auto">
-          <div className="text-center mb-8 md:mb-12">
-            <h2 className="text-2xl md:text-3xl lg:text-4xl font-bold text-gray-900 mb-3 md:mb-4">
+          <div className="text-center mb-16">
+            <h2 className="text-3xl font-bold text-slate-900 mb-4">
               {t?.valuesTitle ?? "Nos Valeurs"}
             </h2>
-            <div className="w-24 h-1 bg-orange-600 mx-auto rounded-full"></div>
+            <p className="text-slate-500">
+              Ce qui fait battre le cœur de notre marque
+            </p>
           </div>
 
-          <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-6 md:gap-8">
-            {/* Qualité */}
-            <div className="bg-white rounded-xl shadow-md p-6 md:p-8 hover:shadow-xl transition-shadow duration-300">
-              <div className="w-14 h-14 md:w-16 md:h-16 bg-orange-600 rounded-full flex items-center justify-center mb-4 md:mb-6 mx-auto">
-                <Award className="w-7 h-7 md:w-8 md:h-8 text-white" />
-              </div>
-              <h3 className="text-lg md:text-xl font-bold text-gray-900 mb-3 md:mb-4 text-center">
-                {t?.value1Title ?? "Qualité Premium"}
-              </h3>
-              <p className="text-sm md:text-base text-gray-600 text-center leading-relaxed">
-                {t?.value1Description ??
-                  "Nous sélectionnons uniquement des produits de haute qualité pour garantir votre satisfaction et votre confort au quotidien."}
-              </p>
-            </div>
-
-            {/* Service Client */}
-            <div className="bg-white rounded-xl shadow-md p-6 md:p-8 hover:shadow-xl transition-shadow duration-300">
-              <div className="w-14 h-14 md:w-16 md:h-16 bg-orange-600 rounded-full flex items-center justify-center mb-4 md:mb-6 mx-auto">
-                <Heart className="w-7 h-7 md:w-8 md:h-8 text-white" />
-              </div>
-              <h3 className="text-lg md:text-xl font-bold text-gray-900 mb-3 md:mb-4 text-center">
-                {t?.value2Title ?? "Service Client Exceptionnel"}
-              </h3>
-              <p className="text-sm md:text-base text-gray-600 text-center leading-relaxed">
-                {t?.value2Description ??
-                  "Votre satisfaction est notre priorité. Notre équipe est toujours disponible pour vous conseiller et vous accompagner."}
-              </p>
-            </div>
-
-            {/* Style */}
-            <div className="bg-white rounded-xl shadow-md p-6 md:p-8 hover:shadow-xl transition-shadow duration-300">
-              <div className="w-14 h-14 md:w-16 md:h-16 bg-orange-600 rounded-full flex items-center justify-center mb-4 md:mb-6 mx-auto">
-                <Sparkles className="w-7 h-7 md:w-8 md:h-8 text-white" />
-              </div>
-              <h3 className="text-lg md:text-xl font-bold text-gray-900 mb-3 md:mb-4 text-center">
-                {t?.value3Title ?? "Tendances & Style"}
-              </h3>
-              <p className="text-sm md:text-base text-gray-600 text-center leading-relaxed">
-                {t?.value3Description ??
-                  "Des collections actuelles qui suivent les dernières tendances pour vous permettre d'exprimer votre style unique."}
-              </p>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      {/* Ce que nous proposons */}
-      <section className="py-12 md:py-16 px-4">
-        <div className="max-w-6xl mx-auto">
-          <div className="text-center mb-8 md:mb-12">
-            <h2 className="text-2xl md:text-3xl lg:text-4xl font-bold text-gray-900 mb-3 md:mb-4">
-              {t?.offeringsTitle ?? "Ce que nous proposons"}
-            </h2>
-            <div className="w-24 h-1 bg-orange-600 mx-auto rounded-full"></div>
-          </div>
-
-          <div className="grid md:grid-cols-2 gap-6 md:gap-8">
-            {/* Sacs */}
-            <div className="bg-gradient-to-br from-blue-50 to-blue-100 rounded-2xl p-6 md:p-10">
-              <div className="w-16 h-16 md:w-20 md:h-20 bg-orange-600 rounded-full flex items-center justify-center mb-4 md:mb-6 shadow-md">
-                <ShoppingBag className="w-8 h-8 md:w-10 md:h-10 text-white" />
-              </div>
-              <h3 className="text-xl md:text-2xl font-bold text-gray-900 mb-3 md:mb-4">
-                {t?.bagsTitle ?? "Sacs pour toutes occasions"}
-              </h3>
-              <p className="text-sm md:text-base text-gray-700 leading-relaxed mb-3 md:mb-4">
-                {t?.bagsIntro ?? "Découvrez notre collection variée de sacs :"}
-              </p>
-              <ul className="space-y-2 text-sm md:text-base text-gray-700">
-                <li className="flex items-start">
-                  <span className="text-blue-600 mr-2 flex-shrink-0">•</span>
-                  <span>{t?.bags1 ?? "Sacs à main élégants"}</span>
-                </li>
-                <li className="flex items-start">
-                  <span className="text-blue-600 mr-2 flex-shrink-0">•</span>
-                  <span>{t?.bags2 ?? "Sacs bandoulière pratiques"}</span>
-                </li>
-                <li className="flex items-start">
-                  <span className="text-blue-600 mr-2 flex-shrink-0">•</span>
-                  <span>{t?.bags3 ?? "Sacs de voyage spacieux"}</span>
-                </li>
-                <li className="flex items-start">
-                  <span className="text-blue-600 mr-2 flex-shrink-0">•</span>
-                  <span>{t?.bags4 ?? "Mini sacs tendance"}</span>
-                </li>
-              </ul>
-            </div>
-
-            {/* Chaussures */}
-            <div className="bg-gradient-to-br from-orange-50 to-orange-100 rounded-2xl p-6 md:p-10">
-              <div className="w-16 h-16 md:w-20 md:h-20 bg-orange-600 rounded-full flex items-center justify-center mb-4 md:mb-6 shadow-md">
-                <Sparkles className="w-8 h-8 md:w-10 md:h-10 text-white" />
-              </div>
-              <h3 className="text-xl md:text-2xl font-bold text-gray-900 mb-3 md:mb-4">
-                {t?.shoesTitle ?? "Chaussures confort & style"}
-              </h3>
-              <p className="text-sm md:text-base text-gray-700 leading-relaxed mb-3 md:mb-4">
-                {t?.shoesIntro ??
-                  "Une sélection de chaussures pour tous les styles :"}
-              </p>
-              <ul className="space-y-2 text-sm md:text-base text-gray-700">
-                <li className="flex items-start">
-                  <span className="text-purple-600 mr-2 flex-shrink-0">•</span>
-                  <span>{t?.shoes1 ?? "Chaussures décontractées"}</span>
-                </li>
-                <li className="flex items-start">
-                  <span className="text-purple-600 mr-2 flex-shrink-0">•</span>
-                  <span>{t?.shoes2 ?? "Chaussures de soirée"}</span>
-                </li>
-                <li className="flex items-start">
-                  <span className="text-purple-600 mr-2 flex-shrink-0">•</span>
-                  <span>{t?.shoes3 ?? "Baskets tendance"}</span>
-                </li>
-                <li className="flex items-start">
-                  <span className="text-purple-600 mr-2 flex-shrink-0">•</span>
-                  <span>{t?.shoes4 ?? "Sandales confortables"}</span>
-                </li>
-              </ul>
-            </div>
+          <div className="grid md:grid-cols-3 gap-8">
+            {values.map((value, index) => {
+              const IconComponent = value.icon;
+              return (
+                <div
+                  key={index}
+                  className="bg-white p-8 rounded-2xl border border-slate-100 shadow-sm hover:shadow-md transition-all group text-center"
+                >
+                  <div
+                    className="w-14 h-14 mx-auto rounded-xl flex items-center justify-center mb-6 transition-colors bg-slate-100 group-hover:bg-amber-50"
+                    style={{ color: brandColor }}
+                  >
+                    <IconComponent className="w-7 h-7" />
+                  </div>
+                  <h3 className="text-xl font-bold mb-3 text-slate-900">
+                    {value.title}
+                  </h3>
+                  <p className="text-slate-600 leading-relaxed text-sm">
+                    {value.desc ??
+                      "Nous nous engageons à offrir le meilleur à nos clients."}
+                  </p>
+                </div>
+              );
+            })}
           </div>
         </div>
       </section>
 
       {/* Localisation & Contact */}
-      <section className="py-12 md:py-16 px-4 bg-gray-50">
+      <section className="py-20 px-4">
         <div className="max-w-6xl mx-auto">
-          <div className="text-center mb-8 md:mb-12">
-            <h2 className="text-2xl md:text-3xl lg:text-4xl font-bold text-gray-900 mb-3 md:mb-4">
-              {t?.locationTitle ?? "Où nous trouver"}
-            </h2>
-            <div className="w-24 h-1 bg-orange-600 mx-auto rounded-full"></div>
-          </div>
+          <div className="bg-slate-900 rounded-[2rem] overflow-hidden shadow-2xl flex flex-col md:flex-row">
+            {/* Infos de contact */}
+            <div className="md:w-1/2 p-10 md:p-16 text-white">
+              <h2 className="text-3xl font-bold mb-8">
+                {t?.locationTitle ?? "Où nous trouver"}
+              </h2>
 
-          <div className="grid md:grid-cols-2 gap-6 md:gap-8">
-            {/* Adresse */}
-            <div className="bg-white rounded-2xl shadow-lg p-6 md:p-8">
-              <div className="w-14 h-14 md:w-16 md:h-16 bg-orange-600 rounded-full flex items-center justify-center mb-4 md:mb-6 mx-auto">
-                <MapPin className="w-7 h-7 md:w-8 md:h-8 text-white" />
+              <div className="space-y-8">
+                <div className="flex gap-4">
+                  <MapPin className="text-amber-500 shrink-0 mt-1" />
+                  <div>
+                    <h4 className="font-bold text-lg">
+                      {t?.shopTitle ?? "Notre Boutique"}
+                    </h4>
+                    <p className="text-slate-400">
+                      {t?.shopLocation ??
+                        "Villa 116 west golf, Le Caire, Égypte"}
+                    </p>
+                  </div>
+                </div>
+
+                <div className="flex gap-4">
+                  <Clock className="text-amber-500 shrink-0 mt-1" />
+                  <div>
+                    <h4 className="font-bold text-lg">
+                      {t?.hoursTitle ?? "Nos Horaires"}
+                    </h4>
+                    <div className="text-slate-400 text-sm space-y-1 mt-1">
+                      <p>Lun - Ven: {t?.weekdaysHours ?? "9h00 - 18h00"}</p>
+                      <p>Sam: {t?.saturdayHours ?? "9h00 - 17h00"}</p>
+                    </div>
+                  </div>
+                </div>
+
+                <div className="pt-6 border-t border-slate-800">
+                  <a
+                    href="#"
+                    className="flex items-center gap-3 text-amber-500 font-bold hover:text-amber-400 transition-colors"
+                  >
+                    <Phone className="w-5 h-5" />
+                    {t?.contactWhatsapp ?? "Nous contacter sur WhatsApp"}
+                  </a>
+                </div>
               </div>
-              <h3 className="text-xl md:text-2xl font-bold text-gray-900 mb-3 md:mb-4 text-center">
-                {t?.shopTitle ?? "Notre Boutique"}
-              </h3>
-              <p className="text-sm md:text-base text-gray-700 leading-relaxed text-center mb-3">
-                <span className="font-semibold block text-base md:text-lg mb-2">
-                  {t?.shopLocation ?? "Le Plateau, Abidjan"}
-                </span>
-                {t?.shopDescription ??
-                  "Située dans le quartier d'affaires du Plateau, notre boutique est facilement accessible et vous accueille dans un cadre moderne et chaleureux."}
-              </p>
             </div>
 
-            {/* Horaires & Contact */}
-            <div className="bg-white rounded-2xl shadow-lg p-6 md:p-8">
-              <div className="w-14 h-14 md:w-16 md:h-16 bg-orange-600 rounded-full flex items-center justify-center mb-4 md:mb-6 mx-auto">
-                <Clock className="w-7 h-7 md:w-8 md:h-8 text-white" />
-              </div>
-              <h3 className="text-xl md:text-2xl font-bold text-gray-900 mb-3 md:mb-4 text-center">
-                {t?.hoursTitle ?? "Nos Horaires"}
-              </h3>
-              <div className="text-sm md:text-base text-gray-700 space-y-2 text-center mb-4">
-                <p>
-                  <span className="font-semibold">
-                    {t?.weekdays ?? "Lundi - Vendredi"}:
-                  </span>{" "}
-                  {t?.weekdaysHours ?? "9h00 - 18h00"}
-                </p>
-                <p>
-                  <span className="font-semibold">
-                    {t?.saturday ?? "Samedi"}:
-                  </span>{" "}
-                  {t?.saturdayHours ?? "9h00 - 17h00"}
-                </p>
-                <p>
-                  <span className="font-semibold">
-                    {t?.sunday ?? "Dimanche"}:
-                  </span>{" "}
-                  {t?.sundayHours ?? "Fermé"}
-                </p>
-              </div>
-              <div className="mt-4 pt-4 border-t border-orange-600">
-                <p className="text-center text-sm md:text-base text-gray-600">
-                  <Phone className="w-4 h-4 md:w-5 md:h-5 inline mr-2 text-white" />
-                  <span className="font-semibold">
-                    {t?.contactWhatsapp ?? "Contactez-nous via WhatsApp"}
-                  </span>
-                </p>
-              </div>
+            {/* Google Maps - Villa 116 west golf */}
+            <div className="md:w-1/2 min-h-[350px]">
+              <iframe
+                src="https://www.google.com/maps/embed?pb=!1m14!1m8!1m3!1d3455.92792459972!2d31.39287211!3d29.9815013!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x14583b0027f730df%3A0x90ffc9ef42c1d20f!2sVilla%20116%20west%20golf!5e0!3m2!1sfr!2sci!4v1762215411895!5m2!1sfr!2sci"
+                width="100%"
+                height="100%"
+                style={{ border: 0, filter: "grayscale(0.2)" }}
+                allowFullScreen
+                loading="lazy"
+                referrerPolicy="no-referrer-when-downgrade"
+                title="Localisation Afrikamazing - Villa 116 west golf"
+              ></iframe>
             </div>
           </div>
         </div>
       </section>
 
-      {/* Call to Action */}
-      <section className="py-12 md:py-16 px-4">
-        <div className="max-w-4xl mx-auto text-center">
-          <div className="bg-gradient-to-r from-orange-600 to-orange-700 rounded-2xl p-8 md:p-16 shadow-2xl">
-            <Users className="w-12 h-12 md:w-16 md:h-16 text-white mx-auto mb-4 md:mb-6" />
-            <h2 className="text-2xl md:text-3xl lg:text-4xl font-bold text-white mb-4 md:mb-6">
-              {t?.ctaTitle ?? "Rejoignez la communauté Afrikamazing"}
-            </h2>
-            <p className="text-base md:text-xl text-blue-100 mb-6 md:mb-8 max-w-2xl mx-auto">
-              {t?.ctaDescription ??
-                "Découvrez nos collections et laissez-vous séduire par notre sélection unique de sacs et chaussures !"}
-            </p>
-            <Link href={`/${locale}/products`}>
-              <button
-                style={{ backgroundColor: "#C99642" }}
-                className="bg-whit font-bold py-3 px-6 md:py-4 md:px-8 rounded-lg text-base md:text-lg hover:bg-blue-50 transition-colors duration-300 shadow-lg hover:shadow-xl"
-              >
-                {t?.ctaButton ?? "Découvrir nos produits"}
-              </button>
-            </Link>
-          </div>
+      {/* CTA Section */}
+      <section className="py-24 px-4 text-center">
+        <div className="max-w-3xl mx-auto">
+          <h2 className="text-3xl md:text-5xl font-bold text-slate-900 mb-6">
+            {t?.ctaTitle ?? "Prêt à sublimer votre style ?"}
+          </h2>
+          <p className="text-lg text-slate-600 mb-10">
+            {t?.ctaDescription ??
+              "Découvrez nos collections exclusives de sacs et chaussures."}
+          </p>
+          <Link href={`/${locale}/products`}>
+            <button
+              style={{ backgroundColor: brandColor }}
+              className="group inline-flex items-center gap-2 text-white font-bold py-4 px-10 rounded-full transition-transform hover:scale-105 shadow-xl"
+            >
+              {t?.ctaButton ?? "Parcourir la collection"}
+              <ArrowRight className="w-5 h-5 group-hover:translate-x-1 transition-transform" />
+            </button>
+          </Link>
         </div>
       </section>
     </div>

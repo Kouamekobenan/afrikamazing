@@ -6,7 +6,7 @@ export const productsFr: ProductEntity[] = [
   // 🎒 SACS
   {
     id: "1",
-    name: "Sac Ébène Luxe",
+    name: "kaniai savane",
     category: "Sac",
     desc: "Un sac en cuir raffiné mêlant élégance et artisanat africain.",
     img: {
@@ -18,7 +18,7 @@ export const productsFr: ProductEntity[] = [
   },
   {
     id: "2",
-    name: "Sac Safari Urbain",
+    name: "kaniai-safari",
     category: "Sac",
     desc: "Un sac artisanal moderne, idéal pour un style chic et décontracté.",
     img: {
@@ -30,19 +30,19 @@ export const productsFr: ProductEntity[] = [
   },
   {
     id: "3",
-    name: "Sac Mandala",
+    name: "kaniai Emeraude",
     category: "Sac",
     desc: "Un sac aux motifs africains vibrants pour affirmer votre style unique.",
     img: {
       url: "/images/sac_3.jpg",
-      alt: "Sac Mandala - AFRIKAMAZING",
+      alt: "Sac Emeraude - AFRIKAMAZING",
       width: 400,
       height: 400,
     },
   },
   {
     id: "4",
-    name: "Sac Horizon",
+    name: "kaniai Rubis",
     category: "Sac",
     desc: "Inspiré des traditions africaines, ce sac allie modernité et culture.",
     img: {
@@ -54,7 +54,7 @@ export const productsFr: ProductEntity[] = [
   },
   {
     id: "5",
-    name: "Sac Dune Élégance",
+    name: "kaniai savane",
     category: "Sac",
     desc: "Un sac à main stylé parfait pour toutes les occasions de la journée.",
     img: {
@@ -66,7 +66,7 @@ export const productsFr: ProductEntity[] = [
   },
   {
     id: "6",
-    name: "Sac Nomade",
+    name: "kaniai Zola",
     category: "Sac",
     desc: "Le compagnon idéal pour vos escapades, mêlant confort et style.",
     img: {
@@ -76,7 +76,66 @@ export const productsFr: ProductEntity[] = [
       height: 400,
     },
   },
-
+  {
+    id: "19",
+    name: "Sacs pour ordinateur portable ",
+    category: "Sac",
+    desc: "Sacs pour ordinateur portable AFRIKA Africains",
+    img: {
+      url: "/images/s_1.jpg",
+      alt: "Sac Nomade - AFRIKAMAZING",
+      width: 400,
+      height: 400,
+    },
+  },
+  {
+    id: "20",
+    name: "Sacs pour ordinateur portable ",
+    category: "Sac",
+    desc: "Sacs pour ordinateur portable AFRIKA Africains",
+    img: {
+      url: "/images/s_2.jpg",
+      alt: "Sac Nomade - AFRIKAMAZING",
+      width: 400,
+      height: 400,
+    },
+  },
+  {
+    id: "21",
+    name: "Sacs pour ordinateur portable ",
+    category: "Sac",
+    desc: "Sacs pour ordinateur portable AFRIKA Africains",
+    img: {
+      url: "/images/s_3.jpg",
+      alt: "Sac Nomade - AFRIKAMAZING",
+      width: 400,
+      height: 400,
+    },
+  },
+  {
+    id: "22",
+    name: "Sacs pour ordinateur portable ",
+    category: "Sac",
+    desc: "Sacs pour ordinateur portable AFRIKA Africains",
+    img: {
+      url: "/images/s_5.jpg",
+      alt: "Sac Nomade - AFRIKAMAZING",
+      width: 400,
+      height: 400,
+    },
+  },
+  {
+    id: "23",
+    name: "Sacs pour ordinateur portable ",
+    category: "Sac",
+    desc: "Sacs pour ordinateur portable AFRIKA Africains",
+    img: {
+      url: "/images/s_4.jpg",
+      alt: "Sac Nomade - AFRIKAMAZING",
+      width: 400,
+      height: 400,
+    },
+  },
   // 👕 POLOS
   {
     id: "7",
@@ -230,7 +289,7 @@ export const productsEn: ProductEntity[] = [
   // 🎒 BAGS
   {
     id: "1",
-    name: "Ebony Luxury Bag",
+    name: "kaniai savane",
     category: "Bag",
     desc: "A refined leather bag blending elegance and African craftsmanship.",
     img: {
@@ -242,7 +301,7 @@ export const productsEn: ProductEntity[] = [
   },
   {
     id: "2",
-    name: "Urban Safari Bag",
+    name: "kaniai-safari",
     category: "Bag",
     desc: "A modern artisanal bag, ideal for a chic and casual style.",
     img: {
@@ -254,7 +313,7 @@ export const productsEn: ProductEntity[] = [
   },
   {
     id: "3",
-    name: "Mandala Bag",
+    name: "kaniai Emeraude",
     category: "Bag",
     desc: "A bag with vibrant African patterns to express your unique style.",
     img: {
@@ -266,7 +325,7 @@ export const productsEn: ProductEntity[] = [
   },
   {
     id: "4",
-    name: "Horizon Bag",
+    name: "kaniai Rubis",
     category: "Bag",
     desc: "Inspired by African traditions, this bag combines modernity and culture.",
     img: {
@@ -278,7 +337,7 @@ export const productsEn: ProductEntity[] = [
   },
   {
     id: "5",
-    name: "Dune Elegance Bag",
+    name: "kaniai savane",
     category: "Bag",
     desc: "A stylish handbag perfect for all occasions throughout the day.",
     img: {
@@ -290,7 +349,7 @@ export const productsEn: ProductEntity[] = [
   },
   {
     id: "6",
-    name: "Nomad Bag",
+    name: "kaniai Zola",
     category: "Bag",
     desc: "The ideal companion for your getaways, blending comfort and style.",
     img: {
@@ -301,6 +360,66 @@ export const productsEn: ProductEntity[] = [
     },
   },
 
+  {
+    id: "19",
+    name: "Laptop bags",
+    category: "Bag",
+    desc: "African AFRIKA laptop bags",
+    img: {
+      url: "/images/s_1.jpg",
+      alt: "Nomad Bag - AFRIKAMAZING",
+      width: 400,
+      height: 400,
+    },
+  },
+  {
+    id: "20",
+    name: "Laptop bags",
+    category: "Bag",
+    desc: "African AFRIKA laptop bags",
+    img: {
+      url: "/images/s_2.jpg",
+      alt: "Nomad Bag - AFRIKAMAZING",
+      width: 400,
+      height: 400,
+    },
+  },
+  {
+    id: "21",
+    name: "Laptop bags",
+    category: "Bag",
+    desc: "African AFRIKA laptop bags",
+    img: {
+      url: "/images/s_3.jpg",
+      alt: "Nomad Bag - AFRIKAMAZING",
+      width: 400,
+      height: 400,
+    },
+  },
+  {
+    id: "22",
+    name: "Laptop bags",
+    category: "Bag",
+    desc: "African AFRIKA laptop bags",
+    img: {
+      url: "/images/s_5.jpg",
+      alt: "Nomad Bag - AFRIKAMAZING",
+      width: 400,
+      height: 400,
+    },
+  },
+  {
+    id: "23",
+    name: "Laptop bags",
+    category: "Bag",
+    desc: "African AFRIKA laptop bags",
+    img: {
+      url: "/images/s_4.jpg",
+      alt: "Nomad Bag - AFRIKAMAZING",
+      width: 400,
+      height: 400,
+    },
+  },
   // 👕 POLOS
   {
     id: "7",
@@ -524,7 +643,66 @@ export const productsAr: ProductEntity[] = [
       height: 400,
     },
   },
-
+  {
+    id: "19",
+    name: "حقائب كمبيوتر محمول",
+    category: "حقيبة",
+    desc: "حقائب كمبيوتر محمول أفريقية AFRIKA",
+    img: {
+      url: "/images/s_1.jpg",
+      alt: "حقيبة نوماد - AFRIKAMAZING",
+      width: 400,
+      height: 400,
+    },
+  },
+  {
+    id: "20",
+    name: "حقائب كمبيوتر محمول",
+    category: "حقيبة",
+    desc: "حقائب كمبيوتر محمول أفريقية AFRIKA",
+    img: {
+      url: "/images/s_2.jpg",
+      alt: "حقيبة نوماد - AFRIKAMAZING",
+      width: 400,
+      height: 400,
+    },
+  },
+  {
+    id: "21",
+    name: "حقائب كمبيوتر محمول",
+    category: "حقيبة",
+    desc: "حقائب كمبيوتر محمول أفريقية AFRIKA",
+    img: {
+      url: "/images/s_3.jpg",
+      alt: "حقيبة نوماد - AFRIKAMAZING",
+      width: 400,
+      height: 400,
+    },
+  },
+  {
+    id: "22",
+    name: "حقائب كمبيوتر محمول",
+    category: "حقيبة",
+    desc: "حقائب كمبيوتر محمول أفريقية AFRIKA",
+    img: {
+      url: "/images/s_5.jpg",
+      alt: "حقيبة نوماد - AFRIKAMAZING",
+      width: 400,
+      height: 400,
+    },
+  },
+  {
+    id: "23",
+    name: "حقائب كمبيوتر محمول",
+    category: "حقيبة",
+    desc: "حقائب كمبيوتر محمول أفريقية AFRIKA",
+    img: {
+      url: "/images/s_4.jpg",
+      alt: "حقيبة نوماد - AFRIKAMAZING",
+      width: 400,
+      height: 400,
+    },
+  },
   // 👕 قمصان بولو
   {
     id: "7",
