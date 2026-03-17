@@ -56,9 +56,6 @@ export default async function AboutPage({ params }: AboutPageProps) {
           <div className="absolute inset-0 bg-[url('/api/placeholder/1920/1080')] bg-cover bg-center"></div>
         </div>
         <div className="relative max-w-5xl mx-auto text-center px-4">
-          <span className="inline-block text-amber-500 font-semibold tracking-widest uppercase text-sm mb-4">
-            L&apos;excellence à Katameya
-          </span>
           <h1 className="text-4xl md:text-6xl font-extrabold mb-6 tracking-tight">
             {t?.heroTitle ?? "À propos d'Afrikamazing"}
           </h1>

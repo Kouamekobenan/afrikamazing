@@ -177,7 +177,7 @@ export default function Hero({ locale, translations }: HeroProps) {
             {/* Description : Plus petite et élégante */}
             <p className="text-xxs sm:text-xs font-light text-gray-200">
               {tLocation?.desc ??
-                "Nous somme située dans la villa 116 door 1, Katameya west golf"}
+                "Nous sommes située dans la villa 116 door 1, Katameya west golf"}
             </p>
           </div>
         </div>

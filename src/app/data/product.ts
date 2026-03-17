@@ -65,6 +65,18 @@ export const productsFr: ProductEntity[] = [
     },
   },
   {
+    id: "28",
+    name: "sac à dos kaniai ",
+    category: "Sac",
+    desc: "Un sac à main stylé parfait pour toutes les occasions de la journée.",
+    img: {
+      url: "/images/sac_8.jpg",
+      alt: "Sac Dune Élégance - AFRIKAMAZING",
+      width: 400,
+      height: 400,
+    },
+  },
+  {
     id: "6",
     name: "kaniai Zola",
     category: "Sac",
@@ -132,6 +144,54 @@ export const productsFr: ProductEntity[] = [
     img: {
       url: "/images/s_4.jpg",
       alt: "Sac Nomade - AFRIKAMAZING",
+      width: 400,
+      height: 400,
+    },
+  },
+  {
+    id: "24",
+    name: "Sacs pour ordinateur portable",
+    category: "Bag",
+    desc: "Sacs pour ordinateur portable AFRIKA Africains",
+    img: {
+      url: "/images/s_6.jpg",
+      alt: "Nomad Bag - AFRIKAMAZING",
+      width: 400,
+      height: 400,
+    },
+  },
+  {
+    id: "25",
+    name: "kaniai Rubis",
+    category: "Bag",
+    desc: "African AFRIKA  bags",
+    img: {
+      url: "/images/img-aff.jpg",
+      alt: "Nomad Bag - AFRIKAMAZING",
+      width: 400,
+      height: 400,
+    },
+  },
+  {
+    id: "26",
+    name: "Sacs pour ordinateur portable",
+    category: "Bag",
+    desc: "Sacs pour ordinateur portable AFRIKA Africains",
+    img: {
+      url: "/images/s_7.jpg",
+      alt: "Nomad Bag - AFRIKAMAZING",
+      width: 400,
+      height: 400,
+    },
+  },
+  {
+    id: "27",
+    name: "Sacs pour ordinateur portable",
+    category: "Bag",
+    desc: "Sacs pour ordinateur portable AFRIKA Africains",
+    img: {
+      url: "/images/s_8.jpg",
+      alt: "Nomad Bag - AFRIKAMAZING",
       width: 400,
       height: 400,
     },
@@ -359,7 +419,18 @@ export const productsEn: ProductEntity[] = [
       height: 400,
     },
   },
-
+  {
+    id: "28",
+    name: "Kaniai Backpack",
+    category: "Bag",
+    desc: "A stylish handbag perfect for any occasion throughout the day.",
+    img: {
+      url: "/images/sac_8.jpg",
+      alt: "Dune Elegance Bag - AFRIKAMAZING",
+      width: 400,
+      height: 400,
+    },
+  },
   {
     id: "19",
     name: "Laptop bags",
@@ -415,6 +486,54 @@ export const productsEn: ProductEntity[] = [
     desc: "African AFRIKA laptop bags",
     img: {
       url: "/images/s_4.jpg",
+      alt: "Nomad Bag - AFRIKAMAZING",
+      width: 400,
+      height: 400,
+    },
+  },
+  {
+    id: "24",
+    name: "Laptop bags",
+    category: "Bag",
+    desc: "African AFRIKA laptop bags",
+    img: {
+      url: "/images/s_6.jpg",
+      alt: "Nomad Bag - AFRIKAMAZING",
+      width: 400,
+      height: 400,
+    },
+  },
+  {
+    id: "25",
+    name: "kaniai Rubis",
+    category: "Bag",
+    desc: "African AFRIKA  bags",
+    img: {
+      url: "/images/img-aff.jpg",
+      alt: "Nomad Bag - AFRIKAMAZING",
+      width: 400,
+      height: 400,
+    },
+  },
+  {
+    id: "26",
+    name: "Laptop bags",
+    category: "Bag",
+    desc: "African AFRIKA laptop bags",
+    img: {
+      url: "/images/s_7.jpg",
+      alt: "Nomad Bag - AFRIKAMAZING",
+      width: 400,
+      height: 400,
+    },
+  },
+  {
+    id: "27",
+    name: "Laptop bags",
+    category: "Bag",
+    desc: "African AFRIKA laptop bags",
+    img: {
+      url: "/images/s_8.jpg",
       alt: "Nomad Bag - AFRIKAMAZING",
       width: 400,
       height: 400,
@@ -644,6 +763,18 @@ export const productsAr: ProductEntity[] = [
     },
   },
   {
+    id: "28",
+    name: "حقيبة ظهر كانياي",
+    category: "حقيبة",
+    desc: "حقيبة يد أنيقة ومثالية لجميع مناسبات اليوم.",
+    img: {
+      url: "/images/sac_8.jpg",
+      alt: "حقيبة ديون إيليغانس - أفريكامازينغ",
+      width: 400,
+      height: 400,
+    },
+  },
+  {
     id: "19",
     name: "حقائب كمبيوتر محمول",
     category: "حقيبة",
@@ -699,6 +830,56 @@ export const productsAr: ProductEntity[] = [
     img: {
       url: "/images/s_4.jpg",
       alt: "حقيبة نوماد - AFRIKAMAZING",
+      width: 400,
+      height: 400,
+    },
+  },
+
+  {
+    id: "24",
+    name: "حقائب كمبيوتر محمول",
+    category: "حقيبة",
+    desc: "حقائب كمبيوتر محمول أفريقية من أفريكا",
+    img: {
+      url: "/images/s_6.jpg",
+      alt: "حقيبة نوماد - أفريكامازينغ",
+      width: 400,
+      height: 400,
+    },
+  },
+  {
+    id: "25",
+    name: "كانياي روبيس",
+    category: "حقيبة",
+    desc: "حقائب أفريقية من أفريكا",
+    img: {
+      url: "/images/img-aff.jpg",
+      alt: "حقيبة نوماد - أفريكامازينغ",
+      width: 400,
+      height: 400,
+    },
+  },
+  {
+    id: "26",
+    name: "حقائب كمبيوتر محمول",
+    category: "حقيبة",
+    desc: "حقائب كمبيوتر محمول أفريقية من أفريكا",
+    img: {
+      url: "/images/s_7.jpg",
+      alt: "حقيبة نوماد - أفريكامازينغ",
+      width: 400,
+      height: 400,
+    },
+  },
+
+  {
+    id: "27",
+    name: "Laptop bags",
+    category: "Bag",
+    desc: "African AFRIKA laptop bags",
+    img: {
+      url: "/images/s_8.jpg",
+      alt: "Nomad Bag - AFRIKAMAZING",
       width: 400,
       height: 400,
     },
