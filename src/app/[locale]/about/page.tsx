@@ -47,7 +47,7 @@ export default async function AboutPage({ params }: AboutPageProps) {
   ];
 
   return (
-    <div className="min-h-screen bg-white">
+    <div className="min-h-screen bg-white dark:bg-slate-950 text-slate-800 dark:text-slate-200 transition-colors duration-300">
       <Navbar />
 
       {/* Hero Section */}
@@ -67,11 +67,11 @@ export default async function AboutPage({ params }: AboutPageProps) {
       </section>
 
       {/* Notre Histoire */}
-      <section className="py-20 px-4">
+      <section className="py-20 px-4 bg-white dark:bg-slate-950">
         <div className="max-w-6xl mx-auto">
           <div className="grid md:grid-cols-2 gap-12 items-center">
             <div className="relative">
-              <div className="aspect-square bg-slate-100 rounded-2xl overflow-hidden shadow-2xl">
+              <div className="aspect-square bg-slate-100 dark:bg-slate-900 rounded-2xl overflow-hidden shadow-2xl">
                 <img
                   src="/images/sac_1.jpg"
                   alt="Afrikamazing Store"
@@ -87,16 +87,16 @@ export default async function AboutPage({ params }: AboutPageProps) {
             </div>
 
             <div className="space-y-6">
-              <h2 className="text-3xl md:text-4xl font-bold text-slate-900">
+              <h2 className="text-3xl md:text-4xl font-bold text-slate-900 dark:text-slate-100">
                 {t?.storyTitle ?? "Notre Histoire"}
               </h2>
               <div
                 className="w-16 h-1.5 rounded-full"
                 style={{ backgroundColor: brandColor }}
               ></div>
-              <div className="space-y-4 text-slate-600 text-lg leading-relaxed">
+              <div className="space-y-4 text-slate-600 dark:text-slate-300 text-lg leading-relaxed">
                 <p>
-                  <span className="font-bold text-slate-900 italic">
+                  <span className="font-bold text-slate-900 dark:text-slate-100 italic">
                     Afrikamazing
                   </span>{" "}
                   {t?.storyParagraph1 ??
@@ -106,21 +106,21 @@ export default async function AboutPage({ params }: AboutPageProps) {
                   {t?.storyParagraph2 ??
                     "Nous sélectionnons avec soin chaque sac et chaque paire de chaussures pour vous garantir des articles qui allient"}{" "}
                   <span
-                    className="text-slate-900 font-medium underline"
+                    className="text-slate-900 dark:text-slate-100 font-medium underline"
                     style={{ textDecorationColor: brandColor }}
                   >
                     {t?.quality ?? "qualité"}
                   </span>
                   ,{" "}
                   <span
-                    className="text-slate-900 font-medium underline"
+                    className="text-slate-900 dark:text-slate-100 font-medium underline"
                     style={{ textDecorationColor: brandColor }}
                   >
                     {t?.comfort ?? "confort"}
                   </span>{" "}
                   et{" "}
                   <span
-                    className="text-slate-900 font-medium underline"
+                    className="text-slate-900 dark:text-slate-100 font-medium underline"
                     style={{ textDecorationColor: brandColor }}
                   >
                     {t?.design ?? "design"}
@@ -134,13 +134,13 @@ export default async function AboutPage({ params }: AboutPageProps) {
       </section>
 
       {/* Nos Valeurs */}
-      <section className="py-20 px-4 bg-slate-50">
+      <section className="py-20 px-4 bg-slate-50 dark:bg-slate-900/30 border-y border-slate-100 dark:border-slate-900/60">
         <div className="max-w-6xl mx-auto">
           <div className="text-center mb-16">
-            <h2 className="text-3xl font-bold text-slate-900 mb-4">
+            <h2 className="text-3xl font-bold text-slate-900 dark:text-slate-100 mb-4">
               {t?.valuesTitle ?? "Nos Valeurs"}
             </h2>
-            <p className="text-slate-500">
+            <p className="text-slate-500 dark:text-slate-400">
               Ce qui fait battre le cœur de notre marque
             </p>
           </div>
@@ -151,18 +151,18 @@ export default async function AboutPage({ params }: AboutPageProps) {
               return (
                 <div
                   key={index}
-                  className="bg-white p-8 rounded-2xl border border-slate-100 shadow-sm hover:shadow-md transition-all group text-center"
+                  className="bg-white dark:bg-slate-900/50 p-8 rounded-2xl border border-slate-100 dark:border-slate-800 shadow-sm hover:shadow-md transition-all group text-center"
                 >
                   <div
-                    className="w-14 h-14 mx-auto rounded-xl flex items-center justify-center mb-6 transition-colors bg-slate-100 group-hover:bg-amber-50"
+                    className="w-14 h-14 mx-auto rounded-xl flex items-center justify-center mb-6 transition-colors bg-slate-100 dark:bg-slate-800 group-hover:bg-amber-50 dark:group-hover:bg-amber-950/30"
                     style={{ color: brandColor }}
                   >
                     <IconComponent className="w-7 h-7" />
                   </div>
-                  <h3 className="text-xl font-bold mb-3 text-slate-900">
+                  <h3 className="text-xl font-bold mb-3 text-slate-900 dark:text-slate-100">
                     {value.title}
                   </h3>
-                  <p className="text-slate-600 leading-relaxed text-sm">
+                  <p className="text-slate-600 dark:text-slate-400 leading-relaxed text-sm">
                     {value.desc ??
                       "Nous nous engageons à offrir le meilleur à nos clients."}
                   </p>
@@ -174,9 +174,9 @@ export default async function AboutPage({ params }: AboutPageProps) {
       </section>
 
       {/* Localisation & Contact */}
-      <section className="py-20 px-4">
+      <section className="py-20 px-4 bg-white dark:bg-slate-950">
         <div className="max-w-6xl mx-auto">
-          <div className="bg-slate-900 rounded-[2rem] overflow-hidden shadow-2xl flex flex-col md:flex-row">
+          <div className="bg-slate-900 dark:bg-slate-900/80 rounded-[2rem] overflow-hidden shadow-2xl flex flex-col md:flex-row border border-transparent dark:border-slate-800">
             {/* Infos de contact */}
             <div className="md:w-1/2 p-10 md:p-16 text-white">
               <h2 className="text-3xl font-bold mb-8">
@@ -240,12 +240,12 @@ export default async function AboutPage({ params }: AboutPageProps) {
       </section>
 
       {/* CTA Section */}
-      <section className="py-24 px-4 text-center">
+      <section className="py-24 px-4 text-center bg-white dark:bg-slate-950">
         <div className="max-w-3xl mx-auto">
-          <h2 className="text-3xl md:text-5xl font-bold text-slate-900 mb-6">
+          <h2 className="text-3xl md:text-5xl font-bold text-slate-900 dark:text-slate-100 mb-6">
             {t?.ctaTitle ?? "Prêt à sublimer votre style ?"}
           </h2>
-          <p className="text-lg text-slate-600 mb-10">
+          <p className="text-lg text-slate-600 dark:text-slate-400 mb-10">
             {t?.ctaDescription ??
               "Découvrez nos collections exclusives de sacs et chaussures."}
           </p>

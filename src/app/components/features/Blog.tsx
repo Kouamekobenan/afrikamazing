@@ -49,7 +49,7 @@ export default function BlogPage({
 
   if (selectedPost) {
     return (
-      <div className="min-h-screen bg-gray-50">
+      <div className="min-h-screen bg-gray-50 dark:bg-slate-950 text-slate-800 dark:text-slate-200 transition-colors duration-300">
         <div className="relative h-96 bg-gray-900">
           <img
             src={selectedPost.image}
@@ -59,21 +59,21 @@ export default function BlogPage({
           <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent" />
           <button
             onClick={() => setSelectedPost(null)}
-            className="absolute top-8 left-8 bg-white/90 hover:bg-white px-6 py-2 rounded-full text-sm font-medium transition-colors"
+            className="absolute top-8 left-8 bg-white/90 dark:bg-slate-800/90 hover:bg-white dark:hover:bg-slate-700 text-gray-900 dark:text-slate-100 px-6 py-2 rounded-full text-sm font-medium transition-colors"
           >
             ← {t.backToBlog}
           </button>
         </div>
 
         <div className="max-w-4xl mx-auto px-6 -mt-32 relative z-10">
-          <article className="bg-white rounded-2xl shadow-xl p-8 md:p-12">
-            <span className="inline-block bg-orange-100 text-orange-700 px-4 py-1 rounded-full text-sm font-medium mb-6">
+          <article className="bg-white dark:bg-slate-900 rounded-2xl shadow-xl p-8 md:p-12 border border-gray-100/50 dark:border-slate-800/40">
+            <span className="inline-block bg-orange-100 dark:bg-orange-950/50 text-orange-700 dark:text-orange-400 px-4 py-1 rounded-full text-sm font-medium mb-6">
               {selectedPost.category}
             </span>
-            <h1 className="text-4xl md:text-5xl font-bold text-gray-900 mb-6 leading-tight">
+            <h1 className="text-4xl md:text-5xl font-bold text-gray-900 dark:text-slate-100 mb-6 leading-tight">
               {selectedPost.title}
             </h1>
-            <div className="flex flex-wrap gap-6 text-gray-600 mb-8 pb-8 border-b">
+            <div className="flex flex-wrap gap-6 text-gray-600 dark:text-gray-400 mb-8 pb-8 border-b border-gray-200 dark:border-slate-800">
               <div className="flex items-center gap-2">
                 <User className="w-4 h-4" />
                 <span className="text-sm">{selectedPost.author}</span>
@@ -88,11 +88,11 @@ export default function BlogPage({
                 </span>
               </div>
             </div>
-            <div className="prose prose-lg max-w-none">
+            <div className="prose prose-lg dark:prose-invert max-w-none mb-8">
               {selectedPost.content.split("\n\n").map((paragraph, index) => (
                 <p
                   key={index}
-                  className="text-gray-700 leading-relaxed mb-6 text-lg"
+                  className="text-gray-700 dark:text-slate-300 leading-relaxed mb-6 text-lg"
                 >
                   {paragraph}
                 </p>
@@ -108,12 +108,12 @@ export default function BlogPage({
   }
 
   return (
-    <div className="min-h-screen bg-gray-50">
+    <div className="min-h-screen bg-gray-50 dark:bg-slate-950 text-slate-800 dark:text-slate-200 transition-colors duration-300">
       <div className="bg-gradient-to-r from-gray-800 to-gray-500 text-white py-2">
         {/* ✅ Utilisation correcte du composant VideoI */}
         <Video locale={locale} translations={videoTranslations} />
       </div>
-      <div className="bg-white border-b sticky top-0 z-20 shadow-sm">
+      <div className="bg-white dark:bg-slate-900 border-b border-gray-200 dark:border-slate-800 sticky top-0 z-20 shadow-sm">
         <div className="max-w-7xl mx-auto px-6 py-4">
           <div className="flex gap-3 overflow-x-auto pb-2 scrollbar-hide">
             {categories.map((category) => (
@@ -123,7 +123,7 @@ export default function BlogPage({
                 className={`px-6 py-2 rounded-full font-medium whitespace-nowrap transition-all ${
                   selectedCategory === category
                     ? "bg-orange-600 text-white shadow-lg"
-                    : "bg-gray-100 text-gray-700 hover:bg-gray-200"
+                    : "bg-gray-100 dark:bg-slate-800 text-gray-700 dark:text-slate-300 hover:bg-gray-200 dark:hover:bg-slate-700"
                 }`}
               >
                 {category}
@@ -137,29 +137,29 @@ export default function BlogPage({
           {filteredPosts.map((post) => (
             <article
               key={post.id}
-              className="bg-white rounded-xl shadow-lg overflow-hidden hover:shadow-2xl transition-shadow cursor-pointer group"
+              className="bg-white dark:bg-slate-900 rounded-xl shadow-lg border border-gray-100/50 dark:border-slate-800/40 overflow-hidden hover:shadow-2xl transition-all cursor-pointer group"
               onClick={() => setSelectedPost(post)}
             >
-              <div className="relative h-64 overflow-hidden bg-gray-200">
+              <div className="relative h-64 overflow-hidden bg-gray-200 dark:bg-slate-800">
                 <img
                   src={post.image}
                   alt={post.title}
                   className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500"
                 />
                 <div className="absolute top-4 left-4">
-                  <span className="bg-white/95 text-orange-600 px-3 py-1 rounded-full text-sm font-semibold">
+                  <span className="bg-white/95 dark:bg-slate-900/95 text-orange-600 px-3 py-1 rounded-full text-sm font-semibold">
                     {post.category}
                   </span>
                 </div>
               </div>
               <div className="p-6">
-                <h2 className="text-xl font-bold text-gray-900 mb-3 group-hover:text-orange-600 transition-colors">
+                <h2 className="text-xl font-bold text-gray-900 dark:text-slate-100 mb-3 group-hover:text-orange-600 dark:group-hover:text-orange-500 transition-colors">
                   {post.title}
                 </h2>
-                <p className="text-gray-600 mb-4 line-clamp-3">
+                <p className="text-gray-600 dark:text-slate-400 mb-4 line-clamp-3">
                   {post.excerpt}
                 </p>
-                <div className="flex items-center justify-between text-sm text-gray-500 mb-4">
+                <div className="flex items-center justify-between text-sm text-gray-500 dark:text-gray-400 mb-4">
                   <div className="flex items-center gap-2">
                     <Calendar className="w-4 h-4" />
                     <span>{post.date}</span>
@@ -176,7 +176,7 @@ export default function BlogPage({
         </div>
         {filteredPosts.length === 0 && (
           <div className="text-center py-16">
-            <p className="text-gray-500 text-lg">{t.noArticles}</p>
+            <p className="text-gray-500 dark:text-gray-400 text-lg">{t.noArticles}</p>
           </div>
         )}
       </div>

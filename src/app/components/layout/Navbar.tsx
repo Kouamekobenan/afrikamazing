@@ -1,10 +1,11 @@
 "use client";
 import { useState, useEffect, useCallback, useMemo, useRef } from "react";
-import { Menu, X, Search, Globe } from "lucide-react";
+import { Menu, X, Search, Globe, Sun, Moon } from "lucide-react";
 import Image from "next/image";
 import Link from "next/link";
 import { usePathname, useRouter, useParams } from "next/navigation";
 import { Button } from "../ui/Button";
+import { useTheme } from "../ThemeProvider";
 type LocaleParams = {
   locale: LocaleCode; // Assurez-vous que LocaleCode est importé
 };
@@ -19,6 +20,7 @@ import { useTypedTranslation } from "@/src/config/translate";
 
 const SITE_NAME = "AFRIKAMAZING";
 export default function Navbar() {
+  const { theme, toggleTheme } = useTheme();
   const [isOpen, setIsOpen] = useState(false);
   const [isScrolled, setIsScrolled] = useState(false);
   const [showLangDropdown, setShowLangDropdown] = useState(false);
@@ -120,7 +122,7 @@ export default function Navbar() {
   return (
     <nav
       className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
-        isScrolled ? "bg-white/95 backdrop-blur-md shadow-lg" : "bg-white"
+        isScrolled ? "bg-white/95 dark:bg-slate-950/95 backdrop-blur-md shadow-lg" : "bg-white dark:bg-slate-950"
       }`}
       dir={isRtl ? "rtl" : "ltr"}
     >
@@ -158,7 +160,7 @@ export default function Navbar() {
               <Link
                 key={item.href}
                 href={`/${currentLocale}${item.href}`}
-                className="px-4 py-2 text-gray-700 hover:text-orange-600 font-medium transition-colors"
+                className="px-4 py-2 text-gray-700 dark:text-slate-200 hover:text-orange-600 dark:hover:text-orange-500 font-medium transition-colors"
               >
                 {item.label}
               </Link>
@@ -168,17 +170,27 @@ export default function Navbar() {
           <div className="hidden lg:flex items-center space-x-3">
             {/* Bouton de recherche */}
             <button
-              className="p-2 text-gray-600 hover:text-orange-600 hover:bg-orange-50 rounded-lg transition-all"
+              className="p-2 text-gray-600 dark:text-slate-300 hover:text-orange-600 dark:hover:text-orange-500 hover:bg-orange-50 dark:hover:bg-slate-900 rounded-lg transition-all"
               aria-label={t("nav.search")}
             >
               <Search size={20} />
             </button>
+
+            {/* Bouton Dark Mode */}
+            <button
+              onClick={toggleTheme}
+              className="p-2 text-gray-600 dark:text-slate-300 hover:text-orange-600 dark:hover:text-orange-500 hover:bg-orange-50 dark:hover:bg-slate-900 rounded-lg transition-all"
+              aria-label="Toggle theme"
+            >
+              {theme === "light" ? <Moon size={20} /> : <Sun size={20} />}
+            </button>
+
             {/* Sélecteur de langue */}
             <div className="relative" ref={dropdownRef}>
               <button
                 onClick={() => setShowLangDropdown((prev) => !prev)}
                 onKeyDown={handleLangKeyDown}
-                className="p-2 text-gray-600 hover:text-orange-600 hover:bg-orange-50 rounded-lg transition-all flex items-center gap-1"
+                className="p-2 text-gray-600 dark:text-slate-300 hover:text-orange-600 dark:hover:text-orange-500 hover:bg-orange-50 dark:hover:bg-slate-900 rounded-lg transition-all flex items-center gap-1"
                 aria-label={t("nav.language")}
                 aria-expanded={showLangDropdown}
                 aria-haspopup="true"
@@ -194,7 +206,7 @@ export default function Navbar() {
                 <div
                   className={`absolute ${
                     isRtl ? "left-0" : "right-0"
-                  } mt-2 w-40 rounded-md shadow-lg bg-white ring-1 ring-black ring-opacity-5 z-50`}
+                  } mt-2 w-40 rounded-md shadow-lg bg-white dark:bg-slate-900 ring-1 ring-black ring-opacity-5 dark:ring-white/10 z-50`}
                   role="menu"
                   aria-orientation="vertical"
                 >
@@ -207,8 +219,8 @@ export default function Navbar() {
                         }
                         className={`w-full text-left px-4 py-2 text-sm ${
                           locale.code === currentLocale
-                            ? "bg-orange-100 text-orange-600 font-bold"
-                            : "text-gray-700 hover:bg-gray-100"
+                            ? "bg-orange-100 dark:bg-orange-950/50 text-orange-600 dark:text-orange-500 font-bold"
+                            : "text-gray-700 dark:text-slate-300 hover:bg-gray-100 dark:hover:bg-slate-800"
                         }`}
                         dir={locale.isRtl === true ? "rtl" : "ltr"}
                         role="menuitem"
@@ -234,7 +246,7 @@ export default function Navbar() {
           {/* Mobile Menu Button */}
           <button
             onClick={toggleMenu}
-            className="lg:hidden p-2 text-gray-700 hover:bg-gray-100 rounded-lg transition-colors"
+            className="lg:hidden p-2 text-gray-700 dark:text-slate-300 hover:bg-gray-100 dark:hover:bg-slate-900 rounded-lg transition-colors"
             aria-label={isOpen ? t("nav.close") : t("nav.menu")}
             aria-expanded={isOpen}
           >
@@ -250,25 +262,44 @@ export default function Navbar() {
         }`}
         aria-hidden={!isOpen}
       >
-        <div className="px-4 pt-2 pb-6 space-y-1 bg-white border-t border-gray-100 shadow-xl">
+        <div className="px-4 pt-2 pb-6 space-y-1 bg-white dark:bg-slate-950 border-t border-gray-100 dark:border-slate-900 shadow-xl">
           {/* Mobile Links */}
           {NAVIGATION_LINKS.map((item) => (
             <Link
               key={item.href}
               href={`/${currentLocale}${item.href}`}
-              className="block px-4 py-3 text-gray-700 hover:bg-orange-50 hover:text-orange-600 rounded-lg font-medium transition-colors"
+              className="block px-4 py-3 text-gray-700 dark:text-slate-200 hover:bg-orange-50 dark:hover:bg-slate-900 hover:text-orange-600 dark:hover:text-orange-500 rounded-lg font-medium transition-colors"
             >
               {item.label}
             </Link>
           ))}
 
           {/* Mobile Actions */}
-          <div className="pt-4 space-y-2 border-t border-gray-100 mt-4">
+          <div className="pt-4 space-y-2 border-t border-gray-100 dark:border-slate-900 mt-4">
             {/* Bouton Rechercher Mobile */}
-            <button className="w-full px-4 py-3 text-left text-gray-700 hover:bg-orange-50 hover:text-orange-600 rounded-lg font-medium transition-colors flex items-center gap-2">
+            <button className="w-full px-4 py-3 text-left text-gray-700 dark:text-slate-300 hover:bg-orange-50 dark:hover:bg-slate-900 hover:text-orange-600 dark:hover:text-orange-500 rounded-lg font-medium transition-colors flex items-center gap-2">
               <Search size={18} />
               {t("nav.search")}
             </button>
+
+            {/* Bouton Dark Mode Mobile */}
+            <button
+              onClick={toggleTheme}
+              className="w-full px-4 py-3 text-left text-gray-700 dark:text-slate-300 hover:bg-orange-50 dark:hover:bg-slate-900 hover:text-orange-600 dark:hover:text-orange-500 rounded-lg font-medium transition-colors flex items-center gap-2"
+            >
+              {theme === "light" ? (
+                <>
+                  <Moon size={18} />
+                  <span>Mode Sombre</span>
+                </>
+              ) : (
+                <>
+                  <Sun size={18} />
+                  <span>Mode Clair</span>
+                </>
+              )}
+            </button>
+
             {/* Sélecteur de langue Mobile */}
             {LOCALES.map((locale) => (
               <button
@@ -276,8 +307,8 @@ export default function Navbar() {
                 onClick={() => changeLanguage(locale.code as LocaleCode)}
                 className={`w-full px-4 py-3 text-left rounded-lg font-medium transition-colors flex items-center gap-2 ${
                   locale.code === currentLocale
-                    ? "bg-orange-100 text-orange-600 font-bold"
-                    : "text-gray-700 hover:bg-orange-50 hover:text-orange-600"
+                    ? "bg-orange-100 dark:bg-orange-950/50 text-orange-600 dark:text-orange-500 font-bold"
+                    : "text-gray-700 dark:text-slate-300 hover:bg-orange-50 dark:hover:bg-slate-900 hover:text-orange-600 dark:hover:text-orange-500"
                 }`}
                 dir={locale.isRtl === true ? "rtl" : "ltr"}
               >

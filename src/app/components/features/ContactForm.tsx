@@ -46,22 +46,22 @@ export default function ContactForm({ translations: t }: ContactFormProps) {
   };
 
   return (
-    <section className="bg-gray-50 py-20" id="contact">
+    <section className="bg-gray-50 dark:bg-slate-950 py-20 transition-colors duration-300" id="contact">
       <div className="max-w-2xl mx-auto px-6 text-center">
-        <h2 className="text-3xl font-bold mb-6 text-gray-900">
+        <h2 className="text-3xl font-bold mb-6 text-gray-900 dark:text-slate-100">
           {t?.title ?? "Contactez-nous"}
         </h2>
-        <p className="text-gray-600 mb-8">
+        <p className="text-gray-600 dark:text-slate-400 mb-8">
           {t?.subtitle ??
             "Une question ? Besoin d'un devis ? Nous serons ravis de vous répondre."}
         </p>
 
         <form
           onSubmit={handleSubmit}
-          className="space-y-4 text-left bg-white shadow-lg rounded-lg p-8"
+          className="space-y-4 text-left bg-white dark:bg-slate-900 border border-gray-100/55 dark:border-slate-800/40 shadow-lg rounded-lg p-8"
         >
           <div>
-            <label className="block text-sm font-medium text-gray-700 mb-1">
+            <label className="block text-sm font-medium text-gray-700 dark:text-slate-300 mb-1">
               {t?.nameLabel ?? "Nom complet"}
             </label>
             <input
@@ -70,12 +70,12 @@ export default function ContactForm({ translations: t }: ContactFormProps) {
               value={formData.name}
               onChange={handleChange}
               required
-              className="w-full border border-gray-300 rounded-lg px-4 py-2 focus:ring-2 focus:ring-green-600 focus:outline-none"
+              className="w-full border border-gray-300 dark:border-slate-700 rounded-lg px-4 py-2 bg-white dark:bg-slate-800 text-gray-900 dark:text-slate-100 focus:ring-2 focus:ring-orange-500 focus:outline-none transition-colors"
             />
           </div>
 
           <div>
-            <label className="block text-sm font-medium text-gray-700 mb-1">
+            <label className="block text-sm font-medium text-gray-700 dark:text-slate-300 mb-1">
               {t?.emailLabel ?? "Adresse e-mail"}
             </label>
             <input
@@ -84,12 +84,12 @@ export default function ContactForm({ translations: t }: ContactFormProps) {
               value={formData.email}
               onChange={handleChange}
               required
-              className="w-full border border-gray-300 rounded-lg px-4 py-2 focus:ring-2 focus:ring-green-600 focus:outline-none"
+              className="w-full border border-gray-300 dark:border-slate-700 rounded-lg px-4 py-2 bg-white dark:bg-slate-800 text-gray-900 dark:text-slate-100 focus:ring-2 focus:ring-orange-500 focus:outline-none transition-colors"
             />
           </div>
 
           <div>
-            <label className="block text-sm font-medium text-gray-700 mb-1">
+            <label className="block text-sm font-medium text-gray-700 dark:text-slate-300 mb-1">
               {t?.messageLabel ?? "Message"}
             </label>
             <textarea
@@ -98,7 +98,7 @@ export default function ContactForm({ translations: t }: ContactFormProps) {
               value={formData.message}
               onChange={handleChange}
               required
-              className="w-full border border-gray-300 rounded-lg px-4 py-2 focus:ring-2 focus:ring-green-600 focus:outline-none"
+              className="w-full border border-gray-300 dark:border-slate-700 rounded-lg px-4 py-2 bg-white dark:bg-slate-800 text-gray-900 dark:text-slate-100 focus:ring-2 focus:ring-orange-500 focus:outline-none transition-colors"
             ></textarea>
           </div>
 

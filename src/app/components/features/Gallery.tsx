@@ -157,15 +157,16 @@ export default function Gallery({ locale, translations }: GalleryProps) {
             </p>
           </div>
 
-          <div className="w-full h-96 rounded-xl overflow-hidden shadow-2xl border-4 border-gray-200 dark:border-gray-700">
+          <div className="w-full h-96 rounded-xl overflow-hidden shadow-2xl border-4 border-gray-200 dark:border-gray-800 transition-all duration-300">
             <iframe
               src="https://www.google.com/maps/embed?pb=!1m14!1m8!1m3!1d3455.92792459972!2d31.39287211!3d29.9815013!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x14583b0027f730df%3A0x90ffc9ef42c1d20f!2sVilla%20116%20west%20golf!5e0!3m2!1sfr!2sci!4v1762215411895!5m2!1sfr!2sci"
-              width="600"
-              height="450"
-              style={{ border: 0 }}
+              width="100%"
+              height="100%"
+              style={{ border: 0, filter: "grayscale(0.1)" }}
               allowFullScreen
               loading="lazy"
               referrerPolicy="no-referrer-when-downgrade"
+              title="Google Maps Location"
             ></iframe>
           </div>
         </div>

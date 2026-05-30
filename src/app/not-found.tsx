@@ -4,12 +4,12 @@ import Link from "next/link";
 import { AlertTriangle } from "lucide-react";
 export default function NotFoundPage() {
   return (
-    <div className="min-h-screen flex flex-col justify-center items-center bg-gray-50 px-4">
+    <div className="min-h-screen flex flex-col justify-center items-center bg-gray-50 dark:bg-slate-950 px-4 transition-colors duration-300">
       <AlertTriangle className="text-orange-500 w-16 h-16 mb-4" />
-      <h1 className="text-4xl font-bold text-gray-800 mb-2">
+      <h1 className="text-4xl font-bold text-gray-800 dark:text-slate-100 mb-2">
         Page introuvable
       </h1>
-      <p className="text-gray-600 mb-6">
+      <p className="text-gray-600 dark:text-slate-400 mb-6">
         Oups ! La page que vous recherchez n&apos;existe pas.
       </p>
       <Link

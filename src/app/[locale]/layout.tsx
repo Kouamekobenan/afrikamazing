@@ -6,6 +6,8 @@ import "../../../src/globals.css";
 import Navbar from "../components/layout/Navbar";
 import { useTranslation } from "../i18n";
 import Footer from "../components/layout/Footer";
+import { ThemeProvider } from "../components/ThemeProvider";
+
 const poppins = localFont({
   src: [
     { path: "../fonts/Poppins-Regular.ttf", weight: "400", style: "normal" },
@@ -59,13 +61,28 @@ export default async function RootLayout({
           href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700;900&family=Poppins:wght@300;400;500;600;700;800;900&family=Inter:wght@300;400;500;600;700;800&display=swap"
           rel="stylesheet"
         />
+        <script
+          dangerouslySetInnerHTML={{
+            __html: `
+              try {
+                if (localStorage.getItem('theme') === 'dark' || (!('theme' in localStorage) && window.matchMedia('(prefers-color-scheme: dark)').matches)) {
+                  document.documentElement.classList.add('dark');
+                } else {
+                  document.documentElement.classList.remove('dark');
+                }
+              } catch (_) {}
+            `,
+          }}
+        />
       </head>
       <body
-        className={`${geistSans.variable} ${geistMono.variable} ${poppins.variable} antialiased`}
+        className={`${geistSans.variable} ${geistMono.variable} ${poppins.variable} antialiased bg-white text-gray-900 dark:bg-slate-950 dark:text-slate-100 transition-colors duration-300`}
       >
-        <Navbar />
-        <main className="pt-16 lg:pt-20">{children}</main>
-        <Footer locale={locale} translations={allTranslations} />
+        <ThemeProvider>
+          <Navbar />
+          <main className="pt-16 lg:pt-20">{children}</main>
+          <Footer locale={locale} translations={allTranslations} />
+        </ThemeProvider>
       </body>
     </html>
   );

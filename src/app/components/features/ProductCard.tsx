@@ -108,12 +108,12 @@ const AnimatedProductCard = ({
     <article
       ref={cardRef}
       key={prod.id}
-      className={`bg-white rounded-2xl shadow-md hover:shadow-2xl transition-all duration-700 ease-out overflow-hidden flex flex-col group ${animationClasses}`}
+      className={`bg-white dark:bg-slate-900 rounded-2xl shadow-md hover:shadow-2xl border border-gray-100/50 dark:border-slate-800/40 transition-all duration-700 ease-out overflow-hidden flex flex-col group ${animationClasses}`}
       style={delayStyle}
     >
       {/* Image du produit - Cliquable */}
       <div
-        className="relative w-full aspect-square bg-gray-100 overflow-hidden cursor-pointer"
+        className="relative w-full aspect-square bg-gray-100 dark:bg-slate-800 overflow-hidden cursor-pointer"
         onClick={() => handleImageClick(prod)}
       >
         <img
@@ -130,12 +130,12 @@ const AnimatedProductCard = ({
       {/* Contenu du produit */}
       <div className="p-3 md:p-6 flex flex-col flex-grow">
         {/* Nom du produit */}
-        <h3 className="text-sm md:text-xl font-bold text-gray-900 mb-1 md:mb-2 line-clamp-2">
+        <h3 className="text-sm md:text-xl font-bold text-gray-900 dark:text-slate-100 mb-1 md:mb-2 line-clamp-2">
           {prod.name}
         </h3>
 
         {/* Description - masquée sur très petits écrans */}
-        <p className="hidden sm:block text-sm md:text-base text-gray-600 mb-3 md:mb-4 flex-grow line-clamp-2 md:line-clamp-3">
+        <p className="hidden sm:block text-sm md:text-base text-gray-600 dark:text-slate-400 mb-3 md:mb-4 flex-grow line-clamp-2 md:line-clamp-3">
           {prod.desc}
         </p>
 
@@ -185,10 +185,10 @@ export default function ProductCard({ translations: t }: ProductCardProps) {
 
   return (
     <>
-      <section className="w-full px-4 py-16 md:py-16 lg:py-20 bg-gradient-to-b from-gray-50 to-white">
+      <section className="w-full px-4 py-16 md:py-16 lg:py-20 bg-gradient-to-b from-gray-50 to-white dark:from-slate-900/30 dark:to-slate-950 transition-colors duration-300">
         {/* En-tête de la section */}
         <div className="max-w-7xl mx-auto mb-12">
-          <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold text-gray-900 text-center mb-3">
+          <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold text-gray-900 dark:text-slate-100 text-center mb-3">
             {t.title}
           </h2>
           <div className="w-24 h-1 bg-orange-600 mx-auto rounded-full"></div>
@@ -209,7 +209,7 @@ export default function ProductCard({ translations: t }: ProductCardProps) {
         {/* Message si aucun produit */}
         {products.length === 0 && (
           <div className="text-center py-16">
-            <p className="text-gray-500 text-lg">{t.noProducts}</p>
+            <p className="text-gray-500 dark:text-gray-400 text-lg">{t.noProducts}</p>
           </div>
         )}
       </section>
@@ -221,7 +221,7 @@ export default function ProductCard({ translations: t }: ProductCardProps) {
       {/* Modal de visualisation d'image (Inchagéd) */}
       {selectedImage && (
         <div
-          className="fixed inset-0 z-50 bg-black bg-opacity-90 flex items-center justify-center p-4"
+          className="fixed inset-0 z-50 bg-black bg-opacity-90 flex items-center justify-center p-4 backdrop-blur-sm"
           onClick={() => setSelectedImage(null)}
         >
           {/* Boutons fixes en haut à droite */}
