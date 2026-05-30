@@ -18,6 +18,27 @@ export function ThemeProvider({ children }: { children: React.ReactNode }) {
     // Sync theme state with the actual class present on html element (which might have been set by our inline head script)
     const isDark = document.documentElement.classList.contains("dark");
     setTheme(isDark ? "dark" : "light");
+
+    // Register PWA service worker
+    if (typeof window !== "undefined" && "serviceWorker" in navigator) {
+      const registerSW = () => {
+        navigator.serviceWorker.register("/sw.js").then(
+          (registration) => {
+            console.log("Service Worker registered with scope: ", registration.scope);
+          },
+          (err) => {
+            console.error("Service Worker registration failed: ", err);
+          }
+        );
+      };
+
+      if (document.readyState === "complete") {
+        registerSW();
+      } else {
+        window.addEventListener("load", registerSW);
+        return () => window.removeEventListener("load", registerSW);
+      }
+    }
   }, []);
 
   const toggleTheme = () => {
