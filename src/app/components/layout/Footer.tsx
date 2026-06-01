@@ -24,10 +24,11 @@ interface FooterProps {
   locale: LocaleCode;
   translations: Record<string, Record<string, string>>;
 }
+
 export default function Footer({ locale, translations }: FooterProps) {
   const currentYear = new Date().getFullYear();
   const t = translations.footer;
-  // console.log("🔍 Footer translations received:", t);
+  
   const FOOTER_LINKS = {
     company: [
       { label: t?.about ?? "À propos", href: `/${locale}/about` },
@@ -45,226 +46,215 @@ export default function Footer({ locale, translations }: FooterProps) {
       { label: t?.terms ?? "Conditions", href: "#" },
     ],
   };
-
   return (
-    <footer className="bg-gradient-to-br from-gray-900 via-gray-800 to-gray-900 dark:from-slate-950 dark:via-slate-900 dark:to-slate-950 text-gray-300 border-t border-gray-800 dark:border-slate-800/40">
+    <footer className="relative bg-slate-950 text-slate-300 border-t border-amber-500/10 overflow-hidden">
+      {/* Decorative Gold Light Leak / Subtle Glow effect to give it a rich luxury feel */}
+      <div className="absolute top-0 left-1/4 w-96 h-96 bg-amber-500/5 rounded-full blur-[120px] pointer-events-none" />
+      <div className="absolute bottom-0 right-1/4 w-96 h-96 bg-orange-600/5 rounded-full blur-[120px] pointer-events-none" />
+
       {/* Main Footer Content */}
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8 sm:py-12 lg:py-16">
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-6 sm:gap-8 lg:gap-12">
-          {/* Brand Section */}
-          <div className="lg:col-span-2 space-y-2 sm:space-y-4">
-            <div className="flex items-center space-x-2">
-              <a
-                href={`/${locale}`}
-                className="flex items-center space-x-2 group"
-              >
-                <span className="text-xl lg:text-2xl font-bold bg-gradient-to-r from-orange-600 to-red-600 bg-clip-text text-transparent">
-                  <Image
-                    src="/logo/logo-or2.png"
-                    width={280}
-                    height={280}
-                    alt="Logo AFRIKAMAZING"
-                    className="drop-shadow-lg"
-                    priority
-                  />
-                </span>
+      <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12 sm:py-16">
+        <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-5 gap-8 sm:gap-10 lg:gap-12">
+          
+          {/* Brand & Newsletter Section (Spans full width on mobile/tablet, 2 columns on desktop) */}
+          <div className="col-span-2 sm:col-span-3 lg:col-span-2 space-y-6 sm:space-y-8 pr-0 lg:pr-8">
+            <div className="space-y-4">
+              <a href={`/${locale}`} className="inline-block group">
+                <Image
+                  src="/logo/logo-or2.png"
+                  width={240}
+                  height={80}
+                  alt="Logo AFRIKAMAZING"
+                  className="w-48 sm:w-56 h-auto drop-shadow-[0_2px_15px_rgba(201,150,66,0.15)] transition-transform duration-300 group-hover:scale-[1.02]"
+                  priority
+                />
               </a>
+              <p className="text-slate-400 text-sm leading-relaxed max-w-md">
+                {t?.description ?? "Découvrez l'Afrique authentique..."}
+              </p>
             </div>
-            <p className="text-gray-400 leading-relaxed max-w-md text-sm sm:text-base">
-              {t?.description ?? "Découvrez l'Afrique authentique..."}
-            </p>
-            {/* Newsletter */}
-            <div className="space-y-2 sm:space-y-3">
-              <h3 className="text-white font-semibold text-xs sm:text-sm">
+
+            {/* Newsletter form with gold border and glassmorphism styling */}
+            <div className="space-y-3 max-w-md">
+              <h3 className="text-slate-200 font-semibold text-sm tracking-wide">
                 {t?.newsletterTitle ?? "Restez informé"}
               </h3>
-              <div className="flex gap-2">
+              <div className="relative flex items-center">
                 <input
                   type="email"
                   placeholder={t?.newsletterPlaceholder ?? "Votre email"}
-                  className="flex-1 px-3 sm:px-4 py-2 sm:py-2.5 bg-gray-800 border border-gray-700 rounded-lg focus:outline-none focus:ring-2 focus:ring-orange-500 focus:border-transparent text-white placeholder-gray-500 text-xs sm:text-sm"
+                  className="w-full pl-4 pr-12 py-3 bg-white/5 border border-white/10 rounded-xl focus:outline-none focus:ring-2 focus:ring-amber-500/50 focus:border-amber-500 text-white placeholder-slate-500 text-sm transition-all duration-300 min-w-0"
                 />
                 <button
-                  style={{
-                    backgroundColor: "#C99642",
-                  }}
-                  className="px-3 sm:px-4 py-2 sm:py-2.5 bg-gradient-to-r text-white rounded-lg hover:shadow-lg hover:scale-105 transition-all duration-300"
+                  style={{ backgroundColor: "#C99642" }}
+                  className="absolute right-1.5 p-2 bg-gradient-to-r text-white rounded-lg hover:shadow-[0_0_15px_rgba(201,150,66,0.4)] hover:scale-105 active:scale-95 transition-all duration-300"
                   aria-label={t?.newsletterButton ?? "S'abonner"}
                 >
-                  <Send size={16} className="sm:w-[18px] sm:h-[18px]" />
+                  <Send size={16} />
                 </button>
               </div>
             </div>
-            {/* Social Links */}
-            <div className="space-y-2 sm:space-y-3">
-              <h3 className="text-white font-semibold text-xs sm:text-sm">
+
+            {/* Social Links with stunning hover transitions */}
+            <div className="space-y-3">
+              <h3 className="text-slate-200 font-semibold text-xs tracking-wider uppercase">
                 {t?.socialTitle ?? "Suivez-nous"}
               </h3>
-              <div className="flex gap-2 sm:gap-3">
+              <div className="flex gap-3">
                 <a
                   href={SOCIAL_LINKS.tiktok}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="w-9 h-9 sm:w-10 sm:h-10 bg-gray-800 hover:bg-blue-600 rounded-lg flex items-center justify-center transition-all duration-300 hover:scale-110 hover:shadow-lg group"
-                  aria-label={t?.facebook ?? "Facebook"}
+                  className="w-10 h-10 bg-white/5 hover:bg-black border border-white/5 hover:border-white/10 rounded-xl flex items-center justify-center transition-all duration-300 hover:scale-110 hover:shadow-[0_4px_15px_rgba(0,0,0,0.4)] group"
+                  aria-label="TikTok"
                 >
-                  <Music2
-                    size={16}
-                    className="sm:w-[18px] sm:h-[18px] text-gray-400 group-hover:text-white transition-colors"
-                  />
+                  <Music2 size={18} className="text-slate-400 group-hover:text-white transition-colors duration-300" />
                 </a>
                 <a
                   href={SOCIAL_LINKS.instagram}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="w-9 h-9 sm:w-10 sm:h-10 bg-gray-800 hover:bg-gradient-to-br hover:from-purple-600 hover:to-pink-600 rounded-lg flex items-center justify-center transition-all duration-300 hover:scale-110 hover:shadow-lg group"
-                  aria-label={t?.instagram ?? "Instagram"}
+                  className="w-10 h-10 bg-white/5 hover:bg-gradient-to-tr hover:from-purple-600 hover:to-pink-500 border border-white/5 hover:border-transparent rounded-xl flex items-center justify-center transition-all duration-300 hover:scale-110 hover:shadow-[0_4px_15px_rgba(219,39,119,0.3)] group"
+                  aria-label="Instagram"
                 >
-                  <Instagram
-                    size={16}
-                    className="sm:w-[18px] sm:h-[18px] text-gray-400 group-hover:text-white transition-colors"
-                  />
+                  <Instagram size={18} className="text-slate-400 group-hover:text-white transition-colors duration-300" />
                 </a>
                 <a
                   href={SOCIAL_LINKS.whatsapp}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="w-9 h-9 sm:w-10 sm:h-10 bg-gray-800 hover:bg-blue-600 rounded-lg flex items-center justify-center transition-all duration-300 hover:scale-110 hover:shadow-lg group"
+                  className="w-10 h-10 bg-white/5 hover:bg-emerald-600 border border-white/5 hover:border-transparent rounded-xl flex items-center justify-center transition-all duration-300 hover:scale-110 hover:shadow-[0_4px_15px_rgba(16,185,129,0.3)] group"
                   aria-label={t?.facebook ?? "Facebook"}
                 >
-                  <Facebook
-                    size={16}
-                    className="sm:w-[18px] sm:h-[18px] text-gray-400 group-hover:text-white transition-colors"
-                  />
+                  <Facebook size={18} className="text-slate-400 group-hover:text-white transition-colors duration-300" />
                 </a>
               </div>
             </div>
           </div>
-          {/* Company Links */}
-          <div className="space-y-3 sm:space-y-4">
-            <h3 className="text-white font-semibold text-xs sm:text-sm uppercase tracking-wider">
+
+          {/* Company Links (Spans 1 column on mobile and desktop) */}
+          <div className="col-span-1 space-y-4">
+            <h3 className="text-amber-500 font-bold text-xs uppercase tracking-widest">
               {t?.company ?? "Entreprise"}
             </h3>
-            <ul className="space-y-2 sm:space-y-3">
+            <ul className="space-y-3">
               {FOOTER_LINKS.company.map((link) => (
                 <li key={link.label}>
                   <a
                     href={link.href}
-                    className="text-gray-400 hover:text-orange-400 transition-colors duration-200 text-xs sm:text-sm flex items-center group"
+                    className="text-slate-400 hover:text-white transition-colors duration-200 text-sm flex items-center group"
                   >
-                    <span className="w-0 group-hover:w-2 h-0.5 bg-orange-400 transition-all duration-200 mr-0 group-hover:mr-2"></span>
+                    <span className="w-0 group-hover:w-2.5 h-[2px] bg-amber-500 transition-all duration-350 mr-0 group-hover:mr-2"></span>
                     {link.label}
                   </a>
                 </li>
               ))}
             </ul>
           </div>
-          {/* Explore Links */}
-          <div className="space-y-3 sm:space-y-4">
-            <h3 className="text-white font-semibold text-xs sm:text-sm uppercase tracking-wider">
+
+          {/* Explore Links (Spans 1 column on mobile and desktop) */}
+          <div className="col-span-1 space-y-4">
+            <h3 className="text-amber-500 font-bold text-xs uppercase tracking-widest">
               {t?.explore ?? "Explorer"}
             </h3>
-            <ul className="space-y-2 sm:space-y-3">
+            <ul className="space-y-3">
               {FOOTER_LINKS.explore.map((link) => (
                 <li key={link.label}>
                   <a
                     href={link.href}
-                    className="text-gray-400 hover:text-orange-400 transition-colors duration-200 text-xs sm:text-sm flex items-center group"
+                    className="text-slate-400 hover:text-white transition-colors duration-200 text-sm flex items-center group"
                   >
-                    <span className="w-0 group-hover:w-2 h-0.5 bg-orange-400 transition-all duration-200 mr-0 group-hover:mr-2"></span>
+                    <span className="w-0 group-hover:w-2.5 h-[2px] bg-amber-500 transition-all duration-350 mr-0 group-hover:mr-2"></span>
                     {link.label}
                   </a>
                 </li>
               ))}
             </ul>
           </div>
-          {/* Support Links */}
-          <div className="space-y-3 sm:space-y-4">
-            <h3 className="text-white font-semibold text-xs sm:text-sm uppercase tracking-wider">
-              {t?.support ?? "Support"}
-            </h3>
-            <ul className="space-y-2 sm:space-y-3">
-              {FOOTER_LINKS.support.map((link) => (
-                <li key={link.label}>
-                  <a
-                    href={link.href}
-                    className="text-gray-400 hover:text-orange-400 transition-colors duration-200 text-xs sm:text-sm flex items-center group"
-                  >
-                    <span className="w-0 group-hover:w-2 h-0.5 bg-orange-400 transition-all duration-200 mr-0 group-hover:mr-2"></span>
-                    {link.label}
-                  </a>
-                </li>
-              ))}
-            </ul>
-            {/* Contact Info */}
-            <div className="pt-3 sm:pt-4 space-y-2 sm:space-y-3 border-t border-gray-700">
+
+          {/* Support Links & Contact (Spans 2 columns on mobile so everything is super clean without wrapping, 1 column on desktop) */}
+          <div className="col-span-2 sm:col-span-1 space-y-6">
+            <div className="space-y-4">
+              <h3 className="text-amber-500 font-bold text-xs uppercase tracking-widest">
+                {t?.support ?? "Support"}
+              </h3>
+              <ul className="space-y-3">
+                {FOOTER_LINKS.support.map((link) => (
+                  <li key={link.label}>
+                    <a
+                      href={link.href}
+                      className="text-slate-400 hover:text-white transition-colors duration-200 text-sm flex items-center group"
+                    >
+                      <span className="w-0 group-hover:w-2.5 h-[2px] bg-amber-500 transition-all duration-350 mr-0 group-hover:mr-2"></span>
+                      {link.label}
+                    </a>
+                  </li>
+                ))}
+              </ul>
+            </div>
+
+            {/* Contact Info list */}
+            <div className="pt-6 space-y-3.5 border-t border-slate-800">
               <a
                 href="mailto:contact@afrikamazing.com"
-                className="flex items-center gap-2 text-gray-400 hover:text-orange-400 transition-colors text-xs sm:text-sm group"
+                className="flex items-center gap-3 text-slate-400 hover:text-white transition-colors duration-200 text-sm group"
               >
-                <Mail
-                  size={14}
-                  className="sm:w-4 sm:h-4 group-hover:scale-110 transition-transform"
-                />
-                <span>afrikamazing@gmail.com</span>
+                <Mail size={16} className="text-amber-500/80 group-hover:scale-110 transition-transform duration-250" />
+                <span className="truncate">afrikamazing@gmail.com</span>
               </a>
               <a
-                href="tel:+20 12 11218318"
-                className="flex items-center gap-2 text-gray-400 hover:text-orange-400 transition-colors text-xs sm:text-sm group"
+                href="tel:+201211218318"
+                className="flex items-center gap-3 text-slate-400 hover:text-white transition-colors duration-200 text-sm group"
               >
-                <Phone
-                  size={14}
-                  className="sm:w-4 sm:h-4 group-hover:scale-110 transition-transform"
-                />
-                <span>+201211218318</span>
+                <Phone size={16} className="text-amber-500/80 group-hover:scale-110 transition-transform duration-250" />
+                <span>+20 12 11218318</span>
               </a>
-              <div className="flex items-start gap-2 text-gray-400 text-xs sm:text-sm">
-                <MapPin
-                  size={14}
-                  className="sm:w-4 sm:h-4 mt-0.5 flex-shrink-0"
-                />
-                <span>
+              <div className="flex items-start gap-3 text-slate-400 text-sm">
+                <MapPin size={16} className="text-amber-500/80 mt-0.5 flex-shrink-0" />
+                <span className="leading-relaxed">
                   {t?.location ?? "villa 116 door 1, Katameya west golf"}
                 </span>
               </div>
             </div>
           </div>
+
         </div>
       </div>
-      {/* Bottom Bar */}
-      <div className="border-t border-gray-800">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-4 sm:py-6">
-          <div className="flex flex-col sm:flex-row justify-between items-center gap-3 sm:gap-4 text-xs sm:text-sm text-gray-500">
-            <div className="flex items-center gap-1">
-              <span>
-                © {currentYear} {SITE_NAME}.{" "}
-                {t?.rights ?? "Tous droits réservés"}.
-              </span>
+
+      {/* Bottom Copyright & Terms Bar */}
+      <div className="relative border-t border-slate-900 bg-black/40 backdrop-blur-sm">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-6">
+          <div className="flex flex-col md:flex-row justify-between items-center gap-4 text-xs sm:text-sm text-slate-500">
+            <div className="text-center md:text-left">
+              © {currentYear} <span className="text-amber-500/90 font-medium">{SITE_NAME}</span>.{" "}
+              {t?.rights ?? "Tous droits réservés"}.
             </div>
-            <div className="flex items-center gap-1">
+            
+            <div className="flex items-center gap-1.5 py-1 px-3 bg-white/5 border border-white/5 rounded-full text-xs text-slate-400 hover:border-amber-500/10 transition-colors">
               <span>{t?.madeWith ?? "Fait avec"}</span>
               <Heart
-                size={12}
-                className="sm:w-[14px] sm:h-[14px] text-red-500 fill-red-500 animate-pulse"
+                size={13}
+                className="text-red-500 fill-red-500 animate-pulse"
               />
               <span>{t?.inAfrica ?? "en Afrique"}</span>
             </div>
-            <div className="flex gap-4 sm:gap-6">
+
+            <div className="flex flex-wrap justify-center gap-x-6 gap-y-2">
               <a
                 href={`/${locale}/privacy`}
-                className="hover:text-orange-400 transition-colors"
+                className="hover:text-white transition-colors duration-200"
               >
                 {t?.privacy ?? "Confidentialité"}
               </a>
               <a
                 href={`/${locale}/terms`}
-                className="hover:text-orange-400 transition-colors"
+                className="hover:text-white transition-colors duration-200"
               >
                 {t?.terms ?? "Conditions"}
               </a>
               <a
                 href={`/${locale}/cookies`}
-                className="hover:text-orange-400 transition-colors"
+                className="hover:text-white transition-colors duration-200"
               >
                 {t?.cookies ?? "Cookies"}
               </a>

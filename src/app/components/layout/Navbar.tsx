@@ -131,28 +131,20 @@ export default function Navbar() {
           {/* Logo */}
           <Link
             href={`/${currentLocale}/accueil`}
-            className="relative flex items-center justify-center px-1.5 py-3 rounded-sm transition-all duration-300 group overflow-hidden 
-             bg-gray-700 shadow-sm hover:shadow-primary/50"
+            className="flex items-center group"
             aria-label={t("nav.home")}
-          >
-            <div
-              className="absolute inset-0.5 rounded-[11px] bg-gray-900 transition-opacity duration-300 group-hover:opacity-90"
-              aria-hidden="true"
-            ></div>
-            {/* Effet de lueur subtil au survol (pour simuler une bordure lumineuse) */}
-            <div
-              className="absolute inset-[-10px] bg-[radial-gradient(ellipse_at_top,_var(--tw-color-primary)_10%,_transparent_70%)] opacity-0 blur-xl transition-opacity duration-500 group-hover:opacity-50"
-              aria-hidden="true"
-            ></div>
-            <Image
-              src="/logo/logo-or2.png"
-              width={280}
-              height={280}
-              alt={`${SITE_NAME} logo`}
-              className="relative z-10 w-32 h-6 object-contain 
-               drop-shadow-lg filter brightness-125 group-hover:brightness-150 transition-all duration-300 ease-in-out transform group-hover:scale-105"
-              priority
-            />
+          >          
+              <Image
+                src="/logo/logo.png"
+                width={136}
+                height={100}
+                alt={`${SITE_NAME} logo`}
+                className="relative z-10 h-20 w-auto object-contain drop-shadow-md filter brightness-125 group-hover:brightness-150 transition-all duration-300 ease-in-out transform group-hover:scale-105"
+                priority
+              />
+              <span className="font-extrabold text-xl lg:text-2xl tracking-tight bg-gradient-to-r from-orange-500 to-amber-500 bg-clip-text text-transparent group-hover:opacity-90 transition-all duration-300 -ml-10">
+                Frikamazing
+              </span> 
           </Link>
           {/* Desktop Navigation */}
           <div className="hidden lg:flex  items-center space-x-1">

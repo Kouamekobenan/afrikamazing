@@ -1,6 +1,5 @@
-const CACHE_NAME = "afrikamazing-cache-v1";
+const CACHE_NAME = "afrikamazing-cache-v2";
 const ASSETS_TO_CACHE = [
-  "/",
   "/logo/logo.png",
   "/logo/logo-or2.png",
 ];
@@ -13,6 +12,7 @@ self.addEventListener("install", (event) => {
   );
   self.skipWaiting();
 });
+
 self.addEventListener("activate", (event) => {
   event.waitUntil(
     caches.keys().then((keys) => {
@@ -38,9 +38,24 @@ self.addEventListener("fetch", (event) => {
   event.respondWith(
     caches.match(event.request).then((cachedResponse) => {
       if (cachedResponse) {
+        // If the cached response was redirected, recreate it to strip the redirected flag
+        // and prevent modern browser security errors (FetchEvent network error)
+        if (cachedResponse.redirected) {
+          return new Response(cachedResponse.body, {
+            status: cachedResponse.status,
+            statusText: cachedResponse.statusText,
+            headers: cachedResponse.headers
+          });
+        }
         return cachedResponse;
       }
+
       return fetch(event.request).then((response) => {
+        // Do not cache redirects, let the browser handle them naturally
+        if (response.status >= 300 && response.status < 400) {
+          return response;
+        }
+
         // Cache new static/images assets
         if (response && response.status === 200 && (
           event.request.url.includes("/images/") || 
@@ -56,7 +71,7 @@ self.addEventListener("fetch", (event) => {
       }).catch(() => {
         // Offline fallback
         if (event.request.mode === "navigate") {
-          return caches.match("/");
+          return caches.match("/logo/logo.png");
         }
       });
     })
