@@ -10,19 +10,18 @@ interface HomePageProps {
 
 export default async function HomePage({ params }: HomePageProps) {
   const { locale } = await params;
-
-  // ✅ TOUT est dans "common", pas besoin de charger "footer" séparément
+  //  TOUT est dans "common", pas besoin de charger "footer" séparément
   const { i18n } = await useTranslation(locale, "common");
   const translations = i18n.getResourceBundle(locale, "common");
 
-  // console.log("🔍 All translations:", translations);
+  // console.log(" All translations:", translations);
 
-  // ✅ Toutes les traductions sont déjà dans le bundle
+  //  Toutes les traductions sont déjà dans le bundle
   const allTranslations = {
     countdown: translations?.countdown || {},
     hero: translations?.hero || {},
     gallery: translations?.gallery || {},
-    footer: translations?.footer || {}, // ✅ C'est déjà dans "common"
+    footer: translations?.footer || {}, //  C'est déjà dans "common"
   };
 
   return (

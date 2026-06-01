@@ -49,7 +49,6 @@ export default async function AboutPage({ params }: AboutPageProps) {
   return (
     <div className="min-h-screen bg-white dark:bg-slate-950 text-slate-800 dark:text-slate-200 transition-colors duration-300">
       <Navbar />
-
       {/* Hero Section */}
       <section className="relative overflow-hidden bg-slate-900 text-white py-24 md:py-32">
         <div className="absolute inset-0 opacity-20">
@@ -65,7 +64,6 @@ export default async function AboutPage({ params }: AboutPageProps) {
           </p>
         </div>
       </section>
-
       {/* Notre Histoire */}
       <section className="py-20 px-4 bg-white dark:bg-slate-950">
         <div className="max-w-6xl mx-auto">

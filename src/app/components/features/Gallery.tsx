@@ -1,6 +1,6 @@
 "use client";
 import { useState } from "react";
-import { ZoomIn, X, Download, MapPin } from "lucide-react"; // Ajout de MapPin pour la carte
+import { ZoomIn, X, Download, MapPin, MessageCircle } from "lucide-react";
 import { ProductEntity } from "../../lib/global.type"; // Assurez-vous que ce chemin est correct
 import { Product } from "../../data/galeryData"; // Assurez-vous que ce chemin est correct
 
@@ -21,9 +21,16 @@ export default function Gallery({ locale, translations }: GalleryProps) {
     download: translations.gallery?.download || "Télécharger",
     touchClose:
       translations.gallery?.touchClose || "Cliquez n'importe où pour fermer",
-    // Nouvelles clés pour la carte (assurez-vous qu'elles existent dans vos fichiers de traduction)
     mapTitle: translations.gallery?.mapTitle || "Où nous trouver",
     mapAddress: translations.gallery?.mapAddress || "Villa 116 west golf",
+    whatsapp: translations.gallery?.whatsapp || "Commander sur WhatsApp",
+  };
+
+  const buildWhatsAppUrl = (productName: string) => {
+    const message = encodeURIComponent(
+      `Bonjour ! Je suis intéressé(e) par le produit "${productName}" que j'ai vu sur votre galerie AFRIKAMAZING. Pourriez-vous me donner plus d'informations ? Merci !`
+    );
+    return `https://wa.me/201211218318?text=${message}`;
   };
   const [visibleCount, setVisibleCount] = useState(4);
   const [selectedImage, setSelectedImage] = useState<ProductEntity | null>(
@@ -156,7 +163,6 @@ export default function Gallery({ locale, translations }: GalleryProps) {
               {t.mapAddress}
             </p>
           </div>
-
           <div className="w-full h-96 rounded-xl overflow-hidden shadow-2xl border-4 border-gray-200 dark:border-gray-800 transition-all duration-300">
             <iframe
               src="https://www.google.com/maps/embed?pb=!1m14!1m8!1m3!1d3455.92792459972!2d31.39287211!3d29.9815013!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x14583b0027f730df%3A0x90ffc9ef42c1d20f!2sVilla%20116%20west%20golf!5e0!3m2!1sfr!2sci!4v1762215411895!5m2!1sfr!2sci"
@@ -193,11 +199,27 @@ export default function Gallery({ locale, translations }: GalleryProps) {
                 className="max-h-[85vh] w-auto mx-auto object-contain rounded-xl shadow-2xl"
               />
             </div>
-            {/* Description au bas */}
-            <div className="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-black/80 to-transparent p-6 rounded-b-xl">
-              <p className="text-white text-lg font-medium">
+            {/* Barre d'information et actions en bas de l'image */}
+            <div className="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-black/90 via-black/60 to-transparent p-4 sm:p-6 rounded-b-xl flex items-end justify-between gap-3">
+              <p className="text-white text-sm sm:text-lg font-medium flex-1 min-w-0 truncate">
                 {selectedImage.img.alt}
               </p>
+              {/* Bouton WhatsApp intégré dans la barre */}
+              <a
+                href={buildWhatsAppUrl(selectedImage.img.alt)}
+                target="_blank"
+                rel="noopener noreferrer"
+                onClick={(e) => e.stopPropagation()}
+                aria-label={t.whatsapp}
+                className="flex-shrink-0 flex items-center gap-2 px-4 py-2.5 rounded-full text-white font-semibold text-xs sm:text-sm
+                           bg-[#25D366] hover:bg-[#1ebe5d] active:scale-95
+                           shadow-[0_4px_20px_rgba(37,211,102,0.5)]
+                           transition-all duration-300"
+              >
+                <MessageCircle className="w-4 h-4 flex-shrink-0" />
+                <span className="hidden sm:inline">{t.whatsapp ?? 'WhatsApp'}</span>
+                <span className="sm:hidden">WhatsApp</span>
+              </a>
             </div>
           </div>
           {/* Bouton Fermer */}
@@ -211,11 +233,11 @@ export default function Gallery({ locale, translations }: GalleryProps) {
           {/* Bouton Télécharger */}
           <button
             onClick={(e) => {
-              e.stopPropagation(); // Empêche la fermeture de la lightbox
+              e.stopPropagation();
               downloadImage();
             }}
             aria-label={t.download}
-            className="absolute top-4 right-16 text-white p-3 rounded-full bg-black/50 hover:bg-black/70 transition-colors duration-200 flex items-center space-x-2 z-101"
+            className="absolute top-4 right-16 text-white p-3 rounded-full bg-black/50 hover:bg-black/70 transition-colors duration-200 flex items-center space-x-2 z-[101]"
           >
             <Download className="w-6 h-6" />
             <span className="hidden sm:inline">{t.download}</span>
