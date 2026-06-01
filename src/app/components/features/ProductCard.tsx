@@ -1,6 +1,6 @@
 "use client";
 import React, { useMemo, useState, useEffect, useRef } from "react";
-import { X, Download } from "lucide-react";
+import { X, Download, MessageCircle } from "lucide-react";
 // Importations inchangées...
 import { ProductEntity } from "../../lib/global.type";
 import { getProductData } from "../../data/product";
@@ -9,6 +9,13 @@ import { LocaleCode, getLocaleFromParams } from "../../lib/global.type";
 
 // TODO: REMPLACEZ 'VOTRE_LIEN_COMMANDE' PAR L'URL RÉELLE (ex: '/contact' ou 'mailto:votre@email.com')
 const ORDER_LINK_URL = "https://www.jumia.com.eg/ar/afrika/";
+
+const buildWhatsAppUrl = (productName: string) => {
+  const message = encodeURIComponent(
+    `Bonjour ! Je suis intéressé(e) par le produit "${productName}" que j'ai vu sur votre boutique AFRIKAMAZING. Pourriez-vous me donner plus d'informations ? Merci !`
+  );
+  return `https://wa.me/201211218318?text=${message}`;
+};
 
 type LocaleParams = {
   locale: LocaleCode;
@@ -255,10 +262,27 @@ export default function ProductCard({ translations: t }: ProductCardProps) {
               className="max-w-full max-h-[85vh] object-contain rounded-lg"
             />
 
-            {/* Nom du produit */}
-            <p className="text-orange-500 text-center mt-4 text-lg font-semibold">
-              {selectedImage.name}
-            </p>
+            {/* Barre nom + bouton WhatsApp */}
+            <div className="mt-4 flex items-center justify-between gap-3 px-2">
+              <p className="text-orange-500 text-sm sm:text-lg font-semibold flex-1 min-w-0 truncate">
+                {selectedImage.name}
+              </p>
+              <a
+                href={buildWhatsAppUrl(selectedImage.name)}
+                target="_blank"
+                rel="noopener noreferrer"
+                onClick={(e) => e.stopPropagation()}
+                aria-label={t.whatsapp ?? 'Commander sur WhatsApp'}
+                className="flex-shrink-0 flex items-center gap-2 px-4 py-2.5 rounded-full text-white font-semibold text-xs sm:text-sm
+                           bg-[#25D366] hover:bg-[#1ebe5d] active:scale-95
+                           shadow-[0_4px_20px_rgba(37,211,102,0.5)]
+                           transition-all duration-300"
+              >
+                <MessageCircle className="w-4 h-4 flex-shrink-0" />
+                <span className="hidden sm:inline">{t.whatsapp ?? 'Commander sur WhatsApp'}</span>
+                <span className="sm:hidden">WhatsApp</span>
+              </a>
+            </div>
           </div>
         </div>
       )}
